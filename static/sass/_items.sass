@@ -1,0 +1,91 @@
+.items
+  margin-bottom: 40px
+  h3
+    font: 18px 'GB',sans-serif
+    color: #000000
+    margin-bottom: 10px
+  &-wrapper
+    display: grid
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr))
+    grid-gap: 20px
+
+.item
+  position: relative
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+  background: #ffffff
+  border-radius: 10px
+  img
+    border-top-right-radius: 10px
+    border-top-left-radius: 10px
+  &-fav
+    position: absolute
+    content: url(../img/top-b-1.png)
+    padding: 10px
+    background: #ffffff
+    border-radius: 50%
+    right: 20px
+    top: 20px
+    &:hover
+      background: $color-blue
+
+  &-info
+    padding: 25px
+    &-name
+      font: 14px 'GR',sans-serif
+      color: #656565
+      margin-bottom: 10px
+    &-price
+      font: 16px 'GB',sans-serif
+      color: $color-blue
+      margin-bottom: 10px
+    &-place
+      font: 13px 'GR',sans-serif
+      color: #656565
+
+
+
+.item-informaion
+  margin-bottom: 70px
+  &-wrapper
+    display: grid
+    grid-template-columns: 2fr 1fr
+    grid-gap: 20px
+  &-photos
+
+  &-photo
+    padding: 40px 50px
+    background: #ffffff
+    h1
+      font: 28px 'GB', sans-serif
+      color: $color-text-grey
+      margin-bottom: 25px
+  &-price
+    padding: 40px 50px
+    background: #ffffff
+    &-buttons
+      display: flex
+      justify-content: space-between
+      margin-bottom: 10px
+      a
+        flex-basis: 49%
+    p
+      font: 24px 'GB', sans-serif
+      color: $color-text-grey
+      margin-bottom: 30px
+  &-description
+    padding: 40px 50px
+    background: #ffffff
+    font: 14px 'GB',sans-serif
+    span
+      color: #c4c4c4
+      display: inline-block
+      flex-basis: 30%
+    p
+      display: inline-block
+      color: $color-text-grey
+      flex-basis: 70%
+    &-row
+      display: flex
+      align-items: center
+      margin-bottom: 15px
+

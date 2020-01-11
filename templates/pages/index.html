@@ -1,0 +1,102 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main">
+    <section class="slider">
+        <div class="container">
+             <div class="controls" id="customize-controls">
+               <div class="arrow left"> </div>
+                  <div class="arrow right"> </div>
+            </div>
+
+
+            <div class="slider-wrapper">
+                <div class="slider-inner" id="slider-inner">
+                    {% for b in banners %}
+                     <div class="slider-item">
+                    <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+                </div>
+                {% endfor %}
+                </div>
+
+            </div><!-- // slider-wrapper -->
+
+        </div>
+    </section><!-- // slider -->
+    <section class="catalog">
+        <div class="container bg-white">
+            <div class="catalog-inner">
+                  <div class="catalog-wrapper">
+                      {% for c in all_categories %}
+                <div class="catalog-item">
+                    <a href="{% url 'catalog' c.id %}">
+                        <img src="{{ c.image.url }}" alt="">
+                        <p>{{ c.name }}</p>
+                    </a>
+                </div><!-- // catalog-item -->
+                    {% endfor %}
+
+            </div>
+            </div>
+
+        </div>
+
+
+    </section><!-- // catalog -->
+    <section class="new-offers text-center">
+        <a href="#" class="new-offer-btn">Новые Предложения</a>
+    </section>
+    {% for cat in index_cats %}
+    <section class="items">
+        <div class="container">
+            <h3>{{ cat.name }}</h3>
+
+            <div class="items-wrapper">
+                {% for i in cat.items.all %}
+              <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <a href="{% url 'item' i.id %}">
+                        <img src="{{ i.image.url }}" alt="">
+                    </a>
+
+                    <div class="item-info">
+                         <a href="{% url 'item' i.id %}">
+                        <p class="item-info-name">{{ i.name }}</p>
+                        <p class="item-info-price">{{ i.price }} Р</p>
+                        <p class="item-info-place">{{ i.address }}</p>
+                         </a>
+                    </div>
+                </div><!-- // item -->
+                    {% endfor %}
+
+            </div>
+        </div>
+
+    </section><!-- // items -->
+    {% endfor %}
+    <section class="features">
+        <div class="container">
+            <div class="features-wrapper">
+                <div class="features-item">
+                    <img src="http://placehold.it/60" alt="">
+                    <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="features-item">
+                    <img src="http://placehold.it/60" alt="">
+                    <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="features-item">
+                    <img src="http://placehold.it/60" alt="">
+                    <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="features-item">
+                    <img src="http://placehold.it/60" alt="">
+                    <p>Lorem ipsum dolor sit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div><!--//main-->
+{% endblock %}

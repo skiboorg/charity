@@ -1,0 +1,116 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main">
+    <section class="slider">
+        <div class="container">
+             <div class="controls" id="customize-controls">
+               <div class="arrow left"> </div>
+                  <div class="arrow right"> </div>
+            </div>
+
+
+            <div class="slider-wrapper">
+                <div class="slider-inner" id="slider-inner">
+                    {% for b in banners %}
+                     <div class="slider-item">
+                    <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+                </div>
+                {% endfor %}
+                </div>
+
+            </div><!-- // slider-wrapper -->
+
+        </div>
+    </section><!-- // slider -->
+    <section class="breadcrumbs">
+        <div class="container bg-white breadcrumbs-wrapper">
+            <a href="/">Главная</a>
+            <span>{{ cat.name }}</span>
+        </div>
+    </section>
+    <section class="category">
+        <div class="container">
+            <div class="category-wrapper">
+                <div class="items">
+                   <div class="items-wrapper">
+                {% for i in cat.items.all %}
+              <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <a href="{% url 'item' i.id %}">
+                        <img src="{{ i.image.url }}" alt="">
+                    </a>
+
+                    <div class="item-info">
+                         <a href="{% url 'item' i.id %}">
+                        <p class="item-info-name">{{ i.name }}</p>
+                        <p class="item-info-price">{{ i.price }} Р</p>
+                        <p class="item-info-place">{{ i.address }}</p>
+                         </a>
+                    </div>
+                </div><!-- // item -->
+                    {% endfor %}
+
+            </div>
+                </div><!-- // items -->
+                <div class="category-filters">
+                    <form action="">
+                        <select class="form-control select" name="" id="">
+                            <option selected disabled>Подкатегория</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                        </select>
+                        <select class="form-control select" name="" id="">
+                            <option selected disabled>По всей России</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                        </select>
+                        <p class="mb-10">Цена, Рубли</p>
+                        <div class="dual-input">
+                            <input type="text" placeholder="От">
+                            <input type="text" placeholder="До">
+                        </div>
+                        <div class="radio-control">
+                            <input id="i1" type="radio" name="i1">
+                            <label for="i1">Только с фото</label>
+                        </div>
+                           <div class="radio-control">
+                            <input id="i1" type="radio" name="i1">
+                            <label for="i1">Только с фото</label>
+                        </div>
+                           <div class="radio-control">
+                            <input id="i1" type="radio" name="i1">
+                            <label for="i1">Только с фото</label>
+                        </div>
+
+                        <hr>
+
+                          <select class="form-control select" name="" id="">
+                            <option selected disabled>Сортировка от А до Я</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                        </select>
+                        <select class="form-control select" name="" id="">
+                            <option selected disabled>Показывать по 24</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                            <option value="">lorem</option>
+                        </select>
+
+
+
+
+                        <button class="btn rounded" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div><!--//main-->
+{% endblock %}

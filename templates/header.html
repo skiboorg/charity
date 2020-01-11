@@ -1,0 +1,54 @@
+{% load static %}
+<header class="header">
+    <div class="container">
+        <div class="header-top">
+            <div class="header-top-wrapper">
+                <div class="logo">
+                    <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                </div>
+                <div class="nav">
+                    <div class="header-top-nav">
+                        <ul>
+                            <li><a href="#">Как мы работаем</a></li>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">Каталог Товаров</a></li>
+                            <li><a href="#">Вход\Регистрация</a></li>
+                        </ul>
+                    </div>
+                    <div class="header-top-nav-buttons">
+                        <ul>
+                            <li><a href="#"><img src="{% static 'img/top-b-1.png' %}" alt=""></a></li>
+                            <li><a href="#"><img src="{% static 'img/top-b-2.png' %}" alt=""></a></li>
+                            <li><a href="#"><img src="{% static 'img/top-b-3.png' %}" alt=""></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="header-bottom">
+            <form action="">
+                <select class="form-control select" name="" id="">
+                    <option selected disabled>Категория</option>
+                    <option value="">lorem</option>
+                    <option value="">lorem</option>
+                    <option value="">lorem</option>
+                </select>
+                <select class="form-control select" name="" id="">
+                    <option selected disabled>Город</option>
+                    <option value="">lorem</option>
+                    <option value="">lorem</option>
+                    <option value="">lorem</option>
+                </select>
+                <div class="fieldset search">
+                    <input class="form-control input " type="text" placeholder="Введите что искать...">
+                </div>
+
+                <button class="btn rounded" type="submit">Поиск</button>
+            </form>
+        </div>
+
+    </div>
+
+</header><!-- // header -->

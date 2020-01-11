@@ -1,0 +1,111 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main">
+
+    <section class="breadcrumbs">
+        <div class="container bg-white breadcrumbs-wrapper">
+            <a href="/">Главная</a>
+            <a href="{% url 'catalog' item.category.id %}">{{ item.category.name }}</a>
+            <span>{{ item.name }}</span>
+        </div>
+    </section>
+    <section class="item-informaion">
+        <div class="container">
+            <div class="item-informaion-wrapper">
+                <div class="item-informaion-photo">
+                    <h1>{{ item.category.name }}</h1>
+                    <img src="{{ item.image.url }}">
+                    <div class="item-informaion-photos">
+                        {% for i in images %}
+                        <img style="width: 100px; height: 65px" src="{{ i.image.url }}" alt="">
+                         {% endfor %}
+                    </div>
+                </div>
+                <div class="item-informaion-price">
+                    <p>{{ item.price }} Рублей</p>
+                    <div class="item-informaion-price-buttons">
+                      <a href="#" class="btn rounded">Купить</a>
+                     <a href="#" class="btn rounded bg-grey">В Избранное</a>
+                    </div>
+                    <a href="#" class="btn rounded bg-grey">Написать Продавцу</a>
+
+                </div>
+                <div class="item-informaion-description">
+
+                        <div class="item-informaion-description-row">
+                            <span>Местоположение</span><p>{{ item.address }}</p>
+                        </div>
+                        <div class="item-informaion-description-row">
+                            <span>Размещено</span><p>{{ item.time }}</p>
+                        </div>
+                    <hr>
+                    <div class="item-informaion-description-row">
+                            <span>Описание</span><p>{{ item.description }}</p>
+                        </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+     <section class="items">
+        <div class="container">
+            <h3>Похожие Объявления</h3>
+            <div class="items-wrapper">
+                <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <img src="http://placehold.it/250x180" alt="">
+                    <div class="item-info">
+                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
+                        <p class="item-info-price">1500 Р</p>
+                        <p class="item-info-place">Lorem ipsum dolor.</p>
+                    </div>
+                </div><!-- // item -->
+                <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <img src="http://placehold.it/250x180" alt="">
+                    <div class="item-info">
+                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
+                        <p class="item-info-price">1500 Р</p>
+                        <p class="item-info-place">Lorem ipsum dolor.</p>
+                    </div>
+                </div><!-- // item -->
+                <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <img src="http://placehold.it/250x180" alt="">
+                    <div class="item-info">
+                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
+                        <p class="item-info-price">1500 Р</p>
+                        <p class="item-info-place">Lorem ipsum dolor.</p>
+                    </div>
+                </div><!-- // item -->
+                <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <img src="http://placehold.it/250x180" alt="">
+                    <div class="item-info">
+                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
+                        <p class="item-info-price">1500 Р</p>
+                        <p class="item-info-place">Lorem ipsum dolor.</p>
+                    </div>
+                </div><!-- // item -->
+                <div class="item">
+                    <a class="item-fav" href="#"></a>
+                    <img src="http://placehold.it/250x180" alt="">
+                    <div class="item-info">
+                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
+                        <p class="item-info-price">1500 Р</p>
+                        <p class="item-info-place">Lorem ipsum dolor.</p>
+                    </div>
+                </div><!-- // item -->
+            </div>
+        </div>
+
+    </section><!-- // items -->
+
+
+</div><!--//main-->
+{% endblock %}
