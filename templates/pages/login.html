@@ -1,0 +1,39 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+   <div class="main">
+
+    <section class="breadcrumbs">
+        <div class="container bg-white breadcrumbs-wrapper">
+            <a href="#">Главная</a>
+            <span>Вход\Регистрация</span>
+        </div>
+    </section>
+    <section class="login">
+        <div class="container bg-white login-wrapper">
+
+                <div class="login-form">
+                    <h3>Форма входа</h3>
+                    <input type="text" class="form-control input" placeholder='Введите логин'>
+                    <input type="password" class="form-control input" placeholder='Введите пароль'>
+                    <a class="btn rounded mb-10" href="{% url 'lk' %}">Оправить</a>
+                    <a class="btn rounded bg-grey" onclick="toggleForm()" href="#">Регистрация</a>
+                </div>
+                <div class="register-form not-visible">
+                    <h3>Форма регистрации</h3>
+                    <input type="text" class="form-control input" placeholder='Введите логин'>
+                    <input type="password" class="form-control input" placeholder='Введите пароль'>
+                    <input type="password" class="form-control input" placeholder='Повторите пароль'>
+                    <a class="btn rounded mb-10" href="{% url 'lk' %}">Регистрация</a>
+                    <a class="btn rounded bg-grey" onclick="toggleForm()" href="#">Назад</a>
+                </div>
+
+        </div>
+
+
+    </section>
+
+
+</div><!--//main-->
+{% endblock %}

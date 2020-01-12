@@ -9,8 +9,8 @@ urlpatterns = [
 
 
 
-    # path('login/', views.login, name='login'),
-    # path('logout/', views.logout_page, name='logout'),
+    path('login/', views.login, name='login'),
+    path('lk/', views.lk, name='lk'),
     # path('profile/<nickname_req>', views.profile, name='profile'),
     # path('del_message/', views.del_message, name='del_message'),
     # path('bonus_pack/', views.bonus_pack, name='bonus_pack'),

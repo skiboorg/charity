@@ -23,3 +23,12 @@ def item(request,id):
     images = ItemImage.objects.filter(item=item)
 
     return render(request, 'pages/item.html', locals())
+
+
+def login(request):
+
+    return render(request, 'pages/login.html', locals())
+
+
+def lk(request):
+    return render(request, 'pages/lk.html', locals())
