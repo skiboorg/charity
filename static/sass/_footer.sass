@@ -1,0 +1,109 @@
+.footer
+  background: #F9F9F9
+  padding-top: 50px
+  h4
+    font: 18px 'GB',sans-serif
+    color: $color-text-grey
+    margin-bottom: 20px
+  &-top
+    padding-bottom: 60px
+    border-bottom: 1px solid $color-border
+    display: grid
+    grid-template-columns: repeat(4,1fr)
+
+    &-menu
+
+      ul
+        li
+          margin-bottom: 10px
+          &:last-child
+            margin-bottom: 0
+          a
+           font: 13px 'GR',sans-serif
+           color: #515151
+  &-bottom
+    padding: 25px 0
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    img
+      margin-right:  40px
+    p
+      max-width: 110px
+      font: 10px 'GR',sans-serif
+      color: #AFAFAF
+
+
+.footer-contact
+  &-item
+    margin-bottom: 10px
+    span
+      max-width: 110px
+      font: 10px 'GR',sans-serif
+      color: #AFAFAF
+      margin-bottom: 5px
+    p
+      font: 13px 'GR',sans-serif
+      color: #515151
+
+.footer-social
+  ul
+    display: flex
+    align-items: center
+    li
+      margin-right: 10px
+      span
+        width: 32px
+        height: 32px
+        display: inline-block
+        background-size: cover
+        opacity: .8
+        transition: opacity .2s linear
+        &:hover
+          opacity: 1
+          transition: opacity .2s linear
+
+
+
+
+.vk
+  background: url(../img/VK.png)
+.fb
+  background: url(../img/Facebook.png)
+.ok
+  background: url(../img/OK.png)
+.mc
+  background: url(../img/Mastercard.png)
+  opacity: 1 !important
+.visa
+  background: url(../img/Visa.png)
+  opacity: 1 !important
+
+@media (max-width: 690px)
+  .footer
+    &-top
+      grid-template-columns: repeat(3,1fr)
+      grid-row-gap: 10px
+    &-social
+      grid-column-start: 1
+      grid-column-end: 3
+      display: grid
+      grid-template-columns: 1fr 1fr
+
+@media (max-width: 500px)
+  .footer
+    &-top
+      grid-template-columns: 100%
+      grid-row-gap: 20px
+      text-align: center
+    &-social
+      text-align: center
+      grid-column-start: 1
+      grid-column-end: 1
+      display: grid
+      grid-template-columns: 100%
+
+      ul
+        justify-content: center
+    &-bottom
+      justify-content: center

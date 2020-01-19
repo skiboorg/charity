@@ -1,55 +1,50 @@
-$color-border: #c4c4c4
-$color-bg: #f7f7f7
+$color-border: #EBEBEB
+$color-bg: #E5E5E5
+$color-bg-grey: #FAFAFA
 $color-blue: #00AADF
-$color-text-grey: #7c7c7c
+$color-text: #000
+$color-text-grey: #212020
 body
-  background: $color-bg
   font: 14px 'GR',sans-serif
   color: $color-text-grey
 hr
   border: none
   border-bottom: 1px solid $color-border
   margin: 15px 0
+
+h3
+  font: 25px 'GB',sans-serif
+  color: $color-text-grey
+
 .container
   max-width: 1320px
   padding: 0 10px
   margin: 0 auto
-  &.bg-white
-    background: #ffffff
+
+.bg-white
+  background: #ffffff
+
+.bg-lite
+  background: $color-bg
+
+.bg-grey
+  background: $color-bg-grey
+
 .mb-10
   margin-bottom: 10px
+.mb-30
+  margin-bottom: 30px
+.mb-50
+  margin-bottom: 50px !important
 .text-center
   text-align: center
 .new-offers
-  margin-bottom: 100px
-.new-offer-btn
-  position: relative
-  font: 20px 'GB', sans-serif
-  color: #ffffff
-  padding: 25px 100px
-  background: $color-blue
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-  box-sizing: border-box
-  display: inline-block
-  transform: translateY(0px)
-  transition: all .2s linear
-  &::after
-    transition: all .2s linear
-    position: absolute
-    content: url(../img/l-arrow.png)
-    padding: 8px 12px
-    top: 18px
-    right: -20px
-    border-radius: 50%
-    background: #ffffff
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-  &:hover
-    transition: all .2s linear
-    box-shadow: none
-    transform: translateY(1px)
-    &::after
-      transition: all .2s linear
-      box-shadow: none
+  position: absolute
+  right: 0
+  left: 0
+  margin: 0 auto
+  transform: translateY(-50%)
+
 
 
 

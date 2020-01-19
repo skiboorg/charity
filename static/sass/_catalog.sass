@@ -1,36 +1,50 @@
 .catalog
-  margin-bottom: 40px
-  &-inner
-    box-shadow: 0px 11px 10px -11px rgba(0, 0, 0, 0.25)
+  margin-bottom: 130px
+  h3
+    margin-bottom: 60px
   &-wrapper
-    padding: 60px 0
-    max-width: 700px
-    margin: 0 auto
     display: grid
-    grid-template-columns: repeat(auto-fill,minmax(100px,1fr))
-    grid-gap: 40px
+    grid-template-columns: repeat(auto-fill,minmax(230px,1fr))
+    grid-gap: 20px
   &-item
+    border: 1px solid $color-border
+    box-sizing: border-box
+    border-radius: 2px
+    padding: 35px 0 35px 25px
+
     a
       display: flex
       flex-direction: column
-      align-items: center
+      align-items: flex-start
       transition: all .2s linear
-      &:hover
-        img
-          transition: all .2s linear
-          transform: translateY(1px)
-          box-shadow: none
+      //&:hover
+      //  img
+      //    transition: all .2s linear
+      //    transform: translateY(1px)
+      //    box-shadow: none
 
     img
-      width: 100px
-      height: 100px
-      transition: all .2s linear
-      box-sizing: border-box
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-      border-radius: 10px
       margin-bottom: 20px
-      transform: translateY(0px)
+      width: 50px
+      //height: 100px
+      //transition: all .2s linear
+      //box-sizing: border-box
+      //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+      //border-radius: 10px
+      //margin-bottom: 20px
+      //transform: translateY(0px)
     p
 
       font: 13px 'GB',sans-serif
       color: $color-text-grey
+
+
+@media (max-width: 960px)
+  .catalog
+    &-wrapper
+      grid-template-columns: repeat(auto-fill,minmax(180px,1fr))
+      grid-gap: 10px
+    &-item
+      padding: 15px
+      a
+        align-items: center

@@ -3,7 +3,8 @@
   align-items: center
 
 .header
-  margin-bottom: 40px
+  margin-bottom: 60px
+  box-shadow: 0px 5px 80px rgba(210, 210, 210, 0.4)
   &-top
     background: #ffffff
     padding: 20px 10px
@@ -21,7 +22,7 @@
         li
           margin-right: 50px
           a
-            font: 12px 'GB',sans-serif
+            font: 14px 'GB',sans-serif
             color: $color-text-grey
           &:last-child
             margin-right: 40px
@@ -31,27 +32,125 @@
           li
             margin-right: 10px
             a
-              border: 1px solid $color-border
-              border-radius: 10px
-              padding: 10px
               box-sizing: border-box
-              display: flex
-              align-items: center
-              justify-content: center
+              span
+                display: inline-block
+                width: 24px
+                height: 24px
 
-              img
-                width: 16px
-                height: 16px
-            &:last-child
-              margin-right: 0
+                &.icon-favorites
+                  background: url(../img/icon-fav.png) no-repeat center
+                &.icon-lk
+                  background: url(../img/icon-lk.png) no-repeat center
+                  width: 30px
+                &.icon-menu
+                  background: url(../img/icon-menu.png) no-repeat center
+
+                &.icon-zoom
+                  background: url(../img/zoom.png) no-repeat center
+
   &-bottom
+    position: relative
     background: #ffffff
     padding: 15px 10px
-    box-shadow: 0px 11px 10px -11px rgba(0, 0, 0, 0.25)
+
     form
       display: flex
       align-items: center
       justify-content: space-between
+
+.mobile-buttons
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+
+.mobile-nav
+  position: relative
+  display: none
+  ul
+    li
+      a
+        span
+          width: 19px
+          height: 19px
+          background-size: cover !important
+        &.icon-lk
+          height: 21px
+.mobile-menu
+  position: absolute
+  background: #ffffff
+  box-shadow: 0px 5px 80px rgba(210, 210, 210, 0.4)
+  left: 0
+  right: 0
+  top: 53px
+  transform: translateX(-100%)
+  z-index: 999
+  padding: 30px
+  transition: transform 0.2s ease-in
+  ul
+    li
+      margin-bottom: 15px
+      &:last-child
+        margin-bottom: 0
+      a
+        font: 16px 'GB',sans-serif
+        color: $color-text-grey
+  &.menu-active
+    transition: transform 0.2s ease-in
+    transform: translateX(0)
+
+.mobile-toggle
+  width: 20px
+  position: relative
+  height: 3px
+  background: $color-text-grey
+  &::before
+    position: absolute
+    content: ''
+    width: 20px
+    height: 3px
+    background: $color-text-grey
+    top: -7px
+    right: 0
+    transition: transform 0.2s ease-in, top 0.2s linear 0.2s
+  &::after
+    position: absolute
+    background: $color-text-grey
+    content: ''
+    width: 20px
+    height: 3px
+    top: 7px
+    transition: transform 0.2s ease-in, top 0.2s linear 0.2s
+
+.mobile-toggle.mobile-toggle-active
+  background-color: transparent
+  &::before
+    width: 20px
+    transform: rotate(45deg)
+    top: 0
+    transition: top 0.2s linear, transform 0.2s ease-in 0.2s
+  &::after
+    transform: rotate(-45deg)
+    top: 0
+    transition: top 0.2s linear, transform 0.2s ease-in 0.2s
+
+@media (max-width: 1024px)
+  .header-top-nav
+    li
+      margin-right: 25px !important
+@media (max-width: 960px)
+  .mobile-nav
+    display: block
+  .header-top
+    padding: 10px 0
+  .nav
+    display: none
+  .header-bottom
+    form
+      display: none
+
+//@media (max-width: 480px)
 
 
 

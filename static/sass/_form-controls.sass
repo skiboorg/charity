@@ -1,19 +1,21 @@
 .form-control
   position: relative
-  border: none
-  background: #E5E5E5
   height: 40px
-  border-radius: 10px
   font: 14px 'GR', sans-serif
+  color: #161616
   padding: 0 10px
-
+  background: #FFFFFF
+  border: 1px solid $color-border
+  box-sizing: border-box
+  border-radius: 2px
   flex-basis: 20%
   &:focus
     outline: none
   &.select
    width: 100%
   &.input
-    width: 85%
+    width: 100%
+    padding-left: 60px
 
 
 
@@ -25,28 +27,23 @@
 
   &.search::before
     position: absolute
-    content: ''
-    right: 0
+    content: url(../img/zoom.png)
+    left: 20px
+    bottom: 0
     top: 0
-    border: 1px solid $color-border
-    background: #ffffff
-    width: 40px
-    height: 40px
-    border-radius: 10px
-    cursor: pointer
-  &.search::after
-    position: absolute
-    content: url(../img/search-icon.png)
-    right: 11px
-    top: 11px
-    cursor: pointer
+    margin: auto 0
+    width: 16px
+    height: 16px
+    z-index: 1
 
 
 
 
 .btn
   border: none
-  background: $color-blue
+  background: linear-gradient(360deg, #01BF41 28.69%, #26D961 100%)
+  box-shadow: 0px 2px 0px #0E913A
+  border-radius: 2px
   cursor: pointer
   font: 12px 'GB',sans-serif
   color: #ffffff
@@ -56,10 +53,25 @@
   display: inline-flex
   align-items: center
   justify-content: center
-  &.rounded
-    border-radius: 10px
+  text-transform: uppercase
   &.bg-grey
     background: $color-border
+  &.with-plus
+    &::before
+      content: url(../img/plus.png)
+      height: 16px
+      width: 16px
+      margin-right: 16px
+  &.with-arrow
+    max-width: 260px
+    &::after
+      content: url(../img/arrow.png)
+      height: 16px
+      width: 16px
+      margin-left: 16px
+
+
+
 
 .radio-control
   display: flex

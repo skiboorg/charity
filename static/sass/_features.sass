@@ -1,17 +1,233 @@
 .features
+  margin-bottom: 130px
+
+  h3
+    margin-bottom: 50px
   &-wrapper
+    margin-bottom: 95px
     display: grid
-    grid-template-columns: repeat(auto-fill,minmax(300px,1fr))
-    grid-gap: 40px
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr))
+    grid-gap: 10px
   &-item
-    background: #ffffff
-    padding: 20px
-    display: flex
-    flex-direction: column
-    align-items: center
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-    img
-      margin-bottom: 20px
+    position: relative
+    border: 1px solid $color-border
+    box-sizing: border-box
+    border-radius: 2px
+    padding: 35px 65px 35px 95px
+
+    h4
+      font: 18px 'GB',sans-serif
+      color: $color-text-grey
+      margin-bottom: 10px
+
     p
       font: 14px 'GR',sans-serif
-      color: #656565
+      color: #515151
+    &-wrapper
+      &::before
+        position: absolute
+        content: ''
+        width: 50px
+        height: 50px
+        display: inline-block
+        border-radius: 50%
+        background: #FAFAFA
+        left: 30px
+      &.f1::after
+        position: absolute
+        content: url(../img/f1.png)
+        left: 48px
+        top: 48px
+      &.f2::after
+        position: absolute
+        content: url(../img/f2.png)
+        left: 48px
+        top: 48px
+      &.f3::after
+        position: absolute
+        content: url(../img/f3.png)
+        left: 44px
+        top: 48px
+
+.features-info-wrapper
+  display: grid
+  grid-template-columns: 2fr 3fr
+  grid-gap: 70px
+.features-info-block
+  border: 1px solid $color-border
+  box-sizing: border-box
+  border-radius: 2px
+  padding: 40px
+  h4
+    font: 18px 'GB',sans-serif
+    color: $color-text-grey
+    margin-bottom: 10px
+  p
+    font: 16px 'GR',sans-serif
+    color: #515151
+  &:first-child
+    border-bottom: none
+
+.features-info-block-right
+  padding: 20px 0
+  img
+    margin-bottom: 20px
+  h3
+    margin-bottom: 30px !important
+  p
+    font: 16px 'GR',sans-serif
+    color: #515151
+    line-height: 18px
+    margin-bottom: 30px
+.best-of-bests-wrapper
+  position: relative
+  margin-bottom: 140px
+.best-of-bests
+  &-bg1
+    position: absolute
+    width: 98%
+    height: 100%
+    top: 10px
+    right: 0
+    left: 0
+    margin: 0 auto
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05)
+    border-radius: 2px
+    z-index: 9
+    background: #ffffff
+
+  &-bg2
+    position: absolute
+    width: 95%
+    height: 100%
+    top: 20px
+    right: 0
+    left: 0
+    margin: 0 auto
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05)
+    border-radius: 2px
+    z-index: 8
+.best-of-bests
+  position: relative
+  z-index: 10
+  display: flex
+  flex-wrap: wrap
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.05)
+  border-radius: 2px
+  padding: 40px 65px
+  background: #ffffff
+  &::after
+    position: absolute
+    content: url(../img/f-big.png)
+    top: 65px
+    right: 90px
+.best-customers
+  margin-right: 230px
+.best-customer-item
+  display: flex
+  align-items: center
+  margin-bottom: 25px
+  &:last-child
+    margin-bottom: 0
+.customer-img
+  position: relative
+  margin-right: 25px
+  img
+    height: 64px
+    width: 64px
+    max-width: none
+  &.with-star
+    &::after
+      position: absolute
+      content: url(../img/small-star.png)
+      top: -10px
+      right: -10px
+  &.with-globe
+    &::after
+      position: absolute
+      content: url(../img/globe.png)
+      top: -10px
+      right: -10px
+.customer-info
+  p
+    font: 16px 'GB',sans-serif
+    color: $color-text-grey
+    margin-bottom: 5px
+  span
+    font: 12px 'GB',sans-serif
+    color: #009FEE
+
+@media (max-width: 960px)
+  .best-of-bests
+    justify-content: space-between
+    &::after
+      content: none
+  .best-customers
+    margin-right: 0
+  .features
+    &-item
+      padding: 90px 20px 20px 20px
+      text-align: center
+      &-wrapper
+        &::before
+          position: absolute
+          content: ''
+          width: 50px
+          height: 50px
+          display: inline-block
+          border-radius: 50%
+          background: #FAFAFA
+          left: 0
+          right: 0
+          margin: 0 auto
+          top: 10px
+
+        &.f1::after
+          position: absolute
+          content: url(../img/f1.png)
+          left: 0
+          right: 0
+          margin: 0 auto
+          top: 23px
+        &.f2::after
+          position: absolute
+          content: url(../img/f2.png)
+          left: 0
+          right: 0
+          margin: 0 auto
+          top: 23px
+        &.f3::after
+          position: absolute
+          content: url(../img/f3.png)
+          left: 0
+          right: 0
+          margin: 0 auto
+          top: 23px
+
+@media (max-width: 960px)
+  .features-info-wrapper
+    grid-template-columns: 100%
+  .features-info-block-right
+    order: 1
+    text-align: center
+  .features-info-block-left
+    order: 2
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 10px
+  .features-info-block
+    border: 1px solid $color-border !important
+@media (max-width: 690px)
+  .best-of-bests
+    justify-content: center
+  .best-customers
+    margin-bottom: 30px
+    width: 320px
+  .best-transfers
+    width: 320px
+@media (max-width: 600px)
+ .features
+  &-wrapper
+    grid-template-columns: 1fr
+  .features-info-block-left
+    grid-template-columns: 100%
