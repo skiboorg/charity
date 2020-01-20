@@ -1417,6 +1417,10 @@ button[type='button'] {
     display: none;
   }
 
+  .catalog {
+    margin-bottom: 80px;
+  }
+
   .catalog-wrapper {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 10px;
@@ -1430,6 +1434,14 @@ button[type='button'] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+  }
+
+  .items-inner {
+    padding: 115px 0 70px 0;
+  }
+
+  .items-inner h3 {
+    text-align: center;
   }
 
   .best-of-bests {
