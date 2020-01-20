@@ -69,6 +69,12 @@
       height: 16px
       width: 16px
       margin-left: 16px
+  &.with-filter
+    &::before
+      content: url(../img/filter.png)
+      height: 16px
+      width: 16px
+      margin-right: 16px
 
 
 
@@ -82,20 +88,19 @@
 
 .dual-input
   display: flex
-  height: 40px
-  margin-bottom: 10px
+  align-items: center
 
+  margin-bottom: 25px
   input
     border: none
     padding: 0 10px
-    width: 50%
+    height: 40px
+    width: 49%
     border: 1px solid $color-border
+    box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.08)
+    border-radius: 2px
     &:focus
       outline: 0
-    &:nth-child(1)
-      border-top-left-radius: 10px
-      border-bottom-left-radius: 10px
-    &:nth-child(2)
-      border-left: none
-      border-top-right-radius: 10px
-      border-bottom-right-radius: 10px
+  p
+    margin: 0 10px
+

@@ -38,8 +38,57 @@
       font: 13px 'GB',sans-serif
       color: $color-text-grey
 
+.category
+  &-wrapper
+    display: grid
+    grid-template-columns: 1fr 3fr
+    grid-gap: 20px
+  &-filters
+    height: fit-content
+    padding: 20px
+    background: #FFFFFF
+    box-sizing: border-box
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.07)
+    border-radius: 2px
+    & .form-control
+      margin-bottom: 25px
+      background: #FAFAFA
+.filter-caption
+  font: 18px 'GB', sans-serif
+  color: $color-text-grey
+  margin-bottom: 15px
+.filter-values
+  display: flex
+  justify-content: space-between
+#slider
+  margin-bottom: 10px
+.mobile-filter-wrapper
+  a
+    display: none !important
 
 @media (max-width: 960px)
+  .mobile-filter-wrapper
+    display: grid
+    grid-template-columns: 1fr 4fr
+    grid-gap: 10px
+    a
+      display: inline-flex !important
+      height: 48px
+  .category
+    &-filters
+      position: absolute
+      z-index: 999
+      left: 0
+      right: 0
+      top: 60px
+      transform: translateX(-100%)
+      transition: transform 0.2s ease-in
+      &.filters-active
+        transform: translateX(0)
+        transition: transform 0.2s ease-in
+    &-wrapper
+      position: relative
+      grid-template-columns: 1fr
   .catalog
     &-wrapper
       grid-template-columns: repeat(auto-fill,minmax(180px,1fr))
@@ -48,3 +97,7 @@
       padding: 15px
       a
         align-items: center
+
+@media (max-width: 600px)
+  .mobile-filter-wrapper
+    grid-template-columns: 1fr 1fr
