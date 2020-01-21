@@ -14,8 +14,13 @@
   &.select
    width: 100%
   &.input
+    flex-grow: 1
     width: 100%
-    padding-left: 60px
+    padding-left: 20px
+  &.textarea
+    flex-grow: 1
+    height: 180px
+    padding: 15px 20px
 
 
 
@@ -24,6 +29,8 @@
   border-radius: 10px
   position: relative
   flex-basis: 35%
+  input
+    padding-left: 60px !important
 
   &.search::before
     position: absolute
@@ -89,7 +96,6 @@
 .dual-input
   display: flex
   align-items: center
-
   margin-bottom: 25px
   input
     border: none
@@ -104,3 +110,29 @@
   p
     margin: 0 10px
 
+.form-row
+  margin-bottom: 50px
+  p
+    font: 18px 'GB',sans-serif
+    color: $color-text-grey
+    margin-bottom: 25px
+  span
+    font: 13px 'GR', sans-serif
+    color: #9e9e9e
+    display: block
+    margin-top: 15px
+.form-group
+  display: flex
+  align-items: flex-start
+  flex-wrap: wrap
+  margin-bottom: 30px
+  label
+    flex-basis: 15%
+    padding-top: 10px
+
+  span
+
+    font: 13px 'GR', sans-serif
+    color: #9e9e9e
+    display: block
+    margin-top: 15px

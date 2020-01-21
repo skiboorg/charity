@@ -259,8 +259,19 @@ h3 {
 }
 
 .form-control.input {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   width: 100%;
-  padding-left: 60px;
+  padding-left: 20px;
+}
+
+.form-control.textarea {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  height: 180px;
+  padding: 15px 20px;
 }
 
 .fieldset {
@@ -269,6 +280,10 @@ h3 {
   position: relative;
   -ms-flex-preferred-size: 35%;
   flex-basis: 35%;
+}
+
+.fieldset input {
+  padding-left: 60px !important;
 }
 
 .fieldset.search::before {
@@ -380,6 +395,48 @@ h3 {
 
 .dual-input p {
   margin: 0 10px;
+}
+
+.form-row {
+  margin-bottom: 50px;
+}
+
+.form-row p {
+  font: 18px 'GB',sans-serif;
+  color: #212020;
+  margin-bottom: 25px;
+}
+
+.form-row span {
+  font: 13px 'GR', sans-serif;
+  color: #9e9e9e;
+  display: block;
+  margin-top: 15px;
+}
+
+.form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  -ms-flex-preferred-size: 15%;
+  flex-basis: 15%;
+  padding-top: 10px;
+}
+
+.form-group span {
+  font: 13px 'GR', sans-serif;
+  color: #9e9e9e;
+  display: block;
+  margin-top: 15px;
 }
 
 .nav {
@@ -1608,6 +1665,10 @@ button[type='button'] {
   .category-wrapper {
     position: relative;
     grid-template-columns: 1fr;
+  }
+
+  .catalog {
+    margin-bottom: 80px;
   }
 
   .catalog-wrapper {
