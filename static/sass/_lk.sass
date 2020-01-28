@@ -34,7 +34,8 @@
         margin-bottom: 45px
         color: #969696
         &::before
-          content: url(../img/sign-out.png)
+          font-family: FontAwesome
+          content: '\f08b'
           margin-right: 10px
 
 
@@ -56,35 +57,193 @@
             font: 15px 'GR', sans-serif
             margin-left: 70px
             color: #000000
+            &::before
+              font-family: FontAwesome
+              color: #37D134
+              font-size: 20px
+              position: absolute
+
 
 
 
 .my-ads::before
-  position: absolute
-  left: -40px
-  content: url(../img/edit.png)
+  left: -38px
+  content: '\f044'
 .my-buys::before
-  position: absolute
   left: -40px
-  content: url(../img/my-buys.png)
+  content: '\f07a'
 .my-chat::before
-  position: absolute
   left: -40px
-  content: url(../img/my-chat.png)
+  content: '\f1d7'
 .my-fav::before
-  position: absolute
   left: -40px
-  content: url(../img/my-fav.png)
+  content: '\f08a'
 .my-settings::before
-  position: absolute
-  left: -40px
-  content: url(../img/my-settings.png)
+  left: -38px
+  content: '\f013'
 
 .lk-content
   &-wrapper
     display: none
     animation: fadeEffect 1s
-  &-ads
+  &-chat
+    position: relative
+    height: 100%
+    ul
+      margin-bottom: 30px
+      li
+        margin-bottom: 15px
+        &:last-child
+          margin-bottom: 0
+    p
+      font: 16px 'GR', Sans-Serif
+      color: #969696
+      margin-bottom: 15px
+
+    &-item
+      cursor: pointer
+      display: flex
+      justify-content: space-between
+      background: #FFFFFF
+      box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.07)
+      border-radius: 2px
+      padding: 20px
+      &-img
+        position: relative
+        img
+          width: 50px
+          height: 50px
+          border-radius: 50%
+          margin-right: 20px
+        &.unread
+          &::after
+            position: absolute
+            content: attr(data-num)
+            right: 16px
+            color: #ffffff
+            background: #37D134
+            width: 20px
+            height: 20px
+            padding: 2px 6px
+            border-radius: 50%
+
+      &-user
+        flex-grow: 1
+        p
+          font: 16px 'GB', Sans-Serif
+          color: $color-text-grey
+          margin-bottom: 10px
+        span
+          color: #838383
+
+.lk-content-chat-messages
+  display: none
+  position: absolute
+  background: #FFFFFF
+  border: 1px solid #F4F4F4
+  box-sizing: border-box
+  box-shadow: inset 0px 2px 20px rgba(0, 0, 0, 0.02)
+  border-radius: 2px
+  height: 100%
+  top: 0
+  &-top
+    display: flex
+    justify-content: space-between
+    background: #FFFFFF
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.07)
+    border-radius: 2px
+    padding: 20px
+    &-img
+      position: relative
+      img
+        width: 50px
+        height: 50px
+        border-radius: 50%
+        margin-right: 20px
+      &.unread
+        &::after
+          position: absolute
+          content: attr(data-num)
+          right: 16px
+          color: #ffffff
+          background: #37D134
+          width: 20px
+          height: 20px
+          padding: 2px 6px
+          border-radius: 50%
+
+    &-user
+      flex-grow: 1
+      p
+        font: 16px 'GB', Sans-Serif
+        color: $color-text-grey
+        margin-bottom: 10px
+      span
+        color: #838383
+  &-bottom
+    padding: 60px 20px
+    overflow-y: auto
+    max-height: 50%
+    &__message-to-me
+      width: 70%
+      display: flex
+      p
+        font: 16px 'GR', Sans-Serif
+        color: #000
+        padding: 10px 20px
+        background: #F6F6F6
+        border-radius: 20px
+        flex-basis: 85%
+        max-width: fit-content
+      span
+        font: 12px 'GR', Sans-Serif
+        color: #838383
+        flex-basis: 15%
+    &__message-from-me
+      width: 70%
+      display: flex
+      margin-left: auto
+      justify-content: flex-end
+      p
+        order: 2
+        font: 16px 'GR', Sans-Serif
+        padding: 10px 20px
+        background: #447CFA
+        border-radius: 20px
+        flex-basis: 85%
+        color: #ffffff
+        max-width: fit-content
+      span
+        order: 1
+        flex-basis: 15%
+        font: 12px 'GR', Sans-Serif
+        color: #838383
+  &-new-message
+    position: relative
+    background: #FFFFFF
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.07)
+    border-radius: 2px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 13px 25px
+    z-index: 999
+    textarea
+      border: none
+      display:  block
+      flex-basis: 95%
+      overflow: hidden
+      resize: none
+      height: 16px
+      &:focus
+        outline: 0
+    &-button
+      margin-bottom: auto
+      a
+        color: #447CFA
+        font-size: 30px
+  &.show-messages
+    display: block
 
 
 @-webkit-keyframes fadeEffect
@@ -92,7 +251,6 @@
     opacity: 0
   to
     opacity: 1
-
 
 @keyframes fadeEffect
   from
