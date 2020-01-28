@@ -128,6 +128,17 @@
                         <label>Цена: ₽</label>
                         <input class="form-control input" type="text" placeholder="15 000">
                     </div>
+                      <div class="form-group">
+                        <label>Фотографии</label>
+                          <label for="upload_img">
+                              <input id="upload_img" multiple accept="image/*"  type="file" >
+                          </label>
+                          <div id="preview" class="images-preview">
+
+
+                          </div>
+
+                    </div>
                     <div class="form-row">
                         <p>Местоположение</p>
                         <select class="form-control select" name="" id="">
@@ -183,7 +194,44 @@
             </form>
         </section><!--//new-item-->
     </div><!--//container-->
+<script>
 
+  function previewImages() {
+
+  var preview = document.querySelector('#preview');
+    preview.innerHTML = ''
+  if (this.files) {
+    [].forEach.call(this.files, readAndPreview);
+  }
+
+  function readAndPreview(file) {
+
+
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function() {
+      var image = new Image();
+      image.height = 100;
+      image.width = 100;
+      image.title  = file.name;
+      image.src    = this.result;
+      preview.appendChild(image);
+     // image.addEventListener("click", event => {
+     //      console.log(file.name)
+     //       console.log(allImages.files)
+      //})
+    });
+
+    reader.readAsDataURL(file);
+
+  }
+
+}
+
+
+
+document.querySelector('#upload_img').addEventListener("change", previewImages);
+</script>
 </div><!--//main-->
 
 <footer class="footer">
