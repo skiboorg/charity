@@ -9,9 +9,21 @@
 </head>
 <body>
 
+<!DOCTYPE html>
+<!-- SKIBORG WAS HERE -->
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
 <header class="header">
-    <div class="container">
-        <div class="header-top">
+
+    <div class="header-top">
+        <div class="container">
             <div class="header-top-wrapper">
                 <div class="logo">
                     <a href="#"><img src="img/logo.png" alt=""></a>
@@ -27,17 +39,19 @@
                     </div>
                     <div class="header-top-nav-buttons">
                         <ul>
-                            <li><a href="#"><img src="img/top-b-1.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/top-b-2.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/top-b-3.png" alt=""></a></li>
+                            <li><a href="#"><span class="icon-favorites"></span></a></li>
+                            <li><a href="#"><span class="icon-lk"></span></a></li>
+                            <li><a href="#"><span class="icon-menu"></span></a></li>
 
                         </ul>
                     </div>
                 </div>
 
-            </div>
-        </div>
-        <div class="header-bottom">
+            </div></div>
+
+    </div>
+    <div class="header-bottom">
+        <div class="container">
             <form action="">
                 <select class="form-control select" name="" id="">
                     <option selected disabled>Категория</option>
@@ -55,76 +69,383 @@
                     <input class="form-control input " type="text" placeholder="Введите что искать...">
                 </div>
 
-                <button class="btn rounded" type="submit">Поиск</button>
+                <button class="btn with-plus" type="submit">разместить обьявление</button>
             </form>
-        </div>
+            <div class="mobile-nav">
+                <div class="header-top-nav-buttons mobile-buttons">
+                    <div class="mobile-menu-wrapper">
+                        <div class="mobile-toggle"></div>
+                    </div>
+                    <ul>
+                        <li><a href="#"><span class="icon-zoom"></span></a></li>
+                        <li><a href="#"><span class="icon-favorites"></span></a></li>
+                        <li><a href="#"><span class="icon-lk"></span></a></li>
 
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#">Как мы работаем</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Каталог Товаров</a></li>
+                <li><a href="#">Вход\Регистрация</a></li>
+            </ul>
+        </div>
     </div>
+
+
 
 </header><!-- // header -->
 <div class="main">
-
-    <section class="breadcrumbs">
-        <div class="container bg-white breadcrumbs-wrapper">
-            <a href="#">Главная</a>
-            <span>Личный Кабинет</span>
+    <div class="breadcrumbs">
+        <div class="container ">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><span>Личный кабинет</span></li>
+            </ul>
         </div>
-    </section>
+    </div>
+
     <section class="lk">
         <div class="container">
             <div class="lk-wrapper">
-            <div class="lk-user">
-                <img src="http://placehold.it/210" alt="">
-                <p>Иван Иванов</p>
+                <div class="lk-menu">
+                    <div class="lk-menu-top">
+                        <img src="img/user-photo.png" alt="">
+                        <p>Имя Фамилия</p>
+                        <span>#Переменное значение</span>
+                        <a href="#">Выйти</a>
+                    </div><!-- // lk-menu-top -->
+                    <div class="lk-menu-bottom">
+                        <ul>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-ads')" id="defaultOpen"><a class="my-ads" href="javascript: void(0)" >Мои обьявления</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-buys')"><a class="my-buys" href="javascript: void(0)"  >Мои покупки</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-chat')"><a class="my-chat" href="javascript: void(0)">Чаты</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-fav')"> <a class="my-fav" href="javascript: void(0)">Избранное</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-settings')"><a class="my-settings" href="javascript: void(0)">Настройки</a></li>
+                        </ul>
+                        
+                    </div><!-- // lk-menu-bottom -->
+
+                </div><!-- // lk-menu -->
+                <div class="lk-content">
+                     <div id="lk-content-ads" class="lk-content-wrapper lk-content-ads">
+                         <h3 class="mb-40">Мои обьявления</h3>
+                             <div class="items-wrapper">
+                                 <div class="item new-item">
+                                     <a href="#">
+                                         <img src="img/new-item.png" alt="">
+                                         <p>НОВОЕ<br>ОБЬЯВЛЕНИЕ</p>
+                                     </a>
+                                 </div>
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                    </div>
+
+                    </div><!-- // lk-content-ads -->
+                     <div id="lk-content-buys" class="lk-content-wrapper lk-content-buys">
+                         <h3 class="mb-40">Мои покупки</h3>
+                             <div class="items-wrapper">
+
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                        <div class="item">
+                            <a class="item-fav in-fav" href="#"></a>
+                            <a href="#">
+                                <img src="img/item-temp.jpg" alt="">
+                            </a>
+
+                            <div class="item-info">
+                                <a href="#">
+                                    <p class="item-info-text item-present">В наличии</p>
+                                    <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                    <p class="item-info-text">Цена</p>
+                                    <p class="item-info-price">1500 Р</p>
+
+                                </a>
+                            </div>
+                        </div><!-- // item -->
+                    </div>
+
+                    </div><!-- // lk-content-buys -->
+                    <div id="lk-content-chat" class="lk-content-wrapper lk-content-chat">
+                         <h3 class="mb-40">Мои чаты</h3>
+
+
+                    </div><!-- // lk-content-chat -->
+                     <div id="lk-content-fav" class="lk-content-wrapper lk-content-fav">
+                         <h3 class="mb-40">Избранное</h3>
+
+
+                    </div><!-- // lk-content-fav -->
+                     <div id="lk-content-settings" class="lk-content-wrapper lk-content-settings">
+                         <h3 class="mb-40">Настройки</h3>
+
+
+                    </div><!-- // lk-content-settings -->
+                </div><!-- // lk-content -->
+
+            </div><!-- // lk-wrapper -->
+        </div><!-- // container -->
+    </section><!-- // lk -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-top-menu">
+                    <h4>О компании</h4>
+                    <ul>
+                        <li><a href="">Как мы работаем</a></li>
+                        <li><a href="">Контакты</a></li>
+                        <li><a href="">Каталог товаров</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                    </ul>
+                </div>
+                <div class="footer-top-menu">
+                    <h4>Разделы</h4>
+                    <ul>
+                        <li><a href="">Вещи и одежда</a></li>
+                        <li><a href="">Компьютерная техника</a></li>
+                        <li><a href="">Инструменты</a></li>
+                        <li><a href="">Запчасти и автотовары</a></li>
+                        <li><a href="">ТВ, аудио, видео</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>О компании</h4>
+                    <div class="footer-contact-item">
+                        <span>E-mail:</span>
+                        <p>info@charity-store</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>E-mail:</span>
+                        <p>info@charity-store</p>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <div class="">
+                        <h4>Мы в социальных сетях</h4>
+                        <ul class="mb-30">
+                            <li><a  href=""><span class="vk"></span></a></li>
+                            <li><a  href=""><span class="fb"></span></a></li>
+                            <li><a  href=""><span class="ok"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="">
+                        <h4>Способы оплаты</h4>
+                        <ul>
+                            <li><span class="mc "></span></li>
+                            <li><span class="visa "></span></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
             </div>
-            <div class="lk-blank"></div>
-            <div class="lk-buttons">
-
-
-            <div class="catalog-inner">
-                  <div class="catalog-wrapper">
-                <div class="catalog-item">
-                    <a href="">
-                        <img src="http://placehold.it/100" alt="">
-                        <p>Чаты</p>
-                    </a>
-                </div><!-- // catalog-item -->
-                 <div class="catalog-item">
-                    <a href="">
-                        <img src="http://placehold.it/100" alt="">
-                        <p>Избранное</p>
-                    </a>
-                </div><!-- // catalog-item -->
-                 <div class="catalog-item">
-                    <a href="">
-                        <img src="http://placehold.it/100" alt="">
-                        <p>Мои товары</p>
-                    </a>
-                </div><!-- // catalog-item -->
-
-
-            </div>
-            </div>
-
-
-
-
-
+            <div class="footer-bottom">
+                <img src="img/logo.png" alt="">
+                <p>Благотворительная торговая площадка</p>
             </div>
         </div>
-        </div>
 
-     
-
-
-    </section>
-
+    </footer>
 
 </div><!--//main-->
 
-<footer class="footer">
 
-</footer>
+
+<script>
+    function toggleModal(type) {
+
+        document.getElementsByClassName(type)[0].classList.toggle('modal-active')
+        return false
+
+    }
+
+    let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
+    let mobile_menu = document.getElementsByClassName('mobile-menu')[0]
+
+    mobile_button.onclick = function () {
+        this.classList.toggle('mobile-toggle-active')
+
+        mobile_menu.classList.toggle('menu-active')
+    }
+</script>
+
+<script>
+function openTab(evt, TabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("lk-content-wrapper");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active-li", "");
+  }
+  document.getElementById(TabName).style.display = "block";
+  console.log(evt)
+  evt.currentTarget.className += " active-li";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+</body>
+
+
+
+
+</html>
 
 
 </body>

@@ -21,6 +21,7 @@
     flex-grow: 1
     height: 180px
     padding: 15px 20px
+    width: 100%
 
 
 
@@ -82,6 +83,24 @@
       height: 16px
       width: 16px
       margin-right: 16px
+  &.with-green-fav
+    &::before
+      content: url(../img/in-fav-green.png)
+      height: 16px
+      width: 16px
+      margin-right: 16px
+  &.btn-outline
+    border: 2px solid #01BF41
+    box-sizing: border-box
+    border-radius: 2px
+    background: none
+    box-shadow: none
+    color: #04C043
+    height: 42px
+  &.btn-grey
+    border-color: $color-border
+    color: $color-text-grey
+
 
 
 
@@ -112,6 +131,12 @@
 
 .form-row
   margin-bottom: 50px
+  &-grid
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 20px
+    grid-template-rows: 85px
+
   p
     font: 18px 'GB',sans-serif
     color: $color-text-grey
@@ -126,6 +151,13 @@
   align-items: flex-start
   flex-wrap: wrap
   margin-bottom: 30px
+  &.vertical
+    flex-direction: column
+    margin-bottom: 0
+    label
+      margin-bottom: 10px
+    input
+      height: 50px
   label
     flex-basis: 15%
     padding-top: 10px
