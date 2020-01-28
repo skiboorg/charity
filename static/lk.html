@@ -69,9 +69,9 @@
                         <div class="mobile-toggle"></div>
                     </div>
                     <ul>
-                        <li><a href="#"><span class="icon-zoom"></span></a></li>
-                        <li><a href="#"><span class="icon-favorites"></span></a></li>
-                        <li><a href="#"><span class="icon-lk"></span></a></li>
+                        <li><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                        <li><a href="#"><i class="fa fa-user-o"></i></a></li>
 
 
                     </ul>
@@ -104,6 +104,17 @@
 
     <section class="lk">
         <div class="container">
+            <div class="lk-mobile-menu">
+                <ul>
+                    <li class="tablinks" onclick="openTab(event, 'lk-content-user-info', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-bars"></i></a></li>
+                    <li class="tablinks active-menu-link" onclick="openTab(event, 'lk-content-ads', 'active-menu-link')" id="defaultOpenMobile"><a href="javascript: void(0)"><i class="fa fa-pencil-square-o"></i></a></li>
+                    <li class="tablinks" onclick="openTab(event, 'lk-content-buys', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li class="tablinks" onclick="openTab(event, 'lk-content-chat', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-comment-o"></i></a></li>
+                    <li class="tablinks" onclick="openTab(event, 'lk-content-fav', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-heart-o"></i></a></li>
+                    <li class="tablinks" onclick="openTab(event, 'lk-content-settings', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-gear"></i></a></li>
+
+                </ul>
+            </div>
             <div class="lk-wrapper">
                 <div class="lk-menu">
                     <div class="lk-menu-top">
@@ -114,17 +125,25 @@
                     </div><!-- // lk-menu-top -->
                     <div class="lk-menu-bottom">
                         <ul>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-ads')" id="defaultOpen"><a class="my-ads" href="javascript: void(0)" >Мои обьявления</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-buys')"><a class="my-buys" href="javascript: void(0)"  >Мои покупки</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-chat')"><a class="my-chat" href="javascript: void(0)">Чаты</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-fav')"> <a class="my-fav" href="javascript: void(0)">Избранное</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-settings')"><a class="my-settings" href="javascript: void(0)">Настройки</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-ads', 'active-li')" id="defaultOpen"><a class="my-ads" href="javascript: void(0)" >Мои обьявления</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-buys', 'active-li')"><a class="my-buys" href="javascript: void(0)"  >Мои покупки</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-chat', 'active-li')"><a class="my-chat" href="javascript: void(0)">Чаты</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-fav', 'active-li')"> <a class="my-fav" href="javascript: void(0)">Избранное</a></li>
+                            <li class="tablinks" onclick="openTab(event, 'lk-content-settings', 'active-li')"><a class="my-settings" href="javascript: void(0)">Настройки</a></li>
                         </ul>
 
                     </div><!-- // lk-menu-bottom -->
 
                 </div><!-- // lk-menu -->
                 <div class="lk-content">
+                     <div id="lk-content-user-info" class="lk-content-wrapper lk-content-ads">
+                         <div class="lk-menu-top">
+                        <img src="img/user-photo.png" alt="">
+                        <p>Имя Фамилия</p>
+                        <span>#Переменное значение</span>
+                        <a href="#">Выйти</a>
+                    </div><!-- // lk-menu-top -->
+                     </div>
                     <div id="lk-content-ads" class="lk-content-wrapper lk-content-ads">
                         <h3 class="mb-40">Мои обьявления</h3>
                         <div class="items-wrapper">
@@ -369,6 +388,9 @@
                                     <p>Иван Сергеевич</p>
                                     <span>Превью сообщения, короткий текст...</span>
                                 </div>
+                                <div class="lk-content-chat-item-close">
+                                    <a href="javascript:void(0)" onclick="closeChat()"><i class="fa fa-close"></i></a>
+                                </div>
 
                             </div>
                             <div class="lk-content-chat-messages-bottom">
@@ -497,11 +519,14 @@
     }
 
     function OnInput() {
-       // this.style.height = 'auto';
+       this.style.height = 'auto';
         this.style.height = (this.scrollHeight )  + 'px';
     }
 </script>
 <script>
+    function closeChat(){
+        document.getElementById('chat-messages').classList.remove('show-messages')
+    }
     document.querySelectorAll('.lk-content-chat-item').forEach(item => {
         item.addEventListener('click', event => {
             console.log(item.dataset.chat_id)
@@ -529,7 +554,7 @@
 </script>
 
 <script>
-    function openTab(evt, TabName) {
+    function openTab(evt, TabName, type) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("lk-content-wrapper");
         for (i = 0; i < tabcontent.length; i++) {
@@ -537,16 +562,17 @@
         }
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active-li", "");
+            tablinks[i].className = tablinks[i].className.replace(` ${type}`, "");
         }
         document.getElementById(TabName).style.display = "block";
         document.getElementById('chat-messages').classList.remove('show-messages')
         console.log(evt)
-        evt.currentTarget.className += " active-li";
+        evt.currentTarget.className += ` ${type}`;
     }
 
-    // Get the element with id="defaultOpen" and click on it
+    // Get the element with id="defaultOpen" and click on it defaultOpenMobile
     document.getElementById("defaultOpen").click();
+
 </script>
 </body>
 

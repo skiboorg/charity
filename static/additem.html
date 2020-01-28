@@ -130,13 +130,16 @@
                     </div>
                       <div class="form-group">
                         <label>Фотографии</label>
-                          <label for="upload_img">
+                          <div class="upload-wrapper">
+                              <label for="upload_img" class="upload-label">
                               <input id="upload_img" multiple accept="image/*"  type="file" >
                           </label>
                           <div id="preview" class="images-preview">
 
 
                           </div>
+                          </div>
+
 
                     </div>
                     <div class="form-row">
@@ -211,8 +214,8 @@
 
     reader.addEventListener("load", function() {
       var image = new Image();
-      image.height = 100;
-      image.width = 100;
+      image.height = 140;
+      image.width = 140;
       image.title  = file.name;
       image.src    = this.result;
       preview.appendChild(image);

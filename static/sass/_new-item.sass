@@ -1,1 +1,30 @@
-.new-item
+.upload-wrapper
+  display: flex
+  flex-basis: 85%
+
+.upload-label
+  position: relative
+  background: #FFFFFF
+  border: 1px solid #F2F2F2
+  box-sizing: border-box
+  border-radius: 2px
+  width: 140px
+  height: 140px
+  padding-top: 0 !important
+  flex-basis: 0 !important
+  cursor: pointer
+  margin-right: 10px
+  &::after
+    position: absolute
+    content: url(../img/upload.png)
+    left: 40px
+    top: 30px
+  input
+    visibility: hidden
+
+.images-preview
+  img
+    margin-right: 10px
+    &:last-child
+      margin: 0
+
