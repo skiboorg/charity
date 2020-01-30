@@ -3,114 +3,200 @@
 
 {% block content %}
     <div class="main">
-    <section class="slider">
-        <div class="container">
-             <div class="controls" id="customize-controls">
-               <div class="arrow left"> </div>
-                  <div class="arrow right"> </div>
+        <div class="breadcrumbs">
+            <div class="container bg-white ">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><span>{{ cat.name }}</span></li>
+                </ul>
+
+
+
             </div>
-
-
-            <div class="slider-wrapper">
-                <div class="slider-inner" id="slider-inner">
-                    {% for b in banners %}
-                     <div class="slider-item">
-                    <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
-                </div>
-                {% endfor %}
+        </div>
+        <section class="slider">
+            <div class="container">
+                <div class="controls" id="customize-controls">
+                    <div class="arrow left"> </div>
+                    <div class="arrow right"> </div>
                 </div>
 
-            </div><!-- // slider-wrapper -->
 
-        </div>
-    </section><!-- // slider -->
-    <section class="breadcrumbs">
-        <div class="container bg-white breadcrumbs-wrapper">
-            <a href="/">Главная</a>
-            <span>{{ cat.name }}</span>
-        </div>
-    </section>
-    <section class="category">
-        <div class="container">
-            <div class="category-wrapper">
-                <div class="items">
-                   <div class="items-wrapper">
-                {% for i in cat.items.all %}
-              <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <a href="{% url 'item' i.id %}">
-                        <img src="{{ i.image.url }}" alt="">
-                    </a>
-
-                    <div class="item-info">
-                         <a href="{% url 'item' i.id %}">
-                        <p class="item-info-name">{{ i.name }}</p>
-                        <p class="item-info-price">{{ i.price }} Р</p>
-                        <p class="item-info-place">{{ i.address }}</p>
-                         </a>
+                <div class="slider-wrapper">
+                    <div class="slider-inner" id="slider-inner">
+                        {% for b in banners %}
+                            <div class="slider-item">
+                                <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+                            </div>
+                        {% endfor %}
                     </div>
-                </div><!-- // item -->
-                    {% endfor %}
+
+                </div><!-- // slider-wrapper -->
 
             </div>
-                </div><!-- // items -->
-                <div class="category-filters">
-                    <form action="">
-                        <select class="form-control select" name="" id="">
-                            <option selected disabled>Подкатегория</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                        </select>
-                        <select class="form-control select" name="" id="">
-                            <option selected disabled>По всей России</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                        </select>
-                        <p class="mb-10">Цена, Рубли</p>
-                        <div class="dual-input">
-                            <input type="text" placeholder="От">
-                            <input type="text" placeholder="До">
+        </section><!-- // slider -->
+        <section class="category">
+            <div class="container">
+                <div class="category-wrapper">
+                    <div class="category-filters filter-menu">
+                        <form action="">
+                            <p class="filter-caption ">Тип товара</p>
+                            <select class="form-control select" name="" id="">
+                                <option selected disabled>Подкатегория</option>
+                                {% for subcat in category.subcats.all %}
+                                    <option value="{{ subcat.id }}">{{subcat.name}}</option>
+                                {% endfor %}
+
+                            </select>
+                            <p class="filter-caption">Локация</p>
+                            <select class="form-control select" name="" id="">
+                                <option selected value="0">По всей России</option>
+                                {% for town in all_towns %}
+                                    <option value="{{ town.id }}">{{town.name}}</option>
+                                {% endfor %}
+
+                            </select>
+                            <p class="filter-caption ">Стоимость</p>
+                            <div class="dual-input">
+                                <input type="text" placeholder="От">
+                                <p>-</p>
+                                <input type="text" placeholder="До">
+                            </div>
+
+                            <div id="slider" class="range-input"></div>
+                            <div class="filter-values"><p>0</p> <div id ="slider-non-linear-step-value"></div><p>10000</p></div>
+
+
+
+
+                        </form>
+                    </div>
+                    <div class="items">
+                        <div class="mobile-filter-wrapper">
+                            <a  href="javascript: void(0)" class="btn with-filter filter-toggle">ФИЛЬТРЫ</a>
+                            <div class="items-filter">
+
+                                <div class="items-filter-caption">
+                                    <p>Всего {{ category.item_set.count }} товаров</p>
+                                    <p>Сортировать по:</p>
+                                </div>
+                                <div class="items-filter-select mobile-hide">
+                                    <select class="form-control select " name="" id="">
+                                        <option selected disabled>По цене</option>
+                                        <option value="">lorem</option>
+                                        <option value="">lorem</option>
+                                        <option value="">lorem</option>
+                                    </select>
+
+                                </div>
+                                <div class="items-filter-select mobile-hide">
+                                    <select class="form-control select" name="" id="">
+                                        <option selected disabled>Показывать по 24</option>
+                                        <option value="">lorem</option>
+                                        <option value="">lorem</option>
+                                        <option value="">lorem</option>
+                                    </select>
+                                </div>
+                                <div class="items-filter-select mobile-visible">
+                                    <select class="form-control select" name="" id="">
+                                        <option selected disabled>Сортировка</option>
+                                        <option value="">lorem</option>
+                                        <option value="">lorem</option>
+                                        <option value="">lorem</option>
+                                    </select>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="radio-control">
-                            <input id="i1" type="radio" name="i1">
-                            <label for="i1">Только с фото</label>
+
+                        <div class="items-wrapper">
+                            {% for item in items  %}
+                                {% include 'pages/item_card.html' %}
+                            {% endfor %}
                         </div>
-                           <div class="radio-control">
-                            <input id="i1" type="radio" name="i1">
-                            <label for="i1">Только с фото</label>
+                        <div class="items-paginator">
+                            <div class="items-paginator-total">
+                                <p>Всего {{ category.item_set.count }} товаров</p>
+                            </div>
+                            <div class="items-paginator-pages">
+
+
+
+
+
+                                <ul>
+                                    {% if items.has_previous %}
+                                        <li class="prev">
+                                            <a  href="?{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">
+                                                    <span>&#8592;</span>
+                                            </a>
+
+                                        </li>
+                                    {% endif %}
+                                    {% for pg in items.paginator.page_range %}
+                                        {% if items.number == pg %}
+                                            <li >
+                                                <a class="active-page" href="?{% if pg > 1 %}page={{ pg }}{% endif %}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">{{pg}}</a>
+                                            </li>
+                                        {% elif pg > items.number|add:'-6' and pg < items.number|add:'6' %}
+                                            <li >
+                                                <a  href="?{% if pg > 1 %}page={{ pg }}{% endif %}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">{{pg}}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if items.has_next %}
+                                        <li class="next">
+                                            <a  href="?page={{ items.paginator.num_pages }}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}" >
+                                                <span>&#8594;</span></a>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                </ul>
+
+                            </div>
+
                         </div>
-                           <div class="radio-control">
-                            <input id="i1" type="radio" name="i1">
-                            <label for="i1">Только с фото</label>
-                        </div>
-
-                        <hr>
-
-                          <select class="form-control select" name="" id="">
-                            <option selected disabled>Сортировка от А до Я</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                        </select>
-                        <select class="form-control select" name="" id="">
-                            <option selected disabled>Показывать по 24</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                            <option value="">lorem</option>
-                        </select>
+                    </div><!-- // items -->
 
 
-
-
-                        <button class="btn rounded" type="submit">Поиск</button>
-                    </form>
                 </div>
             </div>
-        </div>
 
-    </section>
+        </section>
 
-</div><!--//main-->
+    </div><!--//main-->
+    <script src="{% static 'js/nouislider.js' %}"></script>
+    <script>
+        var slider = document.getElementById('slider');
+        var nonLinearStepSliderValueElement = document.getElementById('slider-non-linear-step-value');
+        noUiSlider.create(slider, {
+            start: [1000, 5000],
+            connect: true,
+            range: {
+                'min': [0],
+                '10%': [500, 500],
+                '50%': [4000, 1000],
+                'max': [10000]
+            }
+        });
+
+
+
+        slider.noUiSlider.on('update', function (values) {
+            nonLinearStepSliderValueElement.innerHTML = values.join(' - ');
+        });
+
+
+
+        let filter_button = document.getElementsByClassName('filter-toggle')[0]
+        let filter_menu = document.getElementsByClassName('filter-menu')[0]
+
+        filter_button.onclick = function () {
+
+
+            filter_menu.classList.toggle('filters-active')
+        }
+    </script>
 {% endblock %}

@@ -1,102 +1,252 @@
 {% extends 'basic.html' %}
 {% load static %}
+{% load mytags %}
 
 {% block content %}
     <div class="main">
-    <section class="slider">
-        <div class="container">
-             <div class="controls" id="customize-controls">
-               <div class="arrow left"> </div>
-                  <div class="arrow right"> </div>
-            </div>
-
-
-            <div class="slider-wrapper">
-                <div class="slider-inner" id="slider-inner">
-                    {% for b in banners %}
-                     <div class="slider-item">
-                    <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
-                </div>
-                {% endfor %}
+        <section class="slider">
+            <div class="container">
+                <div class="controls" id="customize-controls">
+                    <div class="arrow left"> </div>
+                    <div class="arrow right"> </div>
                 </div>
 
-            </div><!-- // slider-wrapper -->
 
-        </div>
-    </section><!-- // slider -->
-    <section class="catalog">
-        <div class="container bg-white">
-            <div class="catalog-inner">
-                  <div class="catalog-wrapper">
-                      {% for c in all_categories %}
-                <div class="catalog-item">
-                    <a href="{% url 'catalog' c.id %}">
-                        <img src="{{ c.image.url }}" alt="">
-                        <p>{{ c.name }}</p>
-                    </a>
-                </div><!-- // catalog-item -->
-                    {% endfor %}
-
-            </div>
-            </div>
-
-        </div>
-
-
-    </section><!-- // catalog -->
-    <section class="new-offers text-center">
-        <a href="#" class="new-offer-btn">Новые Предложения</a>
-    </section>
-    {% for cat in index_cats %}
-    <section class="items">
-        <div class="container">
-            <h3>{{ cat.name }}</h3>
-
-            <div class="items-wrapper">
-                {% for i in cat.items.all %}
-              <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <a href="{% url 'item' i.id %}">
-                        <img src="{{ i.image.url }}" alt="">
-                    </a>
-
-                    <div class="item-info">
-                         <a href="{% url 'item' i.id %}">
-                        <p class="item-info-name">{{ i.name }}</p>
-                        <p class="item-info-price">{{ i.price }} Р</p>
-                        <p class="item-info-place">{{ i.address }}</p>
-                         </a>
+                <div class="slider-wrapper">
+                    <div class="slider-inner" id="slider-inner">
+                        {% for b in banners %}
+                            <div class="slider-item">
+                                <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+                            </div>
+                        {% endfor %}
                     </div>
-                </div><!-- // item -->
+
+                </div><!-- // slider-wrapper -->
+
+            </div>
+        </section><!-- // slider -->
+        <section class="catalog">
+            <h3 class="text-center">Категории</h3>
+            <div class="container bg-white">
+
+                <div class="catalog-wrapper">
+                    {% for cat in all_categories %}
+                        <div class="catalog-item">
+                            <a href="#">
+                                <img src="{{ cat.image.url }}" alt="">
+                                <p>{{ cat.name }}</p>
+                            </a>
+                        </div><!-- // catalog-item -->
                     {% endfor %}
+                </div>
+
 
             </div>
-        </div>
 
-    </section><!-- // items -->
-    {% endfor %}
-    <section class="features">
-        <div class="container">
-            <div class="features-wrapper">
-                <div class="features-item">
-                    <img src="http://placehold.it/60" alt="">
-                    <p>Lorem ipsum dolor sit.</p>
+
+        </section><!-- // catalog -->
+
+        <section class="items bg-grey">
+            <div class="new-offers text-center">
+                <a href="#" class="btn with-arrow">Новые Предложения</a>
+            </div>
+            <div class="container ">
+
+                <div class="items-inner">
+                    {% for cat in index_cats %}
+                        <h3><a href="{% url 'catalog' cat.name_slug %}">{{cat.name}}</a> </h3>
+                        <div class="items-wrapper">
+                            {% for item in cat.item_set.all reversed  %}
+                                {% if forloop.counter < 5 %}
+                                    {% include 'pages/item_card.html' %}
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    {% endfor %}
                 </div>
-                <div class="features-item">
-                    <img src="http://placehold.it/60" alt="">
-                    <p>Lorem ipsum dolor sit.</p>
+
+
+            </div>
+
+        </section><!-- // items -->
+
+        <section class="features">
+            <div class="container">
+                <div class="best-of-bests-wrapper">
+                    <div class="best-of-bests">
+                        <div class="best-customers">
+                            <h3>Лучшие покупатели</h3>
+                            <ul>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-star">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Иван Сергеевич </p>
+                                            <span>20 покупок</span></a>
+
+                                    </div>
+                                </li>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-star">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Иван Сергеевич </p>
+                                            <span>20 покупок</span></a>
+
+                                    </div>
+                                </li>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-star">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Иван Сергеевич </p>
+                                            <span>20 покупок</span></a>
+
+                                    </div>
+                                </li>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-star">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Иван Сергеевич </p>
+                                            <span>20 покупок</span></a>
+
+                                    </div>
+                                </li>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-star">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Иван Сергеевич </p>
+                                            <span>20 покупок</span></a>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="best-transfers">
+                            <h3>Перечисления в фонды</h3>
+                            <ul>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-globe">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Фонд спасения животных</p>
+                                            <span>1 500 000 ₽</span></a>
+
+                                    </div>
+                                </li>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-globe">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Фонд мира</p>
+                                            <span>1 500 000 ₽</span></a>
+
+                                    </div>
+                                </li>
+                                <li class="best-customer-item">
+                                    <div class="customer-img with-globe">
+                                        <a href="#">
+                                            <img src="http://placehold.it/64" alt="">
+                                        </a>
+
+                                    </div>
+                                    <div class="customer-info">
+                                        <a href="#"><p>Фонд кино</p>
+                                            <span>1 500 000 ₽</span></a>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="best-of-bests-bg1"></div>
+                    <div class="best-of-bests-bg2"></div>
                 </div>
-                <div class="features-item">
-                    <img src="http://placehold.it/60" alt="">
-                    <p>Lorem ipsum dolor sit.</p>
+
+                <h3 class="text-center">Наши преимущества</h3>
+                <div class="features-wrapper">
+                    <div class="features-item">
+                        <div class="features-item-wrapper f1">
+                            <h4>Удобно</h4>
+                            <p>Структура торговой платформы аналогична принципу стандартного маркетплейса в сети</p>
+                        </div>
+                    </div>
+                    <div class="features-item">
+                        <div class="features-item-wrapper f2">
+                            <h4>Честно</h4>
+                            <p>Прозрачный набор юридических документов</p>
+                        </div>
+                    </div>
+                    <div class="features-item">
+                        <div class="features-item-wrapper f3">
+                            <h4>Честно</h4>
+                            <p>Продавец-благотворитель сам назначает стоимость лота и выбирает фонд, в который будут направлены средства от реализации лота.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="features-item">
-                    <img src="http://placehold.it/60" alt="">
-                    <p>Lorem ipsum dolor sit.</p>
+                <div class="features-info-wrapper">
+                    <div class="features-info-block-left">
+                        <div class="features-info-block">
+                            <h4>Механизм покупки</h4>
+                            <p>Деньги покупателя приходят на торговую платформу, после подтверждения сделки покупателем, деньги переводятся в фонд, минимальная
+                                комиссия остаётся на торговый платформе для обеспечения жизнедеятельности ресурса</p>
+                        </div>
+                        <div class="features-info-block">
+                            <h4>Механизм продажи</h4>
+                            <p>На торговой платформе отображена информация о фондах партнерах (ссылки на их официальные сайты)Продавец выбирает фонд в процессе размещения лота из уже
+                                предложенных на сайте ТП фондов-партнеров. Перечислениеденежных средств в другие фонды или частным лицам обсуждается отдельно</p>
+                        </div>
+                    </div>
+                    <div class="features-info-block-right">
+                        <img src="img/logo_small.png" alt="">
+                        <h3>Из добрых рук</h3>
+                        <p>О благотворительности говорят много. Внушительное число коммерческих
+                            организаций и частных лиц на регулярной основе переводят деньги в фонды
+                            и нуждающимся. Тем не менее реальность такова, что средств фондов хватает
+                            на нужды лишь малой части их подопечных. Первоочередной задачей
+                            «Из добрых рук» мы видим популяризацию фондов, а также увеличение объёма
+                            средств, поступающих в их распоряжение. Потенциальные покупатели ресурса
+                        </p>
+                        <p class="mb-50">
+                            Потенциальные покупатели ресурса оценивают свою способность оплатить
+                            стоимость товара, а не готовность перечислить эти деньги на благотворительность.</p>
+                        <a href="" class="btn with-arrow">УЗНАТЬ БОЛЬШЕ</a>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-</div><!--//main-->
+    </div><!--//main-->
 {% endblock %}

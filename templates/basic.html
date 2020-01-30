@@ -7,13 +7,34 @@
     <meta charset="UTF-8">
     <title>index</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nouislider.css' %}">
 
 </head>
 <body>
+<form id="dummy_form">{% csrf_token %}</form>
 {% include 'header.html' %}
 {% block content %}
 {% endblock %}
+{% include 'footer.html' %}
+<script>
+    function toggleModal(type) {
+
+        document.getElementsByClassName(type)[0].classList.toggle('modal-active')
+        return false
+
+    }
+
+    let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
+    let mobile_menu = document.getElementsByClassName('mobile-menu')[0]
+
+    mobile_button.onclick = function () {
+        this.classList.toggle('mobile-toggle-active')
+
+        mobile_menu.classList.toggle('menu-active')
+    }
+</script>
   <script src="{% static 'js/tiny-slider.js' %}"></script>
 <script>
      var doc = document

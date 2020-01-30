@@ -5,11 +5,15 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 
 
-
+admin.site.site_header = "CharityStore"
+admin.site.site_title =  "CharityStore администрирование"
+admin.site.index_title = "CharityStore администрирование"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('item/', include('item.urls')),
     path('', include('pages.urls')),
+
 
 
 

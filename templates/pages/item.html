@@ -1,111 +1,93 @@
 {% extends 'basic.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
     <div class="main">
 
-    <section class="breadcrumbs">
-        <div class="container bg-white breadcrumbs-wrapper">
-            <a href="/">Главная</a>
-            <a href="{% url 'catalog' item.category.id %}">{{ item.category.name }}</a>
-            <span>{{ item.name }}</span>
+        <div class="breadcrumbs">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    {#                <li><a href="#">Каталог товаров</a></li>#}
+                    <li><a href="{% url 'catalog' item.category.name_slug %}">{{item.category.name}}</a></li>
+                    <li><span>{{item.name}}</span></li>
+                </ul>
+            </div>
         </div>
-    </section>
-    <section class="item-informaion">
-        <div class="container">
-            <div class="item-informaion-wrapper">
-                <div class="item-informaion-photo">
-                    <h1>{{ item.category.name }}</h1>
-                    <img src="{{ item.image.url }}">
-                    <div class="item-informaion-photos">
-                        {% for i in images %}
-                        <img style="width: 100px; height: 65px" src="{{ i.image.url }}" alt="">
-                         {% endfor %}
+        <section class="item-informaion">
+            <div class="container">
+                <div class="item-informaion-wrapper">
+                    <div class="item-informaion-photo">
+                        <h1>{{item.name}}</h1>
+                        <img src="{{ images.first.image.url }}">
+                        <div class="item-informaion-photos">
+                            {% for image in images %}
+                                <img src="{{ image.image_small }}" alt="">
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <div class="item-informaion-price">
-                    <p>{{ item.price }} Рублей</p>
-                    <div class="item-informaion-price-buttons">
-                      <a href="#" class="btn rounded">Купить</a>
-                     <a href="#" class="btn rounded bg-grey">В Избранное</a>
+                    <div class="item-informaion-price">
+                        <div class="item-informaion-price-inner">
+                            <p>{{item.price}} Рублей</p>
+                            <div class="item-informaion-price-buttons">
+                                <a href="#" class="btn ">Купить</a>
+                                <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
+                            </div>
+                            <a href="#" class="btn rounded btn-outline btn-grey">Написать Продавцу</a>
+                        </div>
+
+                        <div class="best-customer-item">
+                            <p class="best-customer-item-info">Информация о продавце:</p>
+                            <div class="customer-img with-star">
+                                <a href="#">
+                                    <img src="http://placehold.it/64" alt="">
+                                </a>
+
+                            </div>
+                            <div class="customer-info">
+                                <a href="#"><p>Иван Сергеевич </p>
+                                    <span>20 покупок</span></a>
+
+                            </div>
+                        </div>
                     </div>
-                    <a href="#" class="btn rounded bg-grey">Написать Продавцу</a>
+
 
                 </div>
+                <h3 class="mb-50">Описание</h3>
                 <div class="item-informaion-description">
 
-                        <div class="item-informaion-description-row">
-                            <span>Местоположение</span><p>{{ item.address }}</p>
-                        </div>
-                        <div class="item-informaion-description-row">
-                            <span>Размещено</span><p>{{ item.time }}</p>
-                        </div>
+                    <div class="item-informaion-description-row">
+                        <span>Местоположение</span><p>{{item.address}}</p>
+                    </div>
+                    <div class="item-informaion-description-row">
+                        <span>Дата размещения</span><p>{{ item.added | naturaltime}}</p>
+                    </div>
                     <hr>
                     <div class="item-informaion-description-row">
-                            <span>Описание</span><p>{{ item.description }}</p>
-                        </div>
+                        <p>{{item.description}}</p>
+                    </div>
 
 
 
                 </div>
             </div>
-        </div>
 
-    </section>
-     <section class="items">
-        <div class="container">
-            <h3>Похожие Объявления</h3>
-            <div class="items-wrapper">
-                <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <img src="http://placehold.it/250x180" alt="">
-                    <div class="item-info">
-                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
-                        <p class="item-info-price">1500 Р</p>
-                        <p class="item-info-place">Lorem ipsum dolor.</p>
-                    </div>
-                </div><!-- // item -->
-                <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <img src="http://placehold.it/250x180" alt="">
-                    <div class="item-info">
-                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
-                        <p class="item-info-price">1500 Р</p>
-                        <p class="item-info-place">Lorem ipsum dolor.</p>
-                    </div>
-                </div><!-- // item -->
-                <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <img src="http://placehold.it/250x180" alt="">
-                    <div class="item-info">
-                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
-                        <p class="item-info-price">1500 Р</p>
-                        <p class="item-info-place">Lorem ipsum dolor.</p>
-                    </div>
-                </div><!-- // item -->
-                <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <img src="http://placehold.it/250x180" alt="">
-                    <div class="item-info">
-                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
-                        <p class="item-info-price">1500 Р</p>
-                        <p class="item-info-place">Lorem ipsum dolor.</p>
-                    </div>
-                </div><!-- // item -->
-                <div class="item">
-                    <a class="item-fav" href="#"></a>
-                    <img src="http://placehold.it/250x180" alt="">
-                    <div class="item-info">
-                        <p class="item-info-name">Lorem ipsum dolor sit amet.</p>
-                        <p class="item-info-price">1500 Р</p>
-                        <p class="item-info-place">Lorem ipsum dolor.</p>
-                    </div>
-                </div><!-- // item -->
+        </section>
+        <section class="items">
+            <div class="container">
+                <h3>Похожие Объявления</h3>
+                <div class="items-wrapper">
+                    {% for item in sameItems  %}
+                        {% include 'pages/item_card.html' %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
 
-    </section><!-- // items -->
+        </section><!-- // items -->
 
 
-</div><!--//main-->
+
+    </div><!--//main-->
 {% endblock %}

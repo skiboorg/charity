@@ -1,10 +1,11 @@
 {% load static %}
 <header class="header">
-    <div class="container">
-        <div class="header-top">
+
+    <div class="header-top">
+        <div class="container">
             <div class="header-top-wrapper">
                 <div class="logo">
-                    <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
                 </div>
                 <div class="nav">
                     <div class="header-top-nav">
@@ -12,43 +13,69 @@
                             <li><a href="#">Как мы работаем</a></li>
                             <li><a href="#">Контакты</a></li>
                             <li><a href="#">Каталог Товаров</a></li>
-                            <li><a href="{% url 'login' %}">Вход\Регистрация</a></li>
+                            <li><a href="#">Вход\Регистрация</a></li>
                         </ul>
                     </div>
                     <div class="header-top-nav-buttons">
                         <ul>
-                            <li><a href="#"><img src="{% static 'img/top-b-1.png' %}" alt=""></a></li>
-                            <li><a href="#"><img src="{% static 'img/top-b-2.png' %}" alt=""></a></li>
-                            <li><a href="#"><img src="{% static 'img/top-b-3.png' %}" alt=""></a></li>
+                            <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
 
                         </ul>
                     </div>
                 </div>
 
-            </div>
-        </div>
-        <div class="header-bottom">
+            </div></div>
+
+    </div>
+    <div class="header-bottom">
+        <div class="container">
             <form action="">
                 <select class="form-control select" name="" id="">
                     <option selected disabled>Категория</option>
-                    <option value="">lorem</option>
-                    <option value="">lorem</option>
-                    <option value="">lorem</option>
+                    {% for cat in all_cat %}
+                        <option value="{{ cat.id }}">{{cat.name}}</option>
+                    {% endfor %}
                 </select>
                 <select class="form-control select" name="" id="">
                     <option selected disabled>Город</option>
-                    <option value="">lorem</option>
-                    <option value="">lorem</option>
-                    <option value="">lorem</option>
+                     {% for town in all_towns %}
+                        <option value="{{ town.id }}">{{town.name}}</option>
+                    {% endfor %}
                 </select>
                 <div class="fieldset search">
                     <input class="form-control input " type="text" placeholder="Введите что искать...">
                 </div>
 
-                <button class="btn rounded" type="submit">Поиск</button>
+                <button class="btn with-plus" type="submit">разместить обьявление</button>
             </form>
-        </div>
+            <div class="mobile-nav">
+                <div class="header-top-nav-buttons mobile-buttons">
+                    <div class="mobile-menu-wrapper">
+                        <div class="mobile-toggle"></div>
+                    </div>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                        <li><a href="#"><i class="fa fa-user-o"></i></a></li>
 
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#">Как мы работаем</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Каталог Товаров</a></li>
+                <li><a href="#">Вход\Регистрация</a></li>
+            </ul>
+        </div>
     </div>
+
+
 
 </header><!-- // header -->

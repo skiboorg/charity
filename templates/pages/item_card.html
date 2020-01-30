@@ -1,0 +1,16 @@
+<div class="item">
+    <a class="item-fav in-fav" href="#"></a>
+    <a href="{% url 'item' item.name_slug %}">
+        <img src="{{ item.itemimage_set.first.image_small }}" alt="">
+    </a>
+
+    <div class="item-info">
+        <a href="{% url 'item' item.name_slug %}">
+{#            <p class="item-info-text item-present">В наличии</p>#}
+            <p class="item-info-name">{{ item.name }}</p>
+            <p class="item-info-text">Цена</p>
+            <p class="item-info-price">{{item.price}} Р</p>
+
+        </a>
+    </div>
+</div><!-- // item -->
