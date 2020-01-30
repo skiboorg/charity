@@ -1,0 +1,119 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+   <div class="main">
+    <div class="breadcrumbs">
+        <div class="container ">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><span>Контакты</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="contacts">
+        <div class="container">
+            <h3>E-mail</h3>
+            <p class="">sample@mail.ru</p>
+            <h3>Номер телефона службы поддержки</h3>
+            <p class="">+7 (978) 557-80-82</p>
+            <h3>Мы в социальных сетях</h3>
+            <div class="footer-social">
+                <div class="">
+                    <ul class="mb-30">
+                        <li><a  href=""><span class="vk"></span></a></li>
+                        <li><a  href=""><span class="fb"></span></a></li>
+                        <li><a  href=""><span class="ok"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <h3>Связаться с нами</h3>
+            <form>
+                <div class="form-row-grid">
+                    <div class="form-group vertical">
+                        <label>Введите ваше имя*</label>
+                        <input type="text" class="form-control input" placeholder="">
+                    </div>
+                     <div class="form-group vertical">
+                        <label>Введите ваше имя*</label>
+                        <input type="text" class="form-control input" placeholder="">
+                    </div>
+                </div>
+                  <div class="form-row">
+                <div class="form-group vertical">
+                    <label for="">Текст сообщения</label>
+                    <textarea class="form-control textarea" name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                  </div>
+                <button type="submit" class="btn">ОТПРАВИТЬ</button>
+            </form>
+
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-top-menu">
+                    <h4>О компании</h4>
+                    <ul>
+                        <li><a href="">Как мы работаем</a></li>
+                        <li><a href="">Контакты</a></li>
+                        <li><a href="">Каталог товаров</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                    </ul>
+                </div>
+                <div class="footer-top-menu">
+                    <h4>Разделы</h4>
+                    <ul>
+                        <li><a href="">Вещи и одежда</a></li>
+                        <li><a href="">Компьютерная техника</a></li>
+                        <li><a href="">Инструменты</a></li>
+                        <li><a href="">Запчасти и автотовары</a></li>
+                        <li><a href="">ТВ, аудио, видео</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                        <li><a href="">Ссылка 1</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>О компании</h4>
+                    <div class="footer-contact-item">
+                        <span>E-mail:</span>
+                        <p>info@charity-store</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>E-mail:</span>
+                        <p>info@charity-store</p>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <div class="">
+                        <h4>Мы в социальных сетях</h4>
+                        <ul class="mb-30">
+                            <li><a  href=""><span class="vk"></span></a></li>
+                            <li><a  href=""><span class="fb"></span></a></li>
+                            <li><a  href=""><span class="ok"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="">
+                        <h4>Способы оплаты</h4>
+                        <ul>
+                            <li><span class="mc "></span></li>
+                            <li><span class="visa "></span></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <img src="img/logo.png" alt="">
+                <p>Благотворительная торговая площадка</p>
+            </div>
+        </div>
+
+    </footer>
+
+</div><!--//main-->
+{% endblock %}

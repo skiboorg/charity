@@ -120,6 +120,9 @@ def login(request):
 
     return render(request, 'pages/login.html', locals())
 
-
+def contacts(request):
+    return render(request, 'pages/contacts.html', locals())
+def about(request):
+    return render(request, 'pages/about.html', locals())
 def lk(request):
     return render(request, 'pages/lk.html', locals())
