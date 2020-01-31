@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from item.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 
 
@@ -26,10 +27,10 @@ def catalog(request,slug):
     filter = data.get('filter')
     order = data.get('order')
     count = data.get('count')
-    subcategory = data.get('subcategory')
+    subcat = data.get('subcategory')
     town = data.get('town')
-    start_price = data.get('start_price')
-    end_price = data.get('end_price')
+    price_from = data.get('price_from')
+    price_to = data.get('price_to')
     page = request.GET.get('page')
     search_qs = None
     filter_sq = None
@@ -42,22 +43,9 @@ def catalog(request,slug):
 
         param_search = search
 
-    if filter == 'new':
-        print('Поиск по фильтру туц')
-        if search_qs:
-            items = search_qs.filter(is_new=True)
-            filter_sq = items
-            param_filter = filter
-        else:
-            items = all_items.filter(is_new=True)
-            filter_sq = items
-            param_filter = filter
 
-        param_filter = 'new'
 
-    if filter and filter != 'new':
-        print('Поиск по фильтру')
-
+    if filter:
         if search_qs:
             items = search_qs.filter(filter__name_slug=filter)
             filter_sq = items
@@ -84,12 +72,30 @@ def catalog(request,slug):
         # subcat.save()
         param_order = '-added'
 
+    if price_from and price_to:
+        items = items.filter(Q(price__lte=price_to) & Q(price__gte=price_from))
+        param_price_to = price_to
+        param_price_from = price_from
+        print(items)
+
+    if subcat and subcat != '0':
+        subcat_temp = SubCategory.objects.get(id=subcat)
+        items = items.filter(subCategory=subcat_temp)
+        param_subcat = subcat_temp.id
+
+
+    if town and town != '0':
+        town_temp = Town.objects.get(id=town)
+        items = items.filter(town=town_temp)
+        param_town = town_temp.id
+
+
     if count:
         items_paginator = Paginator(items, int(count))
         param_count = count
     else:
-        items_paginator = Paginator(items, 12)
-
+        items_paginator = Paginator(items, 9)
+    print(len(items))
 
     try:
         items = items_paginator.get_page(page)

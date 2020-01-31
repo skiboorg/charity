@@ -41,12 +41,12 @@
                             <p class="best-customer-item-info">Информация о продавце:</p>
                             <div class="customer-img with-star">
                                 <a href="#">
-                                    <img src="http://placehold.it/64" alt="">
+                                    <img src="{{ user.get_avatar }}" alt="">
                                 </a>
 
                             </div>
                             <div class="customer-info">
-                                <a href="#"><p>Иван Сергеевич </p>
+                                <a href="#"><p>{{ user.name }}</p>
                                     <span>20 покупок</span></a>
 
                             </div>
