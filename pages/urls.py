@@ -12,6 +12,7 @@ urlpatterns = [
 
     path('login/', views.login, name='login'),
     path('lk/', views.lk, name='lk'),
+    path('search/', views.search, name='search'),
     # path('profile/<nickname_req>', views.profile, name='profile'),
     # path('del_message/', views.del_message, name='del_message'),
     # path('bonus_pack/', views.bonus_pack, name='bonus_pack'),

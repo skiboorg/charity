@@ -141,14 +141,14 @@ class ItemImage(models.Model):
 
     def save(self, *args, **kwargs):
         fill_color = '#fff'
-        image = Image.open(self.image)
+        image = Image.open(self.image).convert('RGB')
 
 
         if image.mode in ('RGBA', 'LA'):
             background = Image.new(image.mode[:-1], image.size, fill_color)
             background.paste(image, image.split()[-1])
             image = background
-        image.thumbnail((100, 65), Image.ANTIALIAS)
+        image.thumbnail((155, 140), Image.ANTIALIAS)
         small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
         if settings.DEBUG:
             os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)

@@ -1116,6 +1116,31 @@ button[type='button'] {
   color: #656565;
 }
 
+.item-image-thumb {
+  width: 100px;
+  height: 65px;
+  opacity: .7;
+  -webkit-transition: opacity .5s linear;
+  -o-transition: opacity .5s linear;
+  transition: opacity .5s linear;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.item-image-thumb:hover {
+  opacity: 1;
+  -webkit-transition: opacity .5s linear;
+  -o-transition: opacity .5s linear;
+  transition: opacity .5s linear;
+  border: 1px solid #00AADF;
+}
+
+.item-image-thumb.selected {
+  opacity: 1;
+  border: 1px solid #00AADF;
+}
+
 .item-informaion {
   margin-bottom: 70px;
 }
@@ -1253,6 +1278,90 @@ button[type='button'] {
 
 .items-paginator-pages ul li a.active-page {
   color: #009FEE;
+}
+
+.fade-out {
+  -webkit-animation: fade-out .4s ease-out both;
+  animation: fade-out .4s ease-out both;
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  -webkit-animation: fade-in .4s ease-out both;
+  animation: fade-in .4s ease-out both;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.new-chat {
+  position: relative;
+}
+
+.new-chat-form {
+  display: none;
+  -webkit-animation: fadeEffect .2s;
+  animation: fadeEffect .2s;
+  position: absolute;
+  background: #ffffff;
+  z-index: 999;
+  min-height: 0;
+  width: 100%;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid #EBEBEB;
+  border-top: none;
+}
+
+.new-chat-form textarea {
+  width: 100%;
+  resize: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+}
+
+.new-chat .chat-active {
+  display: block;
 }
 
 .features {

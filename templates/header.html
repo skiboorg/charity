@@ -5,7 +5,7 @@
         <div class="container">
             <div class="header-top-wrapper">
                 <div class="logo">
-                    <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
                 </div>
                 <div class="nav">
                     <div class="header-top-nav">
@@ -13,17 +13,21 @@
                             <li><a href="{% url 'about' %}">Как мы работаем</a></li>
                             <li><a href="{% url 'contacts' %}">Контакты</a></li>
                             <li><a href="#">Каталог Товаров</a></li>
-                            <li><a href="{% url 'lk' %}">Вход\Регистрация</a></li>
+                            {% if not user.is_authenticated %}
+                                <li><a href="{% url 'lk' %}">Вход\Регистрация</a></li>
+                            {% endif %}
                         </ul>
                     </div>
-                    <div class="header-top-nav-buttons">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                    {% if user.is_authenticated %}
+                        <div class="header-top-nav-buttons">
+                            <ul>
 
-                        </ul>
-                    </div>
+                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+
+                            </ul>
+                        </div>
+                    {% endif %}
                 </div>
 
             </div></div>
@@ -31,23 +35,23 @@
     </div>
     <div class="header-bottom">
         <div class="container">
-            <form action="">
-                <select class="form-control select" name="" id="">
-                    <option selected disabled>Категория</option>
+            <form action="{% url 'search' %}">
+                <select class="form-control select" name="category" >
+                    <option selected disabled value="0">Любая категория</option>
                     {% for cat in all_cat %}
                         <option value="{{ cat.id }}">{{cat.name}}</option>
                     {% endfor %}
                 </select>
-                <select class="form-control select" name="" id="">
-                    <option selected disabled>Город</option>
-                     {% for town in all_towns %}
+                <select class="form-control select" name="town" >
+                    <option selected disabled value="0">Любой город</option>
+                    {% for town in all_towns %}
                         <option value="{{ town.id }}">{{town.name}}</option>
                     {% endfor %}
                 </select>
                 <div class="fieldset search">
-                    <input class="form-control input " type="text" placeholder="Введите что искать...">
+                    <input class="form-control input " name="query" type="text" placeholder="Введите что искать...">
                 </div>
-
+                <input type="submit" style="visibility: hidden; position: absolute">
                 <a class="btn with-plus" href="{% url 'new_item' %}">разместить обьявление</a>
             </form>
             <div class="mobile-nav">
@@ -57,9 +61,10 @@
                     </div>
                     <ul>
                         <li><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                        <li><a href="#"><i class="fa fa-user-o"></i></a></li>
-
+                        {% if user.is_authenticated %}
+                            <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                        {% endif %}
 
                     </ul>
                 </div>
@@ -71,7 +76,9 @@
                 <li><a href="#">Как мы работаем</a></li>
                 <li><a href="#">Контакты</a></li>
                 <li><a href="#">Каталог Товаров</a></li>
-                <li><a href="#">Вход\Регистрация</a></li>
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'lk' %}">Вход\Регистрация</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

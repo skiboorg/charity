@@ -14,10 +14,10 @@
 
             </div><!--//breadcrumbs-->
             <section class="new-item">
-                <form action="">
+                <form action="{% url 'createItem' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="form-row">
                         <p>Выберите категорию</p>
-                        <select required class="form-control select" name="category" id="category">
+                        <select required class="form-control select" name="{{ form.category.name }}" id="category">
                             {% for cat in all_cat %}
                                 <option value="{{ cat.id }}">{{cat.name}}</option>
                             {% endfor %}
@@ -25,8 +25,7 @@
                     </div>
                     <div class="form-row">
                         <p>Выберите подкатегорию</p>
-                        <select required class="form-control select" name="subcategory" id="subcategory">
-                            <option selected >Нет подкатегории</option>
+                        <select required class="form-control select" name="{{ form.subCategory.name }}" id="subcategory">
                             {% for subcat in all_cat.first.subcats.all %}
                                 <option class="subcat-name" value="{{ subcat.id }}">{{subcat.name}}</option>
                             {% endfor %}
@@ -37,17 +36,17 @@
                         <div class="form-group">
                             <label>Название обьявления</label>
                             <div>
-                                <input name="name" required class="form-control input" type="text" placeholder="Продам стиральную машинку">
+                                <input name="{{ form.name.name }}" required class="form-control input" type="text" placeholder="Продам стиральную машинку">
                                 <span>Например, «Диван-кровать Икеа» или «Холодильник Бирюса 110»</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Описание обьявления</label>
-                            <textarea class="form-control textarea" name="" id="" cols="30" rows="10" placeholder="Продам стиральную машинку"></textarea>
+                            <textarea class="form-control textarea" name="{{ form.description.name }}" id="" cols="30" rows="10" placeholder="Продам стиральную машинку"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Цена: ₽</label>
-                            <input required name="price" class="form-control input" type="number" min="1" placeholder="15 000">
+                            <input required name="{{ form.price.name }}" class="form-control input" type="number" min="1" placeholder="15 000">
                         </div>
                         <div class="form-group">
                             <label>Фотографии</label>
@@ -61,13 +60,19 @@
                         </div>
                         <div class="form-row">
                             <p>Местоположение</p>
-                            <select required class="form-control select" name="town" >
-                                <option selected disabled>Выберите город</option>
+                            <select required class="form-control select" name="{{ form.town.name }}" >
                                 {% for town in all_towns %}
                                     <option value="{{ town.id }}">{{town.name}}</option>
                                 {% endfor %}
                             </select>
                             <span>Точный адрес поможет привлечь заинтересованных покупателей</span>
+                        </div>
+                     <div class="form-group">
+                            <label>Адрес</label>
+                            <div>
+                                <input name="{{ form.address.name }}" required class="form-control input" type="text" placeholder="ул. Ленина 1000">
+
+                            </div>
                         </div>
                         <div class="form-row">
                             <p>Контакты</p>
@@ -99,6 +104,8 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
+                <button class="btn" type="submit">Сохранить</button>
                 </form>
             </section><!--//new-item-->
         </div><!--//container-->
@@ -118,8 +125,7 @@
             })
 
             function getSubcat(opts) {
-                console.log(opts)
-                console.log(JSON.stringify(opts))
+
                 fetch('/item/get_subcat/', {
                     method: 'post',
                     body: JSON.stringify(opts),
@@ -158,10 +164,6 @@
                         image.title  = file.name;
                         image.src    = this.result;
                         preview.appendChild(image);
-                        // image.addEventListener("click", event => {
-                        //      console.log(file.name)
-                        //       console.log(allImages.files)
-                        //})
                     });
                     reader.readAsDataURL(file);
                 }

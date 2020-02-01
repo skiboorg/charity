@@ -139,8 +139,20 @@
       font: 13px 'GR',sans-serif
       color: #656565
 
-
-
+.item-image-thumb
+  width: 100px
+  height: 65px
+  opacity: .7
+  transition: opacity .5s linear
+  cursor: pointer
+  box-sizing: border-box
+  &:hover
+    opacity: 1
+    transition: opacity .5s linear
+    border: 1px solid $color-blue
+  &.selected
+    opacity: 1
+    border: 1px solid $color-blue
 .item-informaion
   margin-bottom: 70px
 
@@ -151,7 +163,8 @@
     border-radius: 2px
     margin-bottom: 100px
 
-  &-photos
+
+
 
   &-photo
     padding: 40px 50px
@@ -228,6 +241,49 @@
           padding: 15px
           &.active-page
             color: #009FEE
+
+.fade-out
+	animation: fade-out .4s ease-out both
+@keyframes fade-out
+  0%
+    opacity: 1
+
+  100%
+    opacity: 0
+
+.fade-in
+	animation: fade-in .4s ease-out both
+@keyframes fade-in
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+.new-chat
+  position: relative
+
+  &-form
+    display: none
+    animation: fadeEffect .2s
+    position: absolute
+    background: #ffffff
+    z-index: 999
+    min-height: 0
+    width: 100%
+    padding: 10px
+    box-sizing: border-box
+    border: 2px solid $color-border
+    border-top: none
+    textarea
+      width: 100%
+      resize: none
+      box-sizing: border-box
+      margin-bottom: 10px
+      border: none
+      outline: none
+  & .chat-active
+    display: block
 
 @media (max-width: 480px)
   .items-paginator

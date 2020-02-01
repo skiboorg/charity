@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
 from item.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from item.forms import *
 
 
 
@@ -17,9 +18,13 @@ def index(request):
     return render(request, 'pages/index.html', locals())
 
 
-def catalog(request,slug):
-    category = Category.objects.get(name_slug=slug)
+def catalog(request, slug):
+    category = get_object_or_404(Category,name_slug=slug)
     all_items = Item.objects.filter(category=category)
+    lower_price = all_items.order_by('price')[0].price
+    high_price = all_items.order_by('-price')[0].price
+    print('lower_price',lower_price)
+    print('high_price', high_price)
     banners = Banner.objects.all()
     data = request.GET
     print(request.GET)
@@ -88,7 +93,7 @@ def catalog(request,slug):
         town_temp = Town.objects.get(id=town)
         items = items.filter(town=town_temp)
         param_town = town_temp.id
-
+    filtered_items_count = len(items)
 
     if count:
         items_paginator = Paginator(items, int(count))
@@ -112,13 +117,14 @@ def catalog(request,slug):
 
 def item(request,slug):
 
-    item = Item.objects.get(name_slug=slug)
+    item = get_object_or_404(Item,name_slug=slug)
     images = ItemImage.objects.filter(item=item)
     sameItems = Item.objects.filter(name__contains=item.name)
 
     return render(request, 'pages/item.html', locals())
 
 def new_item(request):
+    form = CreateItemForm()
     return render(request, 'pages/newitem.html', locals())
 
 
@@ -131,4 +137,36 @@ def contacts(request):
 def about(request):
     return render(request, 'pages/about.html', locals())
 def lk(request):
-    return render(request, 'pages/lk.html', locals())
+    if request.user.is_authenticated:
+        user = request.user
+        userItems = Item.objects.filter(user=user)
+        wl = UserFavorites.objects.filter(user=request.user)
+        wishlist_ids = []
+        for i in wl:
+            wishlist_ids.append(i.item.id)
+        userFavs = Item.objects.filter(id__in=wishlist_ids)
+        lkActive = True
+        return render(request, 'pages/lk.html', locals())
+    else:
+        return render(request, 'pages/index.html', locals())
+
+
+def search(request):
+    show_tags = False
+    search_string = request.GET.get('query')
+    category = request.GET.get('category')
+    town = request.GET.get('town')
+    page = request.GET.get('page')
+    param_search = search_string
+
+    searchResult = Item.objects.filter(name_lower__contains=search_string.lower())
+
+    if searchResult:
+        if category:
+            cat = get_object_or_404(Category,id=category)
+            searchResult = searchResult.filter(category=cat)
+        if town:
+            townn = get_object_or_404(Town,id=town)
+            searchResult = searchResult.filter(town=townn)
+
+    return render(request, 'pages/search.html', locals())

@@ -64,7 +64,7 @@
 </header><!-- // header -->
 <div class="main">
 
-       <div class="breadcrumbs">
+    <div class="breadcrumbs">
         <div class="container ">
             <ul>
                 <li><a href="#">Главная</a></li>
@@ -79,63 +79,72 @@
             <div class="item-informaion-wrapper">
                 <div class="item-informaion-photo">
                     <h1>Ботинки Кожаные</h1>
-                    <img src="http://placehold.it/545x285">
+                    <img id="item_main_img" src="http://placehold.it/545x285">
                     <div class="item-informaion-photos">
-                        <img src="http://placehold.it/100x65" alt="">
-                         <img src="http://placehold.it/100x65" alt="">
-                         <img src="http://placehold.it/100x65" alt="">
-                         <img src="http://placehold.it/100x65" alt="">
+                        <img class="item-image-thumb selected" onclick="changeImg(this)" src="http://placehold.it/100x65" alt="">
+                        <img class="item-image-thumb" onclick="changeImg(this)" src="http://placehold.it/100x65" alt="">
+                        <img class="item-image-thumb" onclick="changeImg(this)" src="http://placehold.it/100x65" alt="">
+                        <img class="item-image-thumb" onclick="changeImg(this)" src="http://placehold.it/100x65" alt="">
                     </div>
                 </div>
                 <div class="item-informaion-price">
                     <div class="item-informaion-price-inner">
-                       <p>2000 Рублей</p>
-                    <div class="item-informaion-price-buttons">
-                      <a href="#" class="btn ">Купить</a>
-                     <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
+                        <p>2000 Рублей</p>
+                        <div class="item-informaion-price-buttons">
+                            <a href="#" class="btn ">Купить</a>
+                            <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
+                        </div>
+                        <div class="new-chat">
+                            <a href="#" class="btn rounded btn-outline btn-grey">Написать Продавцу</a>
+                        <div class="new-chat-form">
+                            <form action="">
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <button class="btn">отправить</button>
+                            </form>
+                        </div>
+                        </div>
+
                     </div>
-                    <a href="#" class="btn rounded btn-outline btn-grey">Написать Продавцу</a>
+
+                    <div class="best-customer-item">
+                        <p class="best-customer-item-info">Информация о продавце:</p>
+                        <div class="customer-img with-star">
+                            <a href="#">
+                                <img src="http://placehold.it/64" alt="">
+                            </a>
+
+                        </div>
+                        <div class="customer-info">
+                            <a href="#"><p>Иван Сергеевич </p>
+                                <span>20 покупок</span></a>
+
+                        </div>
                     </div>
-
-                         <div class="best-customer-item">
-                             <p class="best-customer-item-info">Информация о продавце:</p>
-                                <div class="customer-img with-star">
-                                    <a href="#">
-                                        <img src="http://placehold.it/64" alt="">
-                                    </a>
-
-                                </div>
-                                <div class="customer-info">
-                                    <a href="#"><p>Иван Сергеевич </p>
-                                        <span>20 покупок</span></a>
-
-                                </div>
-                            </div>
                 </div>
 
 
             </div>
             <h3 class="mb-50">Описание</h3>
-             <div class="item-informaion-description">
+            <div class="item-informaion-description">
 
-                        <div class="item-informaion-description-row">
-                            <span>Местоположение</span><p>Россия, Москва, ул. Шмита д. 49</p>
-                        </div>
-                        <div class="item-informaion-description-row">
-                            <span>Дата размещения</span><p>Вчера, в 18:30</p>
-                        </div>
-                    <hr>
-                    <div class="item-informaion-description-row">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi architecto atque aut corporis culpa deserunt, ea eum excepturi expedita facere incidunt inventore laboriosam laudantium minima natus nemo neque nesciunt obcaecati odio, placeat praesentium quas quasi quis quos repellendus vero voluptatum? Animi blanditiis cupiditate delectus ea id neque sed velit?</p>
-                        </div>
-
-
-
+                <div class="item-informaion-description-row">
+                    <span>Местоположение</span><p>Россия, Москва, ул. Шмита д. 49</p>
                 </div>
+                <div class="item-informaion-description-row">
+                    <span>Дата размещения</span><p>Вчера, в 18:30</p>
+                </div>
+                <hr>
+                <div class="item-informaion-description-row">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi architecto atque aut corporis culpa deserunt, ea eum excepturi expedita facere incidunt inventore laboriosam laudantium minima natus nemo neque nesciunt obcaecati odio, placeat praesentium quas quasi quis quos repellendus vero voluptatum? Animi blanditiis cupiditate delectus ea id neque sed velit?</p>
+                </div>
+
+
+
+            </div>
         </div>
 
     </section>
-     <section class="items">
+    <section class="items">
         <div class="container">
             <h3>Похожие Объявления</h3>
             <div class="items-wrapper">
@@ -189,6 +198,46 @@
 
     </section><!-- // items -->
 
+    <script>
+         function sendMsg() {
+        let msg = document.getElementById('chat_message').value
+        if(msg){
+            let xhr = new XMLHttpRequest();
+
+        let json = JSON.stringify({
+         msgTo: {{ house.client.id }},
+          msgFrom: {{ request.user.id }},
+                msg: msg
+        });
+        xhr.open("POST", '/new_msg/')
+        xhr.send(json);
+            document.getElementsByClassName('chat-box')[0].classList.remove('chat-box-active')
+        }
+    }
+     function openChatBox() {
+        document.getElementsByClassName('new-chat-form')[0].classList.toggle('chat-active')
+
+    }
+
+        let mainimg=document.getElementById('item_main_img')
+        function changeImg(el) {
+            let allThums = document.getElementsByClassName('item-image-thumb')
+            for (x of allThums){
+                console.log(x.classList.remove('selected'))
+            }
+            console.log(el.getAttribute('src'))
+            el.classList.add('selected')
+            mainimg.classList.remove('fade-in')
+            mainimg.classList.add('fade-out')
+            mainimg.addEventListener('animationend', () => {
+                mainimg.setAttribute('src', el.getAttribute('src'))
+                mainimg.classList.remove('fade-out')
+                mainimg.classList.add('fade-in')
+            });
+
+
+        }
+    </script>
 
 </div><!--//main-->
 

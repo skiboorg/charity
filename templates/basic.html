@@ -13,12 +13,13 @@
 
 </head>
 <body>
-<form id="dummy_form">{% csrf_token %}</form>
+<form id="dummy_form" class="not-visible">{% csrf_token %}</form>
 {% include 'header.html' %}
 {% block content %}
 {% endblock %}
 {% include 'footer.html' %}
 <script>
+
     function toggleModal(type) {
 
         document.getElementsByClassName(type)[0].classList.toggle('modal-active')
@@ -36,6 +37,42 @@
     }
 </script>
   <script src="{% static 'js/tiny-slider.js' %}"></script>
+<script>
+
+
+    function add_del_fav(item_id,el,lk) {
+        let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+        let body = {item_id:item_id}
+        let type = ''
+        if (el.classList.contains('in-fav')){
+            type='delete'
+        }
+        else {
+            type='add'
+        }
+              fetch(`/item/wishlist_${type}/`, {
+                    method: 'post',
+                    body: JSON.stringify(body),
+                    headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                    credentials: 'same-origin'
+                }).then(res=>res.json())
+                    .then(res => {
+                        if (res['result'] === true){
+                            if(lk==='lkactive'){
+                                console.log(el.closest('div').classList.add('not-visible'))
+                            }
+
+                            else{
+                               el.classList.toggle('in-fav')
+                            }
+
+                        }
+
+                    })
+
+
+    }
+</script>
 <script>
      var doc = document
 
@@ -69,6 +106,16 @@
             autoplayTimeout: 4000,
             speed: 1000,
             gutter: 20,
+
+        },
+        'item-informaion-photos': {
+            container: '',
+            items: 5,
+            controlsContainer: '#customize-controls',
+            autoplay: false,
+            autoplayTimeout: 4000,
+            speed: 1000,
+            gutter: 0,
 
         },
 

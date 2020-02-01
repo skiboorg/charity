@@ -2,243 +2,217 @@
 {% load static %}
 
 {% block content %}
-   <div class="main">
-    <div class="breadcrumbs">
-        <div class="container ">
-            <ul>
-                <li><a href="#">Главная</a></li>
-                <li><span>Личный кабинет</span></li>
-            </ul>
-        </div>
-    </div>
-
-    <section class="lk">
-        <div class="container">
-            <div class="lk-mobile-menu">
+    <div class="main">
+        <div class="breadcrumbs">
+            <div class="container ">
                 <ul>
-                    <li class="tablinks" onclick="openTab(event, 'lk-content-user-info', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-bars"></i></a></li>
-                    <li class="tablinks active-menu-link" onclick="openTab(event, 'lk-content-ads', 'active-menu-link')" id="defaultOpenMobile"><a href="javascript: void(0)"><i class="fa fa-pencil-square-o"></i></a></li>
-                    <li class="tablinks" onclick="openTab(event, 'lk-content-buys', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-shopping-cart"></i></a></li>
-                    <li class="tablinks" onclick="openTab(event, 'lk-content-chat', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-comment-o"></i></a></li>
-                    <li class="tablinks" onclick="openTab(event, 'lk-content-fav', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-heart-o"></i></a></li>
-                    <li class="tablinks" onclick="openTab(event, 'lk-content-settings', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-gear"></i></a></li>
-
+                    <li><a href="/">Главная</a></li>
+                    <li><span>Личный кабинет</span></li>
                 </ul>
             </div>
-            <div class="lk-wrapper">
-                <div class="lk-menu">
-                    <div class="lk-menu-top">
-                        <img src="img/user-photo.png" alt="">
-                        <p>Имя Фамилия</p>
-                        <span>#Переменное значение</span>
-                        <a href="#">Выйти</a>
-                    </div><!-- // lk-menu-top -->
-                    <div class="lk-menu-bottom">
-                        <ul>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-ads', 'active-li')" id="defaultOpen"><a class="my-ads" href="javascript: void(0)" >Мои обьявления</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-buys', 'active-li')"><a class="my-buys" href="javascript: void(0)"  >Мои покупки</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-chat', 'active-li')"><a class="my-chat" href="javascript: void(0)">Чаты</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-fav', 'active-li')"> <a class="my-fav" href="javascript: void(0)">Избранное</a></li>
-                            <li class="tablinks" onclick="openTab(event, 'lk-content-settings', 'active-li')"><a class="my-settings" href="javascript: void(0)">Настройки</a></li>
-                        </ul>
+        </div>
 
-                    </div><!-- // lk-menu-bottom -->
+        <section class="lk">
+            <div class="container">
+                <div class="lk-mobile-menu">
+                    <ul>
+                        <li class="tablinks" onclick="openTab(event, 'lk-content-user-info', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-bars"></i></a></li>
+                        <li class="tablinks active-menu-link" onclick="openTab(event, 'lk-content-ads', 'active-menu-link')" id="defaultOpenMobile"><a href="javascript: void(0)"><i class="fa fa-pencil-square-o"></i></a></li>
+                        <li class="tablinks" onclick="openTab(event, 'lk-content-buys', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li class="tablinks" onclick="openTab(event, 'lk-content-chat', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-comment-o"></i></a></li>
+                        <li class="tablinks" onclick="openTab(event, 'lk-content-fav', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-heart-o"></i></a></li>
+                        <li class="tablinks" onclick="openTab(event, 'lk-content-settings', 'active-menu-link')"><a href="javascript: void(0)"><i class="fa fa-gear"></i></a></li>
 
-                </div><!-- // lk-menu -->
-                <div class="lk-content">
-                     <div id="lk-content-user-info" class="lk-content-wrapper lk-content-ads">
-                         <div class="lk-menu-top">
-                        <img src="img/user-photo.png" alt="">
-                        <p>Имя Фамилия</p>
-                        <span>#Переменное значение</span>
-                        <a href="#">Выйти</a>
-                    </div><!-- // lk-menu-top -->
-                     </div>
-                    <div id="lk-content-ads" class="lk-content-wrapper lk-content-ads">
-                        <h3 class="mb-40">Мои обьявления</h3>
-                        <div class="items-wrapper">
-                            <div class="item new-item">
-                                <a href="#">
-                                    <img src="img/new-item.png" alt="">
-                                    <p>НОВОЕ<br>ОБЬЯВЛЕНИЕ</p>
-                                </a>
+                    </ul>
+                </div>
+                <div class="lk-wrapper">
+                    <div class="lk-menu">
+                        <div class="lk-menu-top">
+                            <img src="{{ user.get_avatar }}" alt="">
+                            <p>Имя Фамилия</p>
+                            <span>#Переменное значение</span>
+                            <a href="#">Выйти</a>
+                        </div><!-- // lk-menu-top -->
+                        <div class="lk-menu-bottom">
+                            <ul>
+                                <li class="tablinks" onclick="openTab(event, 'lk-content-ads', 'active-li')" id="defaultOpen"><a class="my-ads" href="javascript: void(0)" >Мои обьявления</a></li>
+                                <li class="tablinks" onclick="openTab(event, 'lk-content-buys', 'active-li')"><a class="my-buys" href="javascript: void(0)"  >Мои покупки</a></li>
+                                <li class="tablinks" onclick="openTab(event, 'lk-content-chat', 'active-li')"><a class="my-chat" href="javascript: void(0)">Чаты</a></li>
+                                <li class="tablinks" onclick="openTab(event, 'lk-content-fav', 'active-li')"> <a class="my-fav" href="javascript: void(0)">Избранное</a></li>
+                                <li class="tablinks" onclick="openTab(event, 'lk-content-settings', 'active-li')"><a class="my-settings" href="javascript: void(0)">Настройки</a></li>
+                            </ul>
+
+                        </div><!-- // lk-menu-bottom -->
+
+                    </div><!-- // lk-menu -->
+                    <div class="lk-content">
+                        <div id="lk-content-user-info" class="lk-content-wrapper lk-content-ads">
+                            <div class="lk-menu-top">
+                                <img src="{{ user.get_avatar }}" alt="">
+                                <p>Имя Фамилия</p>
+                                <span>#Переменное значение</span>
+                                <a href="#">Выйти</a>
+                            </div><!-- // lk-menu-top -->
+                        </div>
+                        <div id="lk-content-ads" class="lk-content-wrapper lk-content-ads">
+                            <h3 class="mb-40">Мои обьявления</h3>
+                            <div class="items-wrapper">
+                                <div class="item new-item">
+                                    <a href="{% url 'createItem' %}">
+                                        <img src="{% static 'img/new-item.png' %}" alt="">
+                                        <p>НОВОЕ<br>ОБЬЯВЛЕНИЕ</p>
+                                    </a>
+                                </div>
+                                {% for item in userItems %}
+                                    {% include 'pages/item_card.html' %}
+                                {% endfor %}
                             </div>
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
 
-                                <div class="item-info">
+                        </div><!-- // lk-content-ads -->
+                        <div id="lk-content-buys" class="lk-content-wrapper lk-content-buys">
+                            <h3 class="mb-40">Мои покупки</h3>
+                            <div class="items-wrapper">
+
+                                <div class="item">
+                                    <a class="item-fav" href="#"></a>
                                     <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
+                                        <img src="img/item-temp.jpg" alt="">
                                     </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
 
-                                <div class="item-info">
+                                    <div class="item-info">
+                                        <a href="#">
+                                            <p class="item-info-text item-present">В наличии</p>
+                                            <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                            <p class="item-info-text">Цена</p>
+                                            <p class="item-info-price">1500 Р</p>
+
+                                        </a>
+                                    </div>
+                                </div><!-- // item -->
+                                <div class="item">
+                                    <a class="item-fav in-fav" href="#"></a>
                                     <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
+                                        <img src="img/item-temp.jpg" alt="">
                                     </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
 
-                                <div class="item-info">
+                                    <div class="item-info">
+                                        <a href="#">
+                                            <p class="item-info-text item-present">В наличии</p>
+                                            <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                            <p class="item-info-text">Цена</p>
+                                            <p class="item-info-price">1500 Р</p>
+
+                                        </a>
+                                    </div>
+                                </div><!-- // item -->
+                                <div class="item">
+                                    <a class="item-fav in-fav" href="#"></a>
                                     <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
+                                        <img src="img/item-temp.jpg" alt="">
                                     </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
 
-                                <div class="item-info">
+                                    <div class="item-info">
+                                        <a href="#">
+                                            <p class="item-info-text item-present">В наличии</p>
+                                            <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                            <p class="item-info-text">Цена</p>
+                                            <p class="item-info-price">1500 Р</p>
+
+                                        </a>
+                                    </div>
+                                </div><!-- // item -->
+                                <div class="item">
+                                    <a class="item-fav in-fav" href="#"></a>
                                     <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
+                                        <img src="img/item-temp.jpg" alt="">
                                     </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
 
-                                <div class="item-info">
+                                    <div class="item-info">
+                                        <a href="#">
+                                            <p class="item-info-text item-present">В наличии</p>
+                                            <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                            <p class="item-info-text">Цена</p>
+                                            <p class="item-info-price">1500 Р</p>
+
+                                        </a>
+                                    </div>
+                                </div><!-- // item -->
+                                <div class="item">
+                                    <a class="item-fav in-fav" href="#"></a>
                                     <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
+                                        <img src="img/item-temp.jpg" alt="">
                                     </a>
-                                </div>
-                            </div><!-- // item -->
-                        </div>
 
-                    </div><!-- // lk-content-ads -->
-                    <div id="lk-content-buys" class="lk-content-wrapper lk-content-buys">
-                        <h3 class="mb-40">Мои покупки</h3>
-                        <div class="items-wrapper">
+                                    <div class="item-info">
+                                        <a href="#">
+                                            <p class="item-info-text item-present">В наличии</p>
+                                            <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
+                                            <p class="item-info-text">Цена</p>
+                                            <p class="item-info-price">1500 Р</p>
 
-                            <div class="item">
-                                <a class="item-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
+                                        </a>
+                                    </div>
+                                </div><!-- // item -->
+                            </div>
 
-                                <div class="item-info">
-                                    <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
+                        </div><!-- // lk-content-buys -->
+                        <div id="lk-content-chat" class="lk-content-wrapper lk-content-chat">
+                            <h3 class="mb-40">Мои чаты</h3>
+                            <p>Непрочитанные</p>
+                            <ul>
+                                <li>
+                                    <div data-chat_id="1" class="lk-content-chat-item ">
+                                        <div data-num="2" class="lk-content-chat-item-img unread">
+                                            <img src="img/user-photo.png" alt="">
+                                        </div>
 
-                                    </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
+                                        <div class="lk-content-chat-item-user">
+                                            <p>Иван Сергеевич</p>
+                                            <span>Превью сообщения, короткий текст...</span>
+                                        </div>
+                                        <div class="lk-content-chat-item-date">
+                                            <span>18:30; 01.01.2020 </span>
+                                        </div>
+                                    </div>
+                                </li>
 
-                                <div class="item-info">
-                                    <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
+                            </ul>
+                            <p>Все сообщения</p>
+                            <ul>
+                                <li>
+                                    <div data-chat_id="2"  class="lk-content-chat-item ">
+                                        <div class="lk-content-chat-item-img">
+                                            <img src="img/user-photo.png" alt="">
+                                        </div>
 
-                                    </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
+                                        <div class="lk-content-chat-item-user">
+                                            <p>Иван Сергеевич</p>
+                                            <span>Превью сообщения, короткий текст...</span>
+                                        </div>
+                                        <div class="lk-content-chat-item-date">
+                                            <span>18:30; 01.01.2020 </span>
+                                        </div>
+                                    </div>
+                                </li>
 
-                                <div class="item-info">
-                                    <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
+                                <li>
+                                    <div data-chat_id="3"  class="lk-content-chat-item ">
+                                        <div class="lk-content-chat-item-img">
+                                            <img src="img/user-photo.png" alt="">
+                                        </div>
 
-                                    </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
+                                        <div class="lk-content-chat-item-user">
+                                            <p>Иван Сергеевич</p>
+                                            <span>Превью сообщения, короткий текст...</span>
+                                        </div>
+                                        <div class="lk-content-chat-item-date">
+                                            <span>18:30; 01.01.2020 </span>
+                                        </div>
+                                    </div>
 
-                                <div class="item-info">
-                                    <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
-                                    </a>
-                                </div>
-                            </div><!-- // item -->
-                            <div class="item">
-                                <a class="item-fav in-fav" href="#"></a>
-                                <a href="#">
-                                    <img src="img/item-temp.jpg" alt="">
-                                </a>
-
-                                <div class="item-info">
-                                    <a href="#">
-                                        <p class="item-info-text item-present">В наличии</p>
-                                        <p class="item-info-name">Ботинки из кожи яка с подошвой из сосны</p>
-                                        <p class="item-info-text">Цена</p>
-                                        <p class="item-info-price">1500 Р</p>
-
-                                    </a>
-                                </div>
-                            </div><!-- // item -->
-                        </div>
-
-                    </div><!-- // lk-content-buys -->
-                    <div id="lk-content-chat" class="lk-content-wrapper lk-content-chat">
-                        <h3 class="mb-40">Мои чаты</h3>
-                        <p>Непрочитанные</p>
-                        <ul>
-                            <li>
-                                <div data-chat_id="1" class="lk-content-chat-item ">
+                            </ul>
+                            <div id="chat-messages" class="lk-content-chat-messages">
+                                <div class="lk-content-chat-messages-top ">
                                     <div data-num="2" class="lk-content-chat-item-img unread">
                                         <img src="img/user-photo.png" alt="">
                                     </div>
@@ -247,241 +221,135 @@
                                         <p>Иван Сергеевич</p>
                                         <span>Превью сообщения, короткий текст...</span>
                                     </div>
-                                    <div class="lk-content-chat-item-date">
-                                        <span>18:30; 01.01.2020 </span>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                        <p>Все сообщения</p>
-                        <ul>
-                            <li>
-                                <div data-chat_id="2"  class="lk-content-chat-item ">
-                                    <div class="lk-content-chat-item-img">
-                                        <img src="img/user-photo.png" alt="">
+                                    <div class="lk-content-chat-item-close">
+                                        <a href="javascript:void(0)" onclick="closeChat()"><i class="fa fa-close"></i></a>
                                     </div>
 
-                                    <div class="lk-content-chat-item-user">
-                                        <p>Иван Сергеевич</p>
-                                        <span>Превью сообщения, короткий текст...</span>
+                                </div>
+                                <div class="lk-content-chat-messages-bottom">
+                                    <div class="lk-content-chat-messages-bottom__message-to-me">
+                                        <p>Текст сообщения 1</p>
+                                        <span>15:30, 27.01</span>
                                     </div>
-                                    <div class="lk-content-chat-item-date">
-                                        <span>18:30; 01.01.2020 </span>
+                                    <div class="lk-content-chat-messages-bottom__message-from-me">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
+                                        <span>15:30, 27.01</span>
+                                    </div>
+                                    <div class="lk-content-chat-messages-bottom__message-to-me">
+                                        <p>Текст сообщения 1</p>
+                                        <span>15:30, 27.01</span>
+                                    </div>
+                                    <div class="lk-content-chat-messages-bottom__message-from-me">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
+                                        <span>15:30, 27.01</span>
+                                    </div>
+                                    <div class="lk-content-chat-messages-bottom__message-to-me">
+                                        <p>Текст сообщения 1</p>
+                                        <span>15:30, 27.01</span>
+                                    </div>
+                                    <div class="lk-content-chat-messages-bottom__message-from-me">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
+                                        <span>15:30, 27.01</span>
                                     </div>
                                 </div>
-                            </li>
+                                <div class="lk-content-chat-messages-new-message">
+                                    <textarea  placeholder="Текст вашего сообщения"></textarea>
+                                    <div class="lk-content-chat-messages-new-message-button"><a href="#"><i class="fa fa-telegram"></i></a></div>
 
-                            <li>
-                                <div data-chat_id="3"  class="lk-content-chat-item ">
-                                    <div class="lk-content-chat-item-img">
-                                        <img src="img/user-photo.png" alt="">
-                                    </div>
-
-                                    <div class="lk-content-chat-item-user">
-                                        <p>Иван Сергеевич</p>
-                                        <span>Превью сообщения, короткий текст...</span>
-                                    </div>
-                                    <div class="lk-content-chat-item-date">
-                                        <span>18:30; 01.01.2020 </span>
-                                    </div>
-                                </div>
-
-                        </ul>
-                        <div id="chat-messages" class="lk-content-chat-messages">
-                            <div class="lk-content-chat-messages-top ">
-                                <div data-num="2" class="lk-content-chat-item-img unread">
-                                    <img src="img/user-photo.png" alt="">
-                                </div>
-
-                                <div class="lk-content-chat-item-user">
-                                    <p>Иван Сергеевич</p>
-                                    <span>Превью сообщения, короткий текст...</span>
-                                </div>
-                                <div class="lk-content-chat-item-close">
-                                    <a href="javascript:void(0)" onclick="closeChat()"><i class="fa fa-close"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="lk-content-chat-messages-bottom">
-                                <div class="lk-content-chat-messages-bottom__message-to-me">
-                                    <p>Текст сообщения 1</p>
-                                    <span>15:30, 27.01</span>
-                                </div>
-                                <div class="lk-content-chat-messages-bottom__message-from-me">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
-                                    <span>15:30, 27.01</span>
-                                </div>
-                                <div class="lk-content-chat-messages-bottom__message-to-me">
-                                    <p>Текст сообщения 1</p>
-                                    <span>15:30, 27.01</span>
-                                </div>
-                                <div class="lk-content-chat-messages-bottom__message-from-me">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
-                                    <span>15:30, 27.01</span>
-                                </div>
-                                <div class="lk-content-chat-messages-bottom__message-to-me">
-                                    <p>Текст сообщения 1</p>
-                                    <span>15:30, 27.01</span>
-                                </div>
-                                <div class="lk-content-chat-messages-bottom__message-from-me">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
-                                    <span>15:30, 27.01</span>
                                 </div>
                             </div>
-                            <div class="lk-content-chat-messages-new-message">
-                                <textarea  placeholder="Текст вашего сообщения"></textarea>
-                                <div class="lk-content-chat-messages-new-message-button"><a href="#"><i class="fa fa-telegram"></i></a></div>
 
+                        </div><!-- // lk-content-chat -->
+                        <div id="lk-content-fav" class="lk-content-wrapper lk-content-fav">
+                            <h3 class="mb-40">Избранное</h3>
+                            <div class="items-wrapper">
+                            {% if userFavs %}
+                                {% for item in userFavs %}
+                                    {% include 'pages/item_card.html' %}
+                                {% endfor %}
+                            {% else %}
+                                <p>Вы не добавили ничего в избранное</p>
+                            {% endif %}
                             </div>
-                        </div>
 
-                    </div><!-- // lk-content-chat -->
-                    <div id="lk-content-fav" class="lk-content-wrapper lk-content-fav">
-                        <h3 class="mb-40">Избранное</h3>
-
-
-                    </div><!-- // lk-content-fav -->
-                    <div id="lk-content-settings" class="lk-content-wrapper lk-content-settings">
-                        <h3 class="mb-40">Настройки</h3>
+                        </div><!-- // lk-content-fav -->
+                        <div id="lk-content-settings" class="lk-content-wrapper lk-content-settings">
+                            <h3 class="mb-40">Настройки</h3>
 
 
-                    </div><!-- // lk-content-settings -->
-                </div><!-- // lk-content -->
+                        </div><!-- // lk-content-settings -->
+                    </div><!-- // lk-content -->
 
-            </div><!-- // lk-wrapper -->
-        </div><!-- // container -->
-    </section><!-- // lk -->
+                </div><!-- // lk-wrapper -->
+            </div><!-- // container -->
+        </section><!-- // lk -->
 
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-top-menu">
-                    <h4>О компании</h4>
-                    <ul>
-                        <li><a href="">Как мы работаем</a></li>
-                        <li><a href="">Контакты</a></li>
-                        <li><a href="">Каталог товаров</a></li>
-                        <li><a href="">Ссылка 1</a></li>
-                        <li><a href="">Ссылка 1</a></li>
-                    </ul>
-                </div>
-                <div class="footer-top-menu">
-                    <h4>Разделы</h4>
-                    <ul>
-                        <li><a href="">Вещи и одежда</a></li>
-                        <li><a href="">Компьютерная техника</a></li>
-                        <li><a href="">Инструменты</a></li>
-                        <li><a href="">Запчасти и автотовары</a></li>
-                        <li><a href="">ТВ, аудио, видео</a></li>
-                        <li><a href="">Ссылка 1</a></li>
-                        <li><a href="">Ссылка 1</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>О компании</h4>
-                    <div class="footer-contact-item">
-                        <span>E-mail:</span>
-                        <p>info@charity-store</p>
-                    </div>
-                    <div class="footer-contact-item">
-                        <span>E-mail:</span>
-                        <p>info@charity-store</p>
-                    </div>
-                </div>
-                <div class="footer-social">
-                    <div class="">
-                        <h4>Мы в социальных сетях</h4>
-                        <ul class="mb-30">
-                            <li><a  href=""><span class="vk"></span></a></li>
-                            <li><a  href=""><span class="fb"></span></a></li>
-                            <li><a  href=""><span class="ok"></span></a></li>
-                        </ul>
-                    </div>
-                    <div class="">
-                        <h4>Способы оплаты</h4>
-                        <ul>
-                            <li><span class="mc "></span></li>
-                            <li><span class="visa "></span></li>
 
-                        </ul>
-                    </div>
 
-                </div>
+    </div><!--//main-->
 
-            </div>
-            <div class="footer-bottom">
-                <img src="img/logo.png" alt="">
-                <p>Благотворительная торговая площадка</p>
-            </div>
-        </div>
+    <script>
+        var tx = document.getElementsByTagName('textarea');
+        for (var i = 0; i < tx.length; i++) {
+            //tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+            tx[i].addEventListener("input", OnInput, false);
+        }
 
-    </footer>
-
-</div><!--//main-->
-
-<script>
-    var tx = document.getElementsByTagName('textarea');
-    for (var i = 0; i < tx.length; i++) {
-        //tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
-        tx[i].addEventListener("input", OnInput, false);
-    }
-
-    function OnInput() {
-       this.style.height = 'auto';
-        this.style.height = (this.scrollHeight )  + 'px';
-    }
-</script>
-<script>
-    function closeChat(){
-        document.getElementById('chat-messages').classList.remove('show-messages')
-    }
-    document.querySelectorAll('.lk-content-chat-item').forEach(item => {
-        item.addEventListener('click', event => {
-            console.log(item.dataset.chat_id)
-            document.getElementById('chat-messages').classList.add('show-messages')
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight )  + 'px';
+        }
+    </script>
+    <script>
+        function closeChat(){
+            document.getElementById('chat-messages').classList.remove('show-messages')
+        }
+        document.querySelectorAll('.lk-content-chat-item').forEach(item => {
+            item.addEventListener('click', event => {
+                console.log(item.dataset.chat_id)
+                document.getElementById('chat-messages').classList.add('show-messages')
+            })
         })
-    })
 
-</script>
-<script>
-    function toggleModal(type) {
+    </script>
+    <script>
+        function toggleModal(type) {
 
-        document.getElementsByClassName(type)[0].classList.toggle('modal-active')
-        return false
+            document.getElementsByClassName(type)[0].classList.toggle('modal-active')
+            return false
 
-    }
-
-    let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
-    let mobile_menu = document.getElementsByClassName('mobile-menu')[0]
-
-    mobile_button.onclick = function () {
-        this.classList.toggle('mobile-toggle-active')
-
-        mobile_menu.classList.toggle('menu-active')
-    }
-</script>
-
-<script>
-    function openTab(evt, TabName, type) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("lk-content-wrapper");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
         }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(` ${type}`, "");
+
+        let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
+        let mobile_menu = document.getElementsByClassName('mobile-menu')[0]
+
+        mobile_button.onclick = function () {
+            this.classList.toggle('mobile-toggle-active')
+
+            mobile_menu.classList.toggle('menu-active')
         }
-        document.getElementById(TabName).style.display = "block";
-        document.getElementById('chat-messages').classList.remove('show-messages')
-        console.log(evt)
-        evt.currentTarget.className += ` ${type}`;
-    }
+    </script>
 
-    // Get the element with id="defaultOpen" and click on it defaultOpenMobile
-    document.getElementById("defaultOpen").click();
+    <script>
+        function openTab(evt, TabName, type) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("lk-content-wrapper");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(` ${type}`, "");
+            }
+            document.getElementById(TabName).style.display = "block";
+            document.getElementById('chat-messages').classList.remove('show-messages')
+            console.log(evt)
+            evt.currentTarget.className += ` ${type}`;
+        }
 
-</script>
+        // Get the element with id="defaultOpen" and click on it defaultOpenMobile
+        document.getElementById("defaultOpen").click();
+
+    </script>
 {% endblock %}

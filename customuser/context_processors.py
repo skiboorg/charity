@@ -12,5 +12,6 @@ def check_profile(request):
         wishlist_ids = []
         for i in wl:
             wishlist_ids.append(i.item.id)
+        print('wich', wishlist_ids)
     return locals()
 

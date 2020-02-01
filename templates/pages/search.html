@@ -1,0 +1,36 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+   <div class="main">
+   <div class="breadcrumbs">
+        <div class="container ">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><span>Результаты поиска</span></li>
+            </ul>
+        </div>
+    </div>
+
+ <div class="container ">
+
+                <div class="items-inner">
+
+                        <div class="items-wrapper">
+                            {% for item in searchResult  %}
+
+                                    {% include 'pages/item_card.html' %}
+
+                            {% endfor %}
+
+                        </div>
+
+                </div>
+
+
+            </div>
+
+
+
+</div><!--//main-->
+{% endblock %}

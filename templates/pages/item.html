@@ -20,12 +20,23 @@
                 <div class="item-informaion-wrapper">
                     <div class="item-informaion-photo">
                         <h1>{{item.name}}</h1>
-                        <img src="{{ images.first.image.url }}">
-                        <div class="item-informaion-photos">
+                        <img id="item_main_img" src="{{ images.first.image.url }}">
+                            <div class="controls" id="customize-controls">
+                    <div class="arrow left"> </div>
+                    <div class="arrow right"> </div>
+                </div>
+
+                        <div id="item-informaion-photos" class="item-informaion-photos">
                             {% for image in images %}
-                                <img src="{{ image.image_small }}" alt="">
+
+                                <img class="item-image-thumb {% if forloop.first %} selected{% endif %}" onclick="changeImg(this)" data-img="{{ image.image.url }}" src="{{ image.image_small }}" alt="">
                             {% endfor %}
                         </div>
+
+
+
+
+
                     </div>
                     <div class="item-informaion-price">
                         <div class="item-informaion-price-inner">
@@ -34,7 +45,15 @@
                                 <a href="#" class="btn ">Купить</a>
                                 <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
                             </div>
-                            <a href="#" class="btn rounded btn-outline btn-grey">Написать Продавцу</a>
+                              <div class="new-chat">
+                            <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
+                        <div class="new-chat-form">
+                            <form action="">
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <button class="btn">отправить</button>
+                            </form>
+                        </div>
+                        </div>
                         </div>
 
                         <div class="best-customer-item">
@@ -90,4 +109,31 @@
 
 
     </div><!--//main-->
+  <script>
+   function sendMsg() {
+
+    }
+     function openChatBox() {
+        document.getElementsByClassName('new-chat-form')[0].classList.toggle('chat-active')
+
+    }
+        let mainimg=document.getElementById('item_main_img')
+        function changeImg(el) {
+            let allThums = document.getElementsByClassName('item-image-thumb')
+            for (x of allThums){
+                console.log(x.classList.remove('selected'))
+            }
+            console.log(el.getAttribute('src'))
+            el.classList.add('selected')
+            mainimg.classList.remove('fade-in')
+            mainimg.classList.add('fade-out')
+            mainimg.addEventListener('animationend', () => {
+                mainimg.setAttribute('src', el.dataset.img)
+                mainimg.classList.remove('fade-out')
+                mainimg.classList.add('fade-in')
+            });
+
+
+        }
+    </script>
 {% endblock %}

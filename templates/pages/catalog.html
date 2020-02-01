@@ -39,9 +39,9 @@
             <div class="container">
                 <div class="category-wrapper">
                     <div class="category-filters filter-menu">
-                        <form action="">
+                        <form id="filters_form" action="">
                             <p class="filter-caption ">Тип товара</p>
-                            <select class="form-control select" name="subcategory" >
+                            <select class="form-control select" name="subcategory" id="subcategory">
                                 <option {% if not param_subcat %}selected{% endif %} value="0">Все подкатегории</option>
                                 {% for subcat in category.subcats.all %}
                                     <option {% if param_subcat == subcat.id %} selected {% endif %}  value="{{ subcat.id }}">{{subcat.name}}</option>
@@ -49,7 +49,7 @@
 
                             </select>
                             <p class="filter-caption">Локация</p>
-                            <select class="form-control select" name="town">
+                            <select class="form-control select" name="town" id="town">
                                   <option {% if not param_town %}selected{% endif %} value="0">По всей России</option>
                                 {% for town in all_towns %}
                                     <option {% if param_town == town.id %} selected {% endif %} value="{{ town.id }}">{{town.name}}</option>
@@ -65,8 +65,9 @@
                             </div>
 
                             <div id="slider" class="range-input"></div>
-                            <div class="filter-values mb-10"><p>0</p> <p>10000</p></div>
-                            <button class="btn" type="submit">Применить</button>
+                            <div class="filter-values mb-30"><p>{{ lower_price }}</p> <p>{{ high_price }}</p></div>
+                            <button class="btn mb-10" type="submit">Применить</button>
+                            <a href="javascript:void (0)" onclick="clearForm()" class="btn btn-outline">Сбросить фильтры</a>
 
 
 
@@ -79,11 +80,11 @@
                             <div class="items-filter">
 
                                 <div class="items-filter-caption">
-                                    <p>Всего {{ category.item_set.count }} товаров</p>
+                                    <p>Всего товаров : {{ category.item_set.count }}  {% if not filtered_items_count == category.item_set.count%}| Отфильтровано товаров : {{ filtered_items_count }}{% endif %} </p>
                                     <p>Сортировать по:</p>
                                 </div>
                                 <div class="items-filter-select mobile-hide">
-                                    <select id="per_order" class="form-control select " onchange="per_order()">
+                                    <select  id="per_order" class="form-control select " onchange="per_order()">
                                         <option {% if param_order == '-added' %}selected="selected"{% endif %} value="-added">Дате</option>
                                         <option {% if param_order == 'price' %}selected="selected"{% endif %} value="price">Цена &#8593;</option>
                                         <option {% if param_order == '-price' %}selected="selected"{% endif %} value="-price">Цена &#8595;</option>
@@ -180,13 +181,12 @@
 
         var nonLinearStepSliderValueElement = document.getElementById('slider-non-linear-step-value');
         noUiSlider.create(slider, {
-            start: [{% if param_price_from %}{{ param_price_from }}{% else %}0{% endif %}, {% if param_price_to %}{{ param_price_to }}{% else %}100000{% endif %}],
+            start: [{% if param_price_from %}{{ param_price_from }}{% else %}{{ lower_price }}{% endif %}, {% if param_price_to %}{{ param_price_to }}{% else %}{{ high_price }}{% endif %}],
             connect: true,
             range: {
-                'min': [0],
-                '10%': [500, 500],
-                '50%': [4000, 1000],
-                'max': [10000]
+                'min': [{{ lower_price }}],
+
+                'max': [{{ high_price }}]
             }
 
         });
@@ -216,6 +216,9 @@
         var last_search = '';
         let countSelect = document.getElementById('per_page')
         let orderSelect = document.getElementById('per_order')
+        let subcategorySelect = document.getElementById('subcategory')
+        let townSelect = document.getElementById('town')
+
 
         function setGetParam(key,value) {
             if (history.pushState) {
@@ -266,6 +269,15 @@
             var url =location.href.split('?')[1];
 
             window.location.href = '?'+url;
+        }
+
+        function clearForm() {
+            let form = document.getElementById('filters_form')
+            form.reset()
+            subcategorySelect.selectedIndex = 0
+            townSelect.selectedIndex = 0
+            form.submit()
+
         }
 
     </script>
