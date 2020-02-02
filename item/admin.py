@@ -8,6 +8,8 @@ class ImagesInline (admin.TabularInline):
 class ItemAdmin(admin.ModelAdmin):
     inlines = [ImagesInline]
 
+
+
 admin.site.register(Category)
 admin.site.register(Town)
 admin.site.register(SubCategory)

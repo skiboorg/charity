@@ -16,7 +16,10 @@
                     <div class="slider-inner" id="slider-inner">
                         {% for b in banners %}
                             <div class="slider-item">
-                                <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+                                <a href="">
+                                  <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+
+                                </a>
                             </div>
                         {% endfor %}
                     </div>
@@ -32,7 +35,7 @@
                 <div class="catalog-wrapper">
                     {% for cat in all_categories %}
                         <div class="catalog-item">
-                            <a href="#">
+                            <a href="{% url 'catalog' cat.name_slug %}">
                                 <img src="{{ cat.image.url }}" alt="">
                                 <p>{{ cat.name }}</p>
                             </a>

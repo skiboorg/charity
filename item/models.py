@@ -11,7 +11,7 @@ from customuser.models import User
 
 class Town(models.Model):
     name = models.CharField('Название города', max_length=255, blank=False, null=True)
-    name_slug = models.CharField(max_length=255, blank=True, null=True)
+    name_slug = models.CharField(max_length=255, blank=True, null=True, editable=False)
     def __str__(self):
         return '%s ' % self.name
 
@@ -33,7 +33,7 @@ class Town(models.Model):
         verbose_name_plural = "Города"
 class Category(models.Model):
     name = models.CharField('Название категории', max_length=255, blank=False, null=True)
-    name_slug = models.CharField(max_length=255, blank=True, null=True)
+    name_slug = models.CharField(max_length=255, blank=True, null=True, editable=False)
     image = models.ImageField('Изображение категории', upload_to='img/', blank=True)
     atIndex = models.BooleanField('На главной?', default=False)
 
@@ -60,7 +60,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, blank=True, verbose_name='Категория', on_delete=models.CASCADE,
                                  db_index=True, related_name='subcats')
-    name_slug = models.CharField(max_length=255, blank=True, null=True)
+    name_slug = models.CharField(max_length=255, blank=True, null=True, editable=False)
     name = models.CharField('Название подкатегории', max_length=255, blank=False, null=True)
 
 
@@ -93,8 +93,8 @@ class Item(models.Model):
     user = models.ForeignKey(User, blank=False, verbose_name='Пользователь', on_delete=models.CASCADE,
                              db_index=True)
     name = models.CharField('Название товара', max_length=255, blank=False, null=True)
-    name_lower = models.CharField(max_length=255, blank=True, null=True, db_index=True)
-    name_slug = models.CharField(max_length=255, blank=True, null=True, db_index=True)
+    name_lower = models.CharField(max_length=255, blank=True, null=True, db_index=True, editable=False)
+    name_slug = models.CharField(max_length=255, blank=True, null=True, db_index=True, editable=False)
     description = models.TextField('Описание товара', blank=True, null=True)
     address = models.CharField('Местоположение', max_length=255, null=True)
     added = models.DateTimeField('Добавлен', auto_now_add=True)
