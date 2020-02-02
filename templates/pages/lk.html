@@ -239,26 +239,7 @@
                                     <input style="visibility: hidden" id="ava" name="{{ updateForm.avatar.name }}" type="file">
                                 </label>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <button style="width: 100%" type="submit" class="btn btn-sm btn-filled">внести изменения</button>
-
-
 
                             </form>
 
@@ -450,13 +431,18 @@
                                `
                         }
                     }
-                })
+                }).then(()=>{
+                       console.log('end')
+                    document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
+
+            }
+
+            )
 
             chatDiv.classList.add('show-messages')
             console.log('showin')
 
-            document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
-        }
+         }
 
 
     </script>
