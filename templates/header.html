@@ -63,7 +63,7 @@
                         <li><a href="#"><i class="fa fa-search"></i></a></li>
                         {% if user.is_authenticated %}
                             <li><a href="{% url 'lk' %}"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                             <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
                         {% endif %}
 
                     </ul>
@@ -73,8 +73,8 @@
         </div>
         <div class="mobile-menu">
             <ul>
-                <li><a href="#">Как мы работаем</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="{% url 'about' %}">Как мы работаем</a></li>
+                <li><a href="{% url 'contacts' %}">Контакты</a></li>
                 <li><a href="#">Каталог Товаров</a></li>
                 {% if not user.is_authenticated %}
                     <li><a href="{% url 'lk' %}">Вход\Регистрация</a></li>
