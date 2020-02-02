@@ -217,7 +217,7 @@
                                 <div class="form-group">
                                     <label>Ваш E-mail</label>
                                     <div style="flex-grow: 1">
-                                         <input required class="form-control input" type="text" placeholder="ваше Email" name="{{ updateForm.email.name }}" value="{{ user.email }}">
+                                        <input required class="form-control input" type="text" placeholder="ваше Email" name="{{ updateForm.email.name }}" value="{{ user.email }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -228,17 +228,17 @@
                                 </div>
 
                                 <div class="form-group">
-                            <label>Фото профиля</label>
-                            <label for="ava" style="cursor: pointer;display: flex; align-items: center; flex-grow: 1;">
-                                    {% if user.avatar %}
+                                    <label>Фото профиля</label>
+                                    <label for="ava" style="cursor: pointer;display: flex; align-items: center; flex-grow: 1;">
+                                        {% if user.avatar %}
 
-                                        <img width="50"  src="{{ user.avatar.url }}"> изменить фото профиля
-                                    {% else %}
-                                        фото профиля не установлено! Кликните для установки
-                                    {% endif %}
-                                    <input style="visibility: hidden" id="ava" name="{{ updateForm.avatar.name }}" type="file">
-                                </label>
-                        </div>
+                                            <img width="50"  src="{{ user.avatar.url }}"> изменить фото профиля
+                                        {% else %}
+                                            фото профиля не установлено! Кликните для установки
+                                        {% endif %}
+                                        <input style="visibility: hidden" id="ava" name="{{ updateForm.avatar.name }}" type="file">
+                                    </label>
+                                </div>
                                 <button style="width: 100%" type="submit" class="btn btn-sm btn-filled">внести изменения</button>
 
                             </form>
@@ -364,8 +364,13 @@
                                         <p>${ msg}</p>
                                         <span>${new Date(Date.now()).toLocaleString()}</span>
                                     </div>`
-                })
-            msgTextArea.value = ''
+                }).then(()=>{
+                         document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
+                        msgTextArea.value = ''
+                }
+
+            )
+
 
         }
 
@@ -432,17 +437,11 @@
                         }
                     }
                 }).then(()=>{
-                       console.log('end')
+                    chatDiv.classList.add('show-messages')
                     document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
-
-            }
-
+                }
             )
-
-            chatDiv.classList.add('show-messages')
-            console.log('showin')
-
-         }
+        }
 
 
     </script>
