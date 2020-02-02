@@ -21,10 +21,10 @@
                     <div class="item-informaion-photo">
                         <h1>{{item.name}}</h1>
                         <img id="item_main_img" src="{{ images.first.image.url }}">
-                            <div class="controls" id="customize-controls">
-                    <div class="arrow left"> </div>
-                    <div class="arrow right"> </div>
-                </div>
+                        <div class="controls" id="customize-controls">
+                            <div class="arrow left"> </div>
+                            <div class="arrow right"> </div>
+                        </div>
 
                         <div id="item-informaion-photos" class="item-informaion-photos">
                             {% for image in images %}
@@ -45,15 +45,15 @@
                                 <a href="#" class="btn ">Купить</a>
                                 <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
                             </div>
-                              <div class="new-chat">
-                            <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
-                        <div class="new-chat-form">
-                            <form action="">
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <button class="btn">отправить</button>
-                            </form>
-                        </div>
-                        </div>
+                            <div class="new-chat">
+                                <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
+                                <div class="new-chat-form">
+
+                                        <textarea id="chat_message" cols="30" rows="10" placeholder="Ваше сообщение"></textarea>
+                                        <a href="javascript: void(0)" class="btn" onclick="sendMsg()">отправить</a>
+
+                                </div>
+                            </div>
                         </div>
 
                         <div class="best-customer-item">
@@ -109,14 +109,33 @@
 
 
     </div><!--//main-->
-  <script>
-   function sendMsg() {
+    <script>
+        function sendMsg() {
+            let msg = document.getElementById('chat_message')
+            let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+            let body = {
+                msgTo: {{ item.user.id }},
+                msgFrom: {{ request.user.id }},
+                msg: msg.value
+            }
+            fetch('/chat/new_msg/', {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    console.log(res)
+                    msg.value = ''
+                    openChatBox()
 
-    }
-     function openChatBox() {
-        document.getElementsByClassName('new-chat-form')[0].classList.toggle('chat-active')
+                })
 
-    }
+        }
+        function openChatBox() {
+            document.getElementsByClassName('new-chat-form')[0].classList.toggle('chat-active')
+
+        }
         let mainimg=document.getElementById('item_main_img')
         function changeImg(el) {
             let allThums = document.getElementsByClassName('item-image-thumb')

@@ -12,6 +12,8 @@ admin.site.index_title = "CharityStore администрирование"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('item/', include('item.urls')),
+    path('chat/', include('chat.urls')),
+    path('user/', include('customuser.urls')),
     path('', include('pages.urls')),
 
 

@@ -29,7 +29,7 @@
                     <div class="lk-menu">
                         <div class="lk-menu-top">
                             <img src="{{ user.get_avatar }}" alt="">
-                            <p>Имя Фамилия</p>
+                            <p>{{ user.name }}</p>
                             <span>#Переменное значение</span>
                             <a href="#">Выйти</a>
                         </div><!-- // lk-menu-top -->
@@ -49,7 +49,7 @@
                         <div id="lk-content-user-info" class="lk-content-wrapper lk-content-ads">
                             <div class="lk-menu-top">
                                 <img src="{{ user.get_avatar }}" alt="">
-                                <p>Имя Фамилия</p>
+                                <p>{{ user.name }}</p>
                                 <span>#Переменное значение</span>
                                 <a href="#">Выйти</a>
                             </div><!-- // lk-menu-top -->
@@ -158,68 +158,22 @@
                         </div><!-- // lk-content-buys -->
                         <div id="lk-content-chat" class="lk-content-wrapper lk-content-chat">
                             <h3 class="mb-40">Мои чаты</h3>
-                            <p>Непрочитанные</p>
-                            <ul>
-                                <li>
-                                    <div data-chat_id="1" class="lk-content-chat-item ">
-                                        <div data-num="2" class="lk-content-chat-item-img unread">
-                                            <img src="img/user-photo.png" alt="">
-                                        </div>
+                            <div id="unread-chats" class="not-visible">
+                                <p>Непрочитанные</p>
+                                <ul id="unread-chats-list"></ul>
+                            </div>
 
-                                        <div class="lk-content-chat-item-user">
-                                            <p>Иван Сергеевич</p>
-                                            <span>Превью сообщения, короткий текст...</span>
-                                        </div>
-                                        <div class="lk-content-chat-item-date">
-                                            <span>18:30; 01.01.2020 </span>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
                             <p>Все сообщения</p>
-                            <ul>
-                                <li>
-                                    <div data-chat_id="2"  class="lk-content-chat-item ">
-                                        <div class="lk-content-chat-item-img">
-                                            <img src="img/user-photo.png" alt="">
-                                        </div>
-
-                                        <div class="lk-content-chat-item-user">
-                                            <p>Иван Сергеевич</p>
-                                            <span>Превью сообщения, короткий текст...</span>
-                                        </div>
-                                        <div class="lk-content-chat-item-date">
-                                            <span>18:30; 01.01.2020 </span>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div data-chat_id="3"  class="lk-content-chat-item ">
-                                        <div class="lk-content-chat-item-img">
-                                            <img src="img/user-photo.png" alt="">
-                                        </div>
-
-                                        <div class="lk-content-chat-item-user">
-                                            <p>Иван Сергеевич</p>
-                                            <span>Превью сообщения, короткий текст...</span>
-                                        </div>
-                                        <div class="lk-content-chat-item-date">
-                                            <span>18:30; 01.01.2020 </span>
-                                        </div>
-                                    </div>
-
-                            </ul>
-                            <div id="chat-messages" class="lk-content-chat-messages">
-                                <div class="lk-content-chat-messages-top ">
-                                    <div data-num="2" class="lk-content-chat-item-img unread">
-                                        <img src="img/user-photo.png" alt="">
+                            <ul id="read-chats-list"></ul>
+                            <div id="chat-messages" style="left: 0; right: 0;" class="lk-content-chat-messages">
+                                <div  class="lk-content-chat-messages-top ">
+                                    <div  class="lk-content-chat-item-img ">
+                                        <img id="chat_user_avatar" src="" alt="">
                                     </div>
 
                                     <div class="lk-content-chat-item-user">
-                                        <p>Иван Сергеевич</p>
-                                        <span>Превью сообщения, короткий текст...</span>
+                                        <p id="chat_user_name"></p>
+                                        <span></span>
                                     </div>
                                     <div class="lk-content-chat-item-close">
                                         <a href="javascript:void(0)" onclick="closeChat()"><i class="fa fa-close"></i></a>
@@ -227,34 +181,10 @@
 
                                 </div>
                                 <div class="lk-content-chat-messages-bottom">
-                                    <div class="lk-content-chat-messages-bottom__message-to-me">
-                                        <p>Текст сообщения 1</p>
-                                        <span>15:30, 27.01</span>
-                                    </div>
-                                    <div class="lk-content-chat-messages-bottom__message-from-me">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
-                                        <span>15:30, 27.01</span>
-                                    </div>
-                                    <div class="lk-content-chat-messages-bottom__message-to-me">
-                                        <p>Текст сообщения 1</p>
-                                        <span>15:30, 27.01</span>
-                                    </div>
-                                    <div class="lk-content-chat-messages-bottom__message-from-me">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
-                                        <span>15:30, 27.01</span>
-                                    </div>
-                                    <div class="lk-content-chat-messages-bottom__message-to-me">
-                                        <p>Текст сообщения 1</p>
-                                        <span>15:30, 27.01</span>
-                                    </div>
-                                    <div class="lk-content-chat-messages-bottom__message-from-me">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Fuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentiumFuga, iste officiis! Delectus eaque iure praesentium Fuga, iste officiis! Delectus eaque iure praesentium quibusdam, reiciendis unde vitae voluptate.</p>
-                                        <span>15:30, 27.01</span>
-                                    </div>
                                 </div>
                                 <div class="lk-content-chat-messages-new-message">
-                                    <textarea  placeholder="Текст вашего сообщения"></textarea>
-                                    <div class="lk-content-chat-messages-new-message-button"><a href="#"><i class="fa fa-telegram"></i></a></div>
+                                    <textarea id="chat_message"  placeholder="Текст вашего сообщения"></textarea>
+                                    <div class="lk-content-chat-messages-new-message-button"><a href="javascript: void(0)" onclick="sendMsg()"><i class="fa fa-telegram"></i></a></div>
 
                                 </div>
                             </div>
@@ -263,13 +193,13 @@
                         <div id="lk-content-fav" class="lk-content-wrapper lk-content-fav">
                             <h3 class="mb-40">Избранное</h3>
                             <div class="items-wrapper">
-                            {% if userFavs %}
-                                {% for item in userFavs %}
-                                    {% include 'pages/item_card.html' %}
-                                {% endfor %}
-                            {% else %}
-                                <p>Вы не добавили ничего в избранное</p>
-                            {% endif %}
+                                {% if userFavs %}
+                                    {% for item in userFavs %}
+                                        {% include 'pages/item_card.html' %}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Вы не добавили ничего в избранное</p>
+                                {% endif %}
                             </div>
 
                         </div><!-- // lk-content-fav -->
@@ -288,6 +218,121 @@
 
 
     </div><!--//main-->
+    <script>
+        let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+        let curChat = 0
+        let unreadChatsList = document.getElementById('unread-chats-list')
+        let readChatsList = document.getElementById('read-chats-list')
+        let unreadChats = document.getElementById('unread-chats')
+        let chatDiv = document.getElementById('chat-messages')
+        let chatMsgWrapper = document.getElementsByClassName('lk-content-chat-messages-bottom')[0]
+        let msgTextArea = document.getElementById('chat_message')
+
+        getChats()
+
+        function getChats() {
+            unreadChatsList.innerHTML=''
+            readChatsList.innerHTML=''
+            fetch('/chat/get_chats/', {
+                method: 'post',
+                body: '',
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    console.log(res)
+
+                    if (res['unreadChats'].length > 0){
+                        for (chat of res['unreadChats']){
+                            console.log(chat['chat_id'])
+                            unreadChatsList.innerHTML = unreadChatsList.innerHTML + `
+                             <li>
+                                    <div data-chat_id="${chat['chat_id']}" class="lk-content-chat-item " onclick=openChat(this)>
+                                        <div data-num="${chat['unread_mgs_count']}" class="lk-content-chat-item-img unread">
+                                            <img src="${chat['user_avatar']}" alt="">
+                                        </div>
+
+                                        <div class="lk-content-chat-item-user">
+                                            <p>${chat['chat_from']}</p>
+                                            <span>${chat['last_msg']}</span>
+                                        </div>
+                                        <div class="lk-content-chat-item-date">
+                                            <span>${chat['last_msg_time']}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            `
+
+                        }
+                        unreadChats.classList.remove('not-visible')
+                    }else{
+                        unreadChats.classList.add('not-visible')
+                    }
+
+                    if (res['readChats'].length > 0){
+                        for (chat of res['readChats']){
+
+                            readChatsList.innerHTML = readChatsList.innerHTML + `
+                             <li>
+                                    <div data-chat_id="${chat['chat_id']}" class="lk-content-chat-item " onclick=openChat(this)>
+                                        <div  class="lk-content-chat-item-img ">
+                                            <img src="${chat['user_avatar']}" alt="">
+                                        </div>
+
+                                        <div class="lk-content-chat-item-user">
+                                            <p>${chat['chat_from']}</p>
+                                            <span>${chat['last_msg']}</span>
+                                        </div>
+                                        <div class="lk-content-chat-item-date">
+                                            <span>${chat['last_msg_time']}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            `
+
+                        }
+
+                    }else{
+
+                    }
+
+
+
+                })
+
+        }
+
+
+        function sendMsg() {
+            let msg = msgTextArea.value
+
+            let body = {
+                chatId: curChat,
+                msgFrom: {{ request.user.id }},
+                msg: msg
+            }
+
+            fetch('/chat/add_msg/', {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    console.log(msg)
+
+
+                    chatMsgWrapper.innerHTML=chatMsgWrapper.innerHTML + `
+                                    <div class="lk-content-chat-messages-bottom__message-from-me">
+                                        <p>${ msg}</p>
+                                        <span>${new Date(Date.now()).toLocaleString()}</span>
+                                    </div>`
+                })
+                msgTextArea.value = ''
+
+        }
+
+    </script>
 
     <script>
         var tx = document.getElementsByTagName('textarea');
@@ -303,33 +348,63 @@
     </script>
     <script>
         function closeChat(){
+            getChats()
             document.getElementById('chat-messages').classList.remove('show-messages')
         }
-        document.querySelectorAll('.lk-content-chat-item').forEach(item => {
-            item.addEventListener('click', event => {
-                console.log(item.dataset.chat_id)
-                document.getElementById('chat-messages').classList.add('show-messages')
-            })
-        })
 
-    </script>
-    <script>
-        function toggleModal(type) {
 
-            document.getElementsByClassName(type)[0].classList.toggle('modal-active')
-            return false
+        function openChat(el){
+            chatMsgWrapper.innerHTML = ''
+            msgTextArea.value = ''
 
+            let chatUserAvatar = document.getElementById('chat_user_avatar')
+            let chatUserName = document.getElementById('chat_user_name')
+            let chat_id = el.dataset.chat_id
+            let body = {
+                chat_id: chat_id
+            }
+            curChat = chat_id
+             fetch('/chat/get_msg/', {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    console.log(res)
+
+                    chatUserName.innerText = res['userInfo']['user_name']
+                    chatUserAvatar.setAttribute('src',res['userInfo']['user_avatar'])
+
+                    for (msg of res['chatMsg']){
+                        console.log(msg)
+
+                        if (msg['own']){
+                            chatMsgWrapper.innerHTML=chatMsgWrapper.innerHTML + `
+                                    <div class="lk-content-chat-messages-bottom__message-from-me">
+                                        <p>${msg['own'][0]}</p>
+                                        <span>${msg['own'][1]}</span>
+                                    </div>`
+                        }else{
+                            chatMsgWrapper.innerHTML=chatMsgWrapper.innerHTML + `
+                                    <div class="lk-content-chat-messages-bottom__message-to-me">
+                                        <p>${msg['from'][0]}</p>
+                                        <span>${msg['from'][1]}</span>
+                                    </div>
+                               `
+                        }
+                    }
+                })
+
+            chatDiv.classList.add('show-messages')
+            console.log('showin')
+
+            document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
         }
 
-        let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
-        let mobile_menu = document.getElementsByClassName('mobile-menu')[0]
 
-        mobile_button.onclick = function () {
-            this.classList.toggle('mobile-toggle-active')
-
-            mobile_menu.classList.toggle('menu-active')
-        }
     </script>
+
 
     <script>
         function openTab(evt, TabName, type) {

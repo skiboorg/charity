@@ -62,8 +62,7 @@ class SubCategory(models.Model):
                                  db_index=True, related_name='subcats')
     name_slug = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField('Название подкатегории', max_length=255, blank=False, null=True)
-    image = models.ImageField('Изображение категории', upload_to='img/', blank=True)
-    atIndex = models.BooleanField('На главной?', default=False)
+
 
     def __str__(self):
         return '%s ' % self.name

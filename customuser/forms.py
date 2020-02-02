@@ -9,6 +9,10 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'name', 'phone', 'password1', 'password2', )
+        error_messages = {
+            'email': {
+                'unique': "Указанный адрес уже кем-то используется",
+            }, }
 
 class UpdateForm(UserChangeForm):
     class Meta:

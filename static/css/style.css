@@ -1613,24 +1613,49 @@ button[type='button'] {
   color: #009FEE;
 }
 
+.login {
+  margin-bottom: 130px;
+}
+
 .login-wrapper {
   max-width: 500px;
-  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 20px;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  padding: 40px 35px;
+}
+
+.login-wrapper form {
+  text-align: center;
 }
 
 .login-wrapper h3 {
   font: 22px 'GB', sans-serif;
   color: #212020;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .login-wrapper input {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 100% !important;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.login-wrapper .btn {
+  width: 50%;
+}
+
+.login-form-error {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.login-form-error p {
+  text-transform: uppercase;
+  color: #ff5965;
 }
 
 .not-visible {

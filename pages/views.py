@@ -4,6 +4,7 @@ from item.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from item.forms import *
+from chat.models import *
 
 
 
@@ -146,6 +147,21 @@ def lk(request):
             wishlist_ids.append(i.item.id)
         userFavs = Item.objects.filter(id__in=wishlist_ids)
         lkActive = True
+
+        allChats = Chat.objects.filter(users__in=[request.user.id])
+        print(allChats)
+        allUnreadChats = allChats.filter(isNewMessages=True)
+        allReadChats = allChats.filter(isNewMessages=False)
+        print('allUnreadChats', allUnreadChats)
+        print('allReadChats', allReadChats)
+        allChatPeoples = []
+        for x in allChats:
+            for y in x.users.all():
+                print(y.id)
+                if y.id != request.user.id:
+                    allChatPeoples.append(User.objects.get(id=y.id))
+        print(allChatPeoples)
+
         return render(request, 'pages/lk.html', locals())
     else:
         return render(request, 'pages/index.html', locals())

@@ -2,32 +2,49 @@
 {% load static %}
 
 {% block content %}
-   <div class="main">
+  <div class="main">
 
-    <section class="breadcrumbs">
-        <div class="container bg-white breadcrumbs-wrapper">
-            <a href="#">Главная</a>
-            <span>Вход\Регистрация</span>
+      <div class="breadcrumbs">
+        <div class="container ">
+            <ul>
+                <li><a href="#">Главная</a></li>
+
+                <li><span>Вход / Регистрация</span></li>
+            </ul>
         </div>
-    </section>
+    </div>
     <section class="login">
         <div class="container bg-white login-wrapper">
 
                 <div class="login-form">
-                    <h3>Форма входа</h3>
-                    <input type="text" class="form-control input" placeholder='Введите логин'>
-                    <input type="password" class="form-control input" placeholder='Введите пароль'>
-                    <a class="btn rounded mb-10" href="{% url 'lk' %}">Оправить</a>
-                    <a class="btn rounded bg-grey" onclick="toggleForm()" href="#">Регистрация</a>
+                    <h3>Вход</h3>
+                     <form action="{% url 'login_req' %}" method="post">{% csrf_token %}
+                        <input type="text" required name="email" class="form-control input" placeholder='Введите E-Mail'>
+                    <input type="password" required name="password" class="form-control input" placeholder='Введите пароль'>
+                    <button class="btn mb-10" type="submit">Оправить</button>
+                    <a class="btn btn-outline" onclick="toggleForm()" href="#">Регистрация</a>
+                    </form>
+
                 </div>
                 <div class="register-form not-visible">
-                    <h3>Форма регистрации</h3>
-                    <input type="text" class="form-control input" placeholder='Введите логин'>
-                    <input type="password" class="form-control input" placeholder='Введите пароль'>
-                    <input type="password" class="form-control input" placeholder='Повторите пароль'>
-                    <a class="btn rounded mb-10" href="{% url 'lk' %}">Регистрация</a>
-                    <a class="btn rounded bg-grey" onclick="toggleForm()" href="#">Назад</a>
+                    <h3>Регистрация</h3>
+                    <form action="{% url 'reg_req' %}" method="post">{% csrf_token %}
+                        <input type="text" required name="email" class="form-control input" placeholder='Введите E-Mail'>
+                    <input type="password" required name="password1" class="form-control input" placeholder='Введите пароль'>
+                    <input type="password" required name="password2" class="form-control input" placeholder='Повторите пароль'>
+                    <button class="btn mb-10" type="submit">Регистрация</button>
+                    <a class="btn btn-outline" onclick="toggleForm()" href="#">Назад</a>
+                    </form>
+
                 </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="login-form-error">
+                            <p>{{ message }}</p>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
 
         </div>
 
@@ -36,4 +53,21 @@
 
 
 </div><!--//main-->
+    <script>
+    function toggleForm() {
+        document.getElementsByClassName('login-form')[0].classList.toggle('not-visible')
+        document.getElementsByClassName('register-form')[0].classList.toggle('not-visible')
+    }
+</script>
+    <script>
+  function ready() {
+    let param = window.location.search.substr(1)
+      console.log(param)
+      if (param === 'tab=reg'){
+        toggleForm()
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", ready);
+</script>
 {% endblock %}
