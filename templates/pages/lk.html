@@ -205,6 +205,62 @@
                         </div><!-- // lk-content-fav -->
                         <div id="lk-content-settings" class="lk-content-wrapper lk-content-settings">
                             <h3 class="mb-40">Настройки</h3>
+                            <form action="{% url 'update_req' %}" method="post" class="lk-tab-info" enctype="multipart/form-data">{% csrf_token %}
+
+
+                                <div class="form-group">
+                                    <label>Ваше ФИО</label>
+                                    <div style="flex-grow: 1">
+                                        <input required class="form-control input" type="text" placeholder="ваше ф.и.о" name="{{ updateForm.name.name }}" value="{{ user.name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ваш E-mail</label>
+                                    <div style="flex-grow: 1">
+                                         <input required class="form-control input" type="text" placeholder="ваше Email" name="{{ updateForm.email.name }}" value="{{ user.email }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ваш телефон</label>
+                                    <div style="flex-grow: 1">
+                                        <input required class="form-control input" type="text" placeholder="ваш телефон" name="{{ updateForm.phone.name }}" value="{{ user.phone }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                            <label>Фото профиля</label>
+                            <label for="ava" style="cursor: pointer;display: flex; align-items: center; flex-grow: 1;">
+                                    {% if user.avatar %}
+
+                                        <img width="50"  src="{{ user.avatar.url }}"> изменить фото профиля
+                                    {% else %}
+                                        фото профиля не установлено! Кликните для установки
+                                    {% endif %}
+                                    <input style="visibility: hidden" id="ava" name="{{ updateForm.avatar.name }}" type="file">
+                                </label>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <button style="width: 100%" type="submit" class="btn btn-sm btn-filled">внести изменения</button>
+
+
+
+                            </form>
 
 
                         </div><!-- // lk-content-settings -->
@@ -328,7 +384,7 @@
                                         <span>${new Date(Date.now()).toLocaleString()}</span>
                                     </div>`
                 })
-                msgTextArea.value = ''
+            msgTextArea.value = ''
 
         }
 
@@ -364,7 +420,7 @@
                 chat_id: chat_id
             }
             curChat = chat_id
-             fetch('/chat/get_msg/', {
+            fetch('/chat/get_msg/', {
                 method: 'post',
                 body: JSON.stringify(body),
                 headers: { "X-CSRFToken": csrfmiddlewaretoken },

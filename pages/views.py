@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from item.forms import *
 from chat.models import *
+from customuser.forms import *
 
 
 
@@ -140,6 +141,7 @@ def about(request):
 def lk(request):
     if request.user.is_authenticated:
         user = request.user
+        updateForm = UpdateForm()
         userItems = Item.objects.filter(user=user)
         wl = UserFavorites.objects.filter(user=request.user)
         wishlist_ids = []

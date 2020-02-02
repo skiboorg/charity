@@ -38,3 +38,14 @@ def reg_req(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+def update_req(request):
+    print(request.POST)
+    form = UpdateForm(request.POST, request.FILES, instance=request.user)
+    print(form.errors)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/lk')
+    else:
+        form = UpdateForm()
+    return HttpResponseRedirect("/lk")
