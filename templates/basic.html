@@ -36,7 +36,7 @@
         mobile_menu.classList.toggle('menu-active')
     }
 </script>
-  <script src="{% static 'js/tiny-slider.js' %}"></script>
+<script src="{% static 'js/tiny-slider.js' %}"></script>
 <script>
 
 
@@ -50,31 +50,31 @@
         else {
             type='add'
         }
-              fetch(`/item/wishlist_${type}/`, {
-                    method: 'post',
-                    body: JSON.stringify(body),
-                    headers: { "X-CSRFToken": csrfmiddlewaretoken },
-                    credentials: 'same-origin'
-                }).then(res=>res.json())
-                    .then(res => {
-                        if (res['result'] === true){
-                            if(lk==='lkactive'){
-                                console.log(el.closest('div').classList.add('not-visible'))
-                            }
+        fetch(`/item/wishlist_${type}/`, {
+            method: 'post',
+            body: JSON.stringify(body),
+            headers: { "X-CSRFToken": csrfmiddlewaretoken },
+            credentials: 'same-origin'
+        }).then(res=>res.json())
+            .then(res => {
+                if (res['result'] === true){
+                    if(lk==='lkactive'){
+                        console.log(el.closest('div').classList.add('not-visible'))
+                    }
 
-                            else{
-                               el.classList.toggle('in-fav')
-                            }
+                    else{
+                        el.classList.toggle('in-fav')
+                    }
 
-                        }
+                }
 
-                    })
+            })
 
 
     }
 </script>
 <script>
-     var doc = document
+    var doc = document
 
     var mobile = 'false',
         isTestPage = false,
@@ -100,22 +100,50 @@
     var options = {
         'slider-inner': {
             container: '',
-            items: 3,
+            items: 1,
             controlsContainer: '#customize-controls',
             autoplay: true,
             autoplayTimeout: 4000,
             speed: 1000,
-            gutter: 20,
+            gutter: 10,
+
+            edgePadding: 20,
+            responsive: {
+                640: {
+                    edgePadding: 20,
+                    gutter: 20,
+                    items: 2
+                },
+                700: {
+                    items: 2
+                },
+                900: {
+                    items: 3
+                }
+            }
 
         },
         'item-informaion-photos': {
             container: '',
-            items: 5,
+            items: 3,
             controlsContainer: '#customize-controls',
             autoplay: false,
             autoplayTimeout: 4000,
             speed: 1000,
             gutter: 0,
+             responsive: {
+                640: {
+                    edgePadding: 20,
+                    gutter: 20,
+                    items: 4
+                },
+                700: {
+                    items: 5
+                },
+                900: {
+                    items: 6
+                }
+            }
 
         },
 
