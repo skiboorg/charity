@@ -156,9 +156,12 @@
     display: block
     margin-top: 15px
 .form-group
-  display: flex
-  align-items: flex-start
-  flex-wrap: wrap
+  //display: flex
+  //align-items: flex-start
+  //flex-wrap: wrap
+  display: grid
+  grid-template-columns: 1fr 5fr
+  grid-gap: 10px
   margin-bottom: 30px
   &.vertical
     flex-direction: column
@@ -177,3 +180,8 @@
     color: #9e9e9e
     display: block
     margin-top: 15px
+
+@media (max-width: 600px)
+  .form-group
+    grid-template-columns: 1fr
+    margin-bottom: 10px
