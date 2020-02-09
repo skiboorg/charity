@@ -219,7 +219,47 @@
           margin: 0 auto
           top: 23px
 
+.features-info-wrapper-new
+  position: relative
+  background: #26D961
+  padding: 75px 65px
+  h3
+    color: #ffffff
+    margin-bottom: 20px
+  p
+    color: #ffffff
+    line-height: 20px
+  &-inner
+    width: 55%
+  &-right-block
+    padding: 35px
+    max-width: 400px
+    box-sizing: border-box
+    right: 75px
+    position: absolute
+    &.block-top
+      top: 0
+      background: #26D961
+      box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.15)
+    &.block-bottom
+      top: 240px
+      background: #30EB6E
+      box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.04)
+
 @media (max-width: 960px)
+  .features-info-wrapper-new-right-block-wrapper
+    display: flex
+    justify-content: space-around
+  .features-info-wrapper-new
+    &-inner
+      text-align: center
+      width: 100%
+    a
+      margin-bottom: 30px
+    &-right-block
+      position: unset
+      margin: 0 auto
+
   .features-info-wrapper
     grid-template-columns: 100%
   .features-info-block-right
@@ -233,6 +273,10 @@
   .features-info-block
     border: 1px solid $color-border !important
 @media (max-width: 690px)
+  .features-info-wrapper-new
+    padding: 25px
+    &-right-block-wrapper
+      flex-direction: column
   .best-of-bests
     justify-content: center
   .best-customers

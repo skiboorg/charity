@@ -354,9 +354,9 @@ h3 {
 }
 
 .btn.with-arrow::after {
-  content: url(../img/arrow.png);
-  height: 16px;
-  width: 16px;
+  font-family: FontAwesome;
+  content: '\f0a9';
+  font-size: 16px;
   margin-left: 16px;
 }
 
@@ -389,6 +389,14 @@ h3 {
 .btn.btn-grey {
   border-color: #EBEBEB;
   color: #212020;
+}
+
+.btn.btn-white {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 0px #D9D9D9;
+  box-shadow: 0px 2px 0px #D9D9D9;
+  border-radius: 2px;
+  color: #26D961;
 }
 
 .radio-control {
@@ -1613,6 +1621,49 @@ button[type='button'] {
   color: #009FEE;
 }
 
+.features-info-wrapper-new {
+  position: relative;
+  background: #26D961;
+  padding: 75px 65px;
+}
+
+.features-info-wrapper-new h3 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.features-info-wrapper-new p {
+  color: #ffffff;
+  line-height: 20px;
+}
+
+.features-info-wrapper-new-inner {
+  width: 55%;
+}
+
+.features-info-wrapper-new-right-block {
+  padding: 35px;
+  max-width: 400px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  right: 75px;
+  position: absolute;
+}
+
+.features-info-wrapper-new-right-block.block-top {
+  top: 0;
+  background: #26D961;
+  -webkit-box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.15);
+}
+
+.features-info-wrapper-new-right-block.block-bottom {
+  top: 240px;
+  background: #30EB6E;
+  -webkit-box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.04);
+}
+
 .login {
   margin-bottom: 130px;
 }
@@ -2482,6 +2533,28 @@ button[type='button'] {
     top: 23px;
   }
 
+  .features-info-wrapper-new-right-block-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+
+  .features-info-wrapper-new-inner {
+    text-align: center;
+    width: 100%;
+  }
+
+  .features-info-wrapper-new a {
+    margin-bottom: 30px;
+  }
+
+  .features-info-wrapper-new-right-block {
+    position: unset;
+    margin: 0 auto;
+  }
+
   .features-info-wrapper {
     grid-template-columns: 100%;
   }
@@ -2532,6 +2605,17 @@ button[type='button'] {
 }
 
 @media (max-width: 690px) {
+  .features-info-wrapper-new {
+    padding: 25px;
+  }
+
+  .features-info-wrapper-new-right-block-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
   .best-of-bests {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
