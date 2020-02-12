@@ -1,0 +1,109 @@
+{% load static %}
+<div id="openModal" class="modal">
+    <div class="modal-dialog">
+        <div style="width: 1440px" class="modal-content">
+            <div class="about-fond">
+                <div class="about-fond-left">
+                    <img src="{% static 'img/logo.png' %}" alt="">
+                    <h4>Фонды-партнёры:</h4>
+                    <a href="#">https://helpspinabifida.ru/</a>
+                    <p>Благотворительный фонд «Сделай Шаг»</p>
+                    <a href="#">https://krokhino.ru/</a>
+                    <p>Благотворительный фонд «Центр возрождения культурного наследия «Крохино»</p>
+                    <a href="#">https://bf-kislorod.ru/</a>
+                    <p>Благотворительный фонд «Тепло сердец» (программа «Кислород»)</p>
+                    <a href="">https://liferoute.org/</a>
+                    <p>Благотворительный фонд помощи людям с нарушениями развития «Жизненныйпуть» (БФ «Жизненный путь»)</p>
+
+                    <h4>Контакты:</h4>
+                    <a href="">http://www.from-good-hands.ru/</a>
+                    <a href="">http://from-good-hands.com/</a>
+                    <a href="">http://from-good-hands.com/</a>
+
+                    <div class="about-fond-left-cb">
+                        <a style="margin:0 15px 0 0; text-decoration: underline" href="javascript: void(0)" onclick="closeIndexModal()">Закрыть</a>
+                        <label for="show">Не показывать больше</label>
+                        <input type="checkbox" id="show">
+                    </div>
+                </div>
+                <div class="about-fond-right">
+                    <h4>ИСТОРИЯ</h4>
+                    <p>О благотворительности говорят много. Внушительное число коммерческих организаций и частных лиц на регулярной основе переводят деньги в фонды и
+                        нуждающимся. Тем не менее реальность такова, что средств фондов хватает на нужды лишь малой части их подопечных. Первоочередной задачей «Из добрых рук» мы видим популяризацию фондов, а также
+                        увеличение объёма средств, поступающих в их распоряжение. Потенциальные покупатели ресурса оценивают свою способность оплатить стоимость товара, а не готовность перечислить эти деньги
+                        на благотворительность. Главная роль этой торговой площадки отведена продавцамблаготворителям, которые размещая лоты, сами выбирают фонд, в который уйдут вырученные деньги. И, в то время как десяткисотни отдельных продавцовблаготворителейвыставляют свои
+                        единичные лоты, нам кажется критичным для эффективной работы ресурса, привлечение организаций-благотворителей, готовых предоставить в качестве лотов свои эксклюзивные товары и услуги.
+                    </p>
+                    <h4>О ЧЕМ ЭТО?</h4>
+                    <h5>Концепция</h5>
+                    <p>Создание ресурса (торговой площадки, ТП) для размещения лотов, выручка от продажи которых уходит не продавцу, а на благотворительность</p>
+                    <h5>Детализация:</h5>
+                    <p>
+                        - структура торговой платформы аналогична принципу стандартного маркетплейса в сети <br>
+                        - прозрачный набор юридических документов<br>
+                        - рубрикатор<br>
+                        - продавец-благотворитель сам назначает стоимость лота и выбирает фонд, в который будут направлены средства от реализации лота.
+                    </p>
+                    <h4>КАК ЭТО РАБОТАЕТ?</h4>
+                    <h5>Механизм продажи:</h5>
+                    <p>
+                        - на торговой платформе отображена информация о фондахпартнерах (ссылки на их официальные сайты)<br>
+                        - продавец выбирает фонд в процессе размещения лота из уже предложенных на сайте ТП фондов-партнеров. Перечисление денежных средств в другие фонды или частным лицам обсуждается отдельно.
+                    </p>
+                    <h5>Механизм покупки:</h5>
+                    <p>
+                        - деньги покупателя приходят на торговую платформу<br>
+                        - после подтверждения сделки покупателем, деньги переводятся в фонд, минимальная комиссия остаётся на торговый платформе для обеспечения жизнедеятельности ресурса</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getCookie(name) {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    function setCookie(name, value, options = {}) {
+        options = {
+            path: '/',
+            // при необходимости добавьте другие значения по умолчанию
+        };
+
+        if (options.expires instanceof Date) {
+            options.expires = options.expires.toUTCString();
+        }
+
+        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+        for (let optionKey in options) {
+            updatedCookie += "; " + optionKey;
+            let optionValue = options[optionKey];
+            if (optionValue !== true) {
+                updatedCookie += "=" + optionValue;
+            }
+        }
+        document.cookie = updatedCookie;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (!getCookie('show')){
+            toggleModal('modal')
+            }
+        });
+    function closeIndexModal() {
+        let showToggle = document.getElementById('show')
+        if (showToggle.checked){
+            setCookie('show',1)
+        }
+        document.getElementsByClassName('modal')[0].classList.toggle('modal-active')
+
+
+    }
+
+
+</script>

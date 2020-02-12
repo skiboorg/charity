@@ -51,6 +51,53 @@ h3
 .mobile-visible
   display: none
 
+.about-fond
+  display: grid
+  grid-template-columns: 1fr 2fr
+  grid-gap: 80px
+  &-left
+    position: relative
+    &-cb
+      position: absolute
+      bottom: 0
+      display: flex
+      align-items: center
+      label
+        margin-right: 15px
+
+    img
+      margin-bottom: 80px
+    h4
+      font: 18px 'GB', sans-serif
+      color: $color-text-grey
+      margin-bottom: 20px
+    a
+      display: block
+      color: $color-blue
+      font: 16px 'GR',sans-serif
+      margin-bottom: 10px
+    p
+      font: 13px 'GR',sans-serif
+      color: #515151
+      margin-bottom: 17px
+
+  &-right
+    h4
+      margin-bottom: 20px
+      font: 18px 'GB', sans-serif
+      color: $color-text-grey
+    h5
+      margin-bottom: 10px
+      font: 15px 'GB', sans-serif
+      color: #515151
+    p
+      font: 14px 'GR', sans-serif
+      color: #515151
+      line-height: 18px
+      margin-bottom: 20px
+
+
+
 .breadcrumbs
   margin-bottom: 30px
   ul

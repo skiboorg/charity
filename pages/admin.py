@@ -3,6 +3,7 @@ from .models import *
 
 
 admin.site.register(Banner)
+admin.site.register(Fond)
 
 
 # Register your models here.

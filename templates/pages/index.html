@@ -266,4 +266,9 @@
         </section>
 
     </div><!--//main-->
+    {% if not user.is_authenticated %}
+        {% include 'pages/index-modal.html' %}
+
+    {% endif %}
+
 {% endblock %}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>index</title>
+    <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -91,7 +92,7 @@
                     <div class="item-informaion-price-inner">
                         <p>2000 Рублей</p>
                         <div class="item-informaion-price-buttons">
-                            <a href="#" class="btn ">Купить</a>
+                            <a href="#openModal" class="btn ">Купить</a>
                             <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
                         </div>
                         <div class="new-chat">
@@ -195,10 +196,42 @@
                 </div><!-- // item -->
             </div>
         </div>
-
+     <div id="openModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">1500 <i class="fa fa-rub"></i></h3>
+                        <a href="#close" title="Close" class="close">×</a>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-10">Куда направить средства</p>
+                        <select class="form-control select mb-30" id="fond_select">
+                            <option value="1">Благотворительный фонд «Сделай Шаг»</option>
+                             <option value="2">Благотворительный фонд «Сделай 2Шаг»</option>
+                        </select>
+                        <div class="fond-info mb-30">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                               <p>Lorem ipsum dolor sit amet.</p>
+                               <p>Lorem ipsum dolor sit amet.</p>
+                               <p>Lorem ipsum dolor sit amet.</p>
+                               <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <p class="mb-10">Выберите способ оплаты</p>
+                        <select class="form-control select" id="pay_select">
+                            <option value="1">Сбербанк онлайн</option>
+                             <option value="2">Сбербанк онлайн2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section><!-- // items -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {});
 
+  </script>
     <script>
+
          function sendMsg() {
         let msg = document.getElementById('chat_message').value
         if(msg){
