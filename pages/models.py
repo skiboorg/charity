@@ -23,14 +23,14 @@ class Fond(models.Model):
 
     def save(self, *args, **kwargs):
         slug = slugify(self.name)
-        if not self.nameSlug:
+        if not self.name_slug:
             slugRandom = ''
-            testSlug = Fond.objects.filter(nameSlug=slug)
+            testSlug = Fond.objects.filter(name_slug=slug)
             if testSlug:
                 slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
-                self.nameSlug = slug + slugRandom
+                self.name_slug = slug + slugRandom
             else:
-                self.nameSlug = slug
+                self.name_slug = slug
 
         super(Fond, self).save(*args, **kwargs)
 

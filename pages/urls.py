@@ -18,7 +18,7 @@ urlpatterns = [
     # path('bonus_pack/', views.bonus_pack, name='bonus_pack'),
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
-    # path('add_to_player_balance/', views.add_to_player_balance, name='add_to_player_balance'),
+    path('get_fond/', views.get_fond, name='get_fond'),
     # path('about_bonus_pack/', views.about_bonus_pack, name='about_bonus_pack'),
 
 

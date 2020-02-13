@@ -119,16 +119,13 @@
                     </div>
                     <div class="modal-body">
                         <p class="mb-10">Куда направить средства</p>
-                        <select class="form-control select mb-30" id="fond_select">
-                            <option value="1">Благотворительный фонд «Сделай Шаг»</option>
-                             <option value="2">Благотворительный фонд «Сделай 2Шаг»</option>
+                        <select class="form-control select mb-30" id="fond_select" onchange="getFond()">
+                            {% for fond in allFonds %}
+                            <option value="{{fond.id}}" {% if forloop.first %}selected{% endif %}>{{ fond.name }}</option>
+                            {% endfor %}
                         </select>
                         <div class="fond-info mb-30">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                               <p>Lorem ipsum dolor sit amet.</p>
-                               <p>Lorem ipsum dolor sit amet.</p>
-                               <p>Lorem ipsum dolor sit amet.</p>
-                               <p>Lorem ipsum dolor sit amet.</p>
+                            {{ allFonds.first.description_short |safe }}
                         </div>
                         <p class="mb-10">Выберите способ оплаты</p>
                         <select class="form-control select" id="pay_select">
@@ -141,6 +138,27 @@
         </div>
 
     <script>
+    let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+    function getFond() {
+        let fondSelect = document.getElementById('fond_select')
+        let fondId =  fondSelect.options[fondSelect.selectedIndex].value;
+        let fondInfo = document.getElementsByClassName('fond-info')[0]
+        console.log(fondId)
+        let body = {
+                fond_id: fondId
+            }
+        fetch('/get_fond/', {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    console.log(res)
+                    fondInfo.innerHTML = res['fond_info']
+                })
+    }
+
     function openBuyModal(item_id) {
         document.getElementsByClassName('modal')[0].classList.toggle('modal-active')
 
@@ -149,7 +167,7 @@
     <script>
         function sendMsg() {
             let msg = document.getElementById('chat_message')
-            let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+
             let body = {
                 msgTo: {{ item.user.id }},
                 msgFrom: {{ request.user.id }},

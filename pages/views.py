@@ -1,3 +1,6 @@
+import json
+
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from item.models import *
@@ -122,6 +125,7 @@ def item(request,slug):
     item = get_object_or_404(Item,name_slug=slug)
     images = ItemImage.objects.filter(item=item)
     sameItems = Item.objects.filter(name__contains=item.name)
+    allFonds = Fond.objects.all()
 
     return render(request, 'pages/item.html', locals())
 
@@ -188,3 +192,11 @@ def search(request):
             searchResult = searchResult.filter(town=townn)
 
     return render(request, 'pages/search.html', locals())
+
+def get_fond(request):
+    return_dict = {}
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    fond = Fond.objects.get(id=body['fond_id'])
+    return_dict['fond_info'] = fond.description_short
+    return JsonResponse(return_dict, safe=False)
