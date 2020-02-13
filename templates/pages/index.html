@@ -81,71 +81,21 @@
                         <div class="best-customers">
                             <h3>Лучшие покупатели</h3>
                             <ul>
-                                <li class="best-customer-item">
+                                {% for user in bestUsers %}
+                                    <li class="best-customer-item">
                                     <div class="customer-img with-star">
                                         <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
+                                            <img src="{{ user.get_avatar }}" alt="">
                                         </a>
 
                                     </div>
                                     <div class="customer-info">
-                                        <a href="#"><p>Иван Сергеевич </p>
-                                            <span>20 покупок</span></a>
+                                        <a href="#"><p>{{ user.name }}</p>
+                                            <span>12 покупок</span></a>
 
                                     </div>
                                 </li>
-                                <li class="best-customer-item">
-                                    <div class="customer-img with-star">
-                                        <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
-                                        </a>
-
-                                    </div>
-                                    <div class="customer-info">
-                                        <a href="#"><p>Иван Сергеевич </p>
-                                            <span>20 покупок</span></a>
-
-                                    </div>
-                                </li>
-                                <li class="best-customer-item">
-                                    <div class="customer-img with-star">
-                                        <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
-                                        </a>
-
-                                    </div>
-                                    <div class="customer-info">
-                                        <a href="#"><p>Иван Сергеевич </p>
-                                            <span>20 покупок</span></a>
-
-                                    </div>
-                                </li>
-                                <li class="best-customer-item">
-                                    <div class="customer-img with-star">
-                                        <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
-                                        </a>
-
-                                    </div>
-                                    <div class="customer-info">
-                                        <a href="#"><p>Иван Сергеевич </p>
-                                            <span>20 покупок</span></a>
-
-                                    </div>
-                                </li>
-                                <li class="best-customer-item">
-                                    <div class="customer-img with-star">
-                                        <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
-                                        </a>
-
-                                    </div>
-                                    <div class="customer-info">
-                                        <a href="#"><p>Иван Сергеевич </p>
-                                            <span>20 покупок</span></a>
-
-                                    </div>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="best-transfers">

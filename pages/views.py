@@ -18,6 +18,7 @@ def index(request):
     all_categories = Category.objects.all()
     banners = Banner.objects.all()
     index_cats = all_categories.filter(atIndex=True)
+    bestUsers = User.objects.filter(isBest=True)
 
 
     return render(request, 'pages/index.html', locals())

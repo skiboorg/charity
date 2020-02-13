@@ -48,6 +48,7 @@ class User(AbstractUser):
     phone = models.CharField('Телефон', max_length=50, blank=True, null=True)
     profile_ok = models.BooleanField(default=False)
     avatar = models.ImageField('Фото профиля', upload_to='avatar/', blank=True)
+    isBest = models.BooleanField('Лучший покупатель?', default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()

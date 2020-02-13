@@ -65,7 +65,7 @@
 
                             </div>
                             <div class="customer-info">
-                                <a href="#"><p>{{ user.name }}</p>
+                                <a href="#"><p>{% if user.name %}{{ user.name }}{% else %}Аноним{% endif %}</p>
                                     <span>20 покупок</span></a>
 
                             </div>
@@ -96,7 +96,7 @@
         </section>
         <section class="items">
             <div class="container">
-                <h3>Похожие Объявления</h3>
+                <h3 class="mb-30">Похожие Объявления</h3>
                 <div class="items-wrapper">
                     {% for item in sameItems  %}
                         {% include 'pages/item_card.html' %}
@@ -111,10 +111,10 @@
 
     </div><!--//main-->
      <div id="openModal" class="modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog buy-modal">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title">1500 <i class="fa fa-rub"></i></h3>
+                        <h3 class="modal-title">{{ item.price }} <i class="fa fa-rub"></i></h3>
                         <a href="javascript: void (0)" title="Закрыть" class="close" onclick="toggleModal('modal')">×</a>
                     </div>
                     <div class="modal-body">
