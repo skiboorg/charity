@@ -92,7 +92,7 @@
                     <div class="item-informaion-price-inner">
                         <p>2000 Рублей</p>
                         <div class="item-informaion-price-buttons">
-                            <a href="#openModal" class="btn ">Купить</a>
+                            <a href="javascript: void(0)" class="btn " onclick="openBuyModal(1)">Купить</a>
                             <a href="#" class="btn btn-outline with-green-fav">В Избранное</a>
                         </div>
                         <div class="new-chat">
@@ -197,7 +197,7 @@
             </div>
         </div>
      <div id="openModal" class="modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog buy-modal" >
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title">1500 <i class="fa fa-rub"></i></h3>
@@ -228,49 +228,12 @@
     </section><!-- // items -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {});
+function openBuyModal(item_id) {
+        document.getElementsByClassName('modal')[0].classList.toggle('modal-active')
 
+    }
   </script>
-    <script>
 
-         function sendMsg() {
-        let msg = document.getElementById('chat_message').value
-        if(msg){
-            let xhr = new XMLHttpRequest();
-
-        let json = JSON.stringify({
-         msgTo: {{ house.client.id }},
-          msgFrom: {{ request.user.id }},
-                msg: msg
-        });
-        xhr.open("POST", '/new_msg/')
-        xhr.send(json);
-            document.getElementsByClassName('chat-box')[0].classList.remove('chat-box-active')
-        }
-    }
-     function openChatBox() {
-        document.getElementsByClassName('new-chat-form')[0].classList.toggle('chat-active')
-
-    }
-
-        let mainimg=document.getElementById('item_main_img')
-        function changeImg(el) {
-            let allThums = document.getElementsByClassName('item-image-thumb')
-            for (x of allThums){
-                console.log(x.classList.remove('selected'))
-            }
-            console.log(el.getAttribute('src'))
-            el.classList.add('selected')
-            mainimg.classList.remove('fade-in')
-            mainimg.classList.add('fade-out')
-            mainimg.addEventListener('animationend', () => {
-                mainimg.setAttribute('src', el.getAttribute('src'))
-                mainimg.classList.remove('fade-out')
-                mainimg.classList.add('fade-in')
-            });
-
-
-        }
-    </script>
 
 </div><!--//main-->
 
