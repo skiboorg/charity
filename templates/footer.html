@@ -9,7 +9,7 @@
                     <li><a href="{% url 'about' %}">Как мы работаем</a></li>
                     <li><a href="{% url 'contacts' %}">Контакты</a></li>
                     <li><a href="{% url 'index' %}">Каталог Товаров</a></li>
-                    <li><a href="#">Фонды</a></li>
+                    <li><a href="{% url 'fonds' %}">Фонды</a></li>
                     {% if not user.is_authenticated %}
                         <li><a href="{% url 'login' %}">Вход\Регистрация</a></li>
                     {% endif %}

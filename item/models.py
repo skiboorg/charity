@@ -147,14 +147,14 @@ class ItemImage(models.Model):
             background = Image.new(image.mode[:-1], image.size, fill_color)
             background.paste(image, image.split()[-1])
             image = background
-        image.thumbnail((155, 140), Image.ANTIALIAS)
+        image.thumbnail((270, 270), Image.ANTIALIAS)
         small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
         if settings.DEBUG:
             os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
-            image.save(small_name, 'JPEG', quality=90)
+            image.save(small_name, 'JPEG', quality=100)
         else:
-            os.makedirs('C:/inetpub/wwwroot/khimiya/media/items/{}'.format(self.item.id), exist_ok=True)
-            image.save('khimiya/' + small_name, 'JPEG', quality=90)
+            os.makedirs('C:\inetpub\wwwroot\charity/media/items/{}'.format(self.item.id), exist_ok=True)
+            image.save('charity/' + small_name, 'JPEG', quality=100)
         self.image_small = '/' + small_name
 
         super(ItemImage, self).save(*args, **kwargs)

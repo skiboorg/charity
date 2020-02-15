@@ -1,0 +1,49 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+ <div class="main">
+
+
+    <div class="breadcrumbs">
+        <div class="container bg-white ">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                  <li><a href="{% url 'fonds' %}">Фонды партнёры</a></li>
+                <li><span>{{ fond.name }}</span></li>
+            </ul>
+
+
+
+        </div>
+    </div>
+    <section class="fond">
+        <div class="container">
+            <div class="fond-img">
+               <img src="{{ fond.image_big.url }}" alt="">
+            </div>
+            <h1>{{ fond.image }}</h1>
+            <div class="fond-wrapper">
+                <div class="fond-info">
+
+                    {{ fond.description_full | safe }}
+                </div>
+                <div class="fond-rigth">
+                     <div class="fond-contact">
+                    <h3>Контакты</h3>
+                   {{ fond.description_contact | safe}}
+                </div>
+                  <div class="fond-req">
+                    <h3>Реквизиты</h3>
+                   {{ fond.description_req | safe}}
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+</div><!--//main-->
+{% endblock %}

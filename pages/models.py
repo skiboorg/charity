@@ -16,10 +16,13 @@ class Banner(models.Model):
 class Fond(models.Model):
     name = models.CharField('Название фонда', max_length=255, blank=False, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True, db_index=True, editable=False)
-    image = models.ImageField('Лого фонда', upload_to='fond/', blank=True)
+    deviz = models.CharField('Девиз', max_length=255, blank=False, null=True, db_index=True)
+    image = models.ImageField('Лого фонда (225x110)', upload_to='fond/', blank=True)
+    image_big = models.ImageField('Картинка на страницу фонда (1240х600)', upload_to='fond/', blank=True)
     description_short = RichTextUploadingField('Описание для окна покупки', blank=False, null=True)
     description_full = RichTextUploadingField('Полное описание', blank=False, null=True)
     description_contact = RichTextUploadingField('Контакты', blank=False, null=True)
+    description_req = RichTextUploadingField('Контакты', blank=False, null=True)
 
     def save(self, *args, **kwargs):
         slug = slugify(self.name)

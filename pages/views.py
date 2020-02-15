@@ -201,3 +201,12 @@ def get_fond(request):
     fond = Fond.objects.get(id=body['fond_id'])
     return_dict['fond_info'] = fond.description_short
     return JsonResponse(return_dict, safe=False)
+
+
+def fonds(request):
+    allFonds = Fond.objects.all()
+    return render(request, 'pages/fonds.html', locals())
+
+def fond(request,slug):
+    fond = get_object_or_404(Fond, name_slug=slug)
+    return render(request, 'pages/fond.html', locals())

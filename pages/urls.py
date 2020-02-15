@@ -19,6 +19,8 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
     path('get_fond/', views.get_fond, name='get_fond'),
+    path('fonds/', views.fonds, name='fonds'),
+    path('fond/<slug>', views.fond, name='fond'),
     # path('about_bonus_pack/', views.about_bonus_pack, name='about_bonus_pack'),
 
 

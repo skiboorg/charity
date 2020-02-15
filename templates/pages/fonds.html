@@ -1,0 +1,37 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+ <div class="main">
+    <div class="breadcrumbs">
+        <div class="container bg-white ">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><span>Фонды партнёры</span></li>
+            </ul>
+
+
+
+        </div>
+    </div>
+    <section class="fonds">
+        <div class="container">
+            <div class="fonds-wrapprer">
+                {% for fond in allFonds %}
+                <div class="fonds-item">
+                    <a href="{% url 'fond' fond.name_slug %}">
+                        <img src="{{ fond.image.url }}" alt="">
+                    </a>
+                    <a href="{% url 'fond' fond.name_slug %}">
+                        <p>{{ fond.name }}</p>
+                        <span>{{ fond.deviz }}</span>
+                    </a>
+                    <a href="{% url 'fond' fond.name_slug %}" class="btn btn-outline">ПОДРОБНЕЕ</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+</div><!--//main-->
+{% endblock %}
