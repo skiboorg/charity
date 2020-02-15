@@ -32,7 +32,7 @@ def createItem(request):
         ItemImage.objects.create(item_id=new_image.id,image=f).save()
     return_dict['result'] = 'success'
     # return JsonResponse(return_dict)
-    return HttpResponseRedirect('/new')
+    return HttpResponseRedirect('/lk')
 
 def wishlist_delete(request):
     return_dict = {}
