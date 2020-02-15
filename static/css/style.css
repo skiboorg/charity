@@ -1511,8 +1511,8 @@ button[type='button'] {
 
 .features-info-wrapper {
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  grid-gap: 70px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
 }
 
 .features-info-wrapper.horizontal {
@@ -1546,10 +1546,6 @@ button[type='button'] {
 .features-info-block p {
   font: 16px 'GR',sans-serif;
   color: #515151;
-}
-
-.features-info-block:first-child {
-  border-bottom: none;
 }
 
 .features-info-block-right {
