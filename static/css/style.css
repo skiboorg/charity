@@ -242,6 +242,9 @@ h3 {
 
 .about-fond-left img {
   margin-bottom: 80px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
 }
 
 .about-fond-left h4 {
@@ -265,12 +268,23 @@ h3 {
 
 .about-fond-right img {
   display: none;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+.about-fond-right h2 {
+  margin-bottom: 20px;
+  font: 70px 'GR', sans-serif;
+  color: #212020;
+  text-transform: uppercase;
 }
 
 .about-fond-right h4 {
   margin-bottom: 20px;
   font: 18px 'GB', sans-serif;
   color: #212020;
+  border-bottom: 2px solid #00AADF;
 }
 
 .about-fond-right h5 {
@@ -284,6 +298,13 @@ h3 {
   color: #515151;
   line-height: 18px;
   margin-bottom: 20px;
+}
+
+.about-fond-right a {
+  display: block;
+  color: #00AADF;
+  font: 16px 'GR',sans-serif;
+  margin-bottom: 10px;
 }
 
 .breadcrumbs {
@@ -710,6 +731,7 @@ h3 {
 .mobile-nav {
   position: relative;
   display: none;
+  padding: 20px;
 }
 
 .mobile-nav ul li a span {
@@ -729,7 +751,7 @@ h3 {
   box-shadow: 0px 5px 80px rgba(210, 210, 210, 0.4);
   left: 0;
   right: 0;
-  top: 53px;
+  top: 167px;
   -webkit-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
   transform: translateX(-100%);

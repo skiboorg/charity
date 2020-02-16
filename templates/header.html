@@ -10,7 +10,7 @@
                 <div class="nav">
                     <div class="header-top-nav">
                         <ul>
-                            <li><a href="{% url 'about' %}">Как мы работаем</a></li>
+                            <li><a href="{% url 'about' %}">О нас</a></li>
                             <li><a href="{% url 'contacts' %}">Контакты</a></li>
                             <li><a href="{% url 'index' %}">Каталог Товаров</a></li>
                              <li><a href="{% url 'fonds' %}">Фонды</a></li>
@@ -32,28 +32,7 @@
             </div></div>
 
     </div>
-    <div class="header-bottom">
-        <div class="container">
-            <form action="{% url 'search' %}">
-                <select class="form-control select" name="category" >
-                    <option selected disabled value="0">Любая категория</option>
-                    {% for cat in all_cat %}
-                        <option value="{{ cat.id }}">{{cat.name}}</option>
-                    {% endfor %}
-                </select>
-                <select class="form-control select" name="town" >
-                    <option selected disabled value="0">Любой город</option>
-                    {% for town in all_towns %}
-                        <option value="{{ town.id }}">{{town.name}}</option>
-                    {% endfor %}
-                </select>
-                <div class="fieldset search">
-                    <input class="form-control input " name="query" type="text" placeholder="Введите что искать...">
-                </div>
-                <input type="submit" style="visibility: hidden; position: absolute">
-                <a class="btn with-plus" href="{% url 'new_item' %}">разместить обьявление</a>
-            </form>
-            <div class="mobile-nav">
+   <div class="mobile-nav">
                 <div class="header-top-nav-buttons mobile-buttons">
                     <div class="mobile-menu-wrapper">
                         <div class="mobile-toggle"></div>
@@ -69,10 +48,11 @@
                 </div>
 
             </div>
-        </div>
+
         <div class="mobile-menu">
             <ul>
-                <li><a href="{% url 'about' %}">Как мы работаем</a></li>
+             <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'about' %}">О нас</a></li>
                 <li><a href="{% url 'contacts' %}">Контакты</a></li>
                 <li><a href="#">Каталог Товаров</a></li>
                   <li><a href="{% url 'fonds' %}">Фонды</a></li>
@@ -81,8 +61,30 @@
                 {% endif %}
             </ul>
         </div>
-    </div>
-
-
+{##}
+{#    <div class="header-bottom">#}
+{#        <div class="container">#}
+{#            <form action="{% url 'search' %}">#}
+{#                <select class="form-control select" name="category" >#}
+{#                    <option selected disabled value="0">Любая категория</option>#}
+{#                    {% for cat in all_cat %}#}
+{#                        <option value="{{ cat.id }}">{{cat.name}}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#                <select class="form-control select" name="town" >#}
+{#                    <option selected disabled value="0">Любой город</option>#}
+{#                    {% for town in all_towns %}#}
+{#                        <option value="{{ town.id }}">{{town.name}}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#                <div class="fieldset search">#}
+{#                    <input class="form-control input " name="query" type="text" placeholder="Введите что искать...">#}
+{#                </div>#}
+{#                <input type="submit" style="visibility: hidden; position: absolute">#}
+{#                <a class="btn with-plus" href="{% url 'new_item' %}">разместить обьявление</a>#}
+{#            </form>#}
+{##}
+{#    </div>#}
+{#    </div>#}
 
 </header><!-- // header -->

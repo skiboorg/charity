@@ -8,6 +8,7 @@ import uuid
 from random import choices
 import string
 from customuser.models import User
+from pages.models import *
 
 class Town(models.Model):
     name = models.CharField('Название города', max_length=255, blank=False, null=True)
@@ -85,6 +86,7 @@ class SubCategory(models.Model):
         verbose_name_plural = "Подкатегории"
 
 class Item(models.Model):
+    fond = models.ForeignKey(Fond,blank=True, null=True, on_delete=models.SET_NULL, verbose_name='Перечислить в фонд')
     category = models.ForeignKey(Category, blank=False, verbose_name='Категория',on_delete=models.CASCADE, db_index=True)
     subCategory = models.ForeignKey(SubCategory, blank=True, null=True, verbose_name='Подкатегория', on_delete=models.CASCADE,
                                  db_index=True)
@@ -99,6 +101,8 @@ class Item(models.Model):
     address = models.CharField('Местоположение', max_length=255, null=True)
     added = models.DateTimeField('Добавлен', auto_now_add=True)
     price = models.IntegerField(default=0)
+    otherChoice = models.CharField('Альтернативный выбор', max_length=255, blank=True, null=True)
+    isActive = models.BooleanField('Отображается', default=True)
 
     def __str__(self):
         return '%s ' % self.name
@@ -115,7 +119,8 @@ class Item(models.Model):
             else:
                 self.name_slug = slug
         self.name_lower = self.name.lower()
-
+        if self.otherChoice:
+            self.isActive = False
         super(Item, self).save(*args, **kwargs)
     class Meta:
         verbose_name = "Товар"

@@ -49,30 +49,7 @@
 
         </section><!-- // catalog -->
 
-        <section class="items bg-grey">
-            <div class="new-offers text-center">
-                <a href="#" class="btn with-arrow">Новые Предложения</a>
-            </div>
-            <div class="container ">
 
-                <div class="items-inner">
-                    {% for cat in index_cats %}
-                        <h3><a href="{% url 'catalog' cat.name_slug %}">{{cat.name}}</a> </h3>
-                        <div class="items-wrapper">
-                            {% for item in cat.item_set.all reversed  %}
-                                {% if forloop.counter < 5 %}
-                                    {% include 'pages/item_card.html' %}
-                                {% endif %}
-                            {% endfor %}
-
-                        </div>
-                    {% endfor %}
-                </div>
-
-
-            </div>
-
-        </section><!-- // items -->
 
         <section class="features">
             <div class="container">

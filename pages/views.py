@@ -26,7 +26,7 @@ def index(request):
 
 def catalog(request, slug):
     category = get_object_or_404(Category,name_slug=slug)
-    all_items = Item.objects.filter(category=category)
+    all_items = Item.objects.filter(category=category, isActive=True)
     lower_price = all_items.order_by('price')[0].price
     high_price = all_items.order_by('-price')[0].price
     print('lower_price',lower_price)
@@ -132,6 +132,7 @@ def item(request,slug):
 
 def new_item(request):
     form = CreateItemForm()
+    allFonds = Fond.objects.all()
     return render(request, 'pages/newitem.html', locals())
 
 
