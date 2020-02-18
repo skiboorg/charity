@@ -1765,6 +1765,23 @@ button[type='button'] {
   padding: 40px 35px;
 }
 
+.login-wrapper-group {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.login-wrapper-group input {
+  margin-right: 20px;
+}
+
 .login-wrapper form {
   text-align: center;
 }
@@ -1776,9 +1793,8 @@ button[type='button'] {
   text-align: center;
 }
 
-.login-wrapper input {
+.login-wrapper .input {
   margin-bottom: 20px;
-  width: 100% !important;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }

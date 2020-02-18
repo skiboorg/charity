@@ -1,4 +1,6 @@
 import os
+
+from django.db.models.signals import post_save
 from pytils.translit import slugify
 from django.db import models
 from django.utils.safestring import mark_safe
@@ -119,8 +121,6 @@ class Item(models.Model):
             else:
                 self.name_slug = slug
         self.name_lower = self.name.lower()
-        if self.otherChoice:
-            self.isActive = False
         super(Item, self).save(*args, **kwargs)
     class Meta:
         verbose_name = "Товар"
@@ -177,3 +177,11 @@ class UserFavorites(models.Model):
     user = models.ForeignKey(User, blank=False, null=True, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, blank=False, null=True, on_delete=models.CASCADE)
     createdAt = models.DateField(auto_now_add=True)
+
+def itemPostSave(sender, instance, created,**kwargs):
+    if created and instance.otherChoice:
+        instance.isActive = False
+        instance.save()
+
+
+post_save.connect(itemPostSave, sender=Item)

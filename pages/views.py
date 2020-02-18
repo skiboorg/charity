@@ -19,6 +19,7 @@ def index(request):
     banners = Banner.objects.all()
     index_cats = all_categories.filter(atIndex=True)
     bestUsers = User.objects.filter(isBest=True)
+    allFond = Fond.objects.all()
 
 
     return render(request, 'pages/index.html', locals())
@@ -27,10 +28,11 @@ def index(request):
 def catalog(request, slug):
     category = get_object_or_404(Category,name_slug=slug)
     all_items = Item.objects.filter(category=category, isActive=True)
-    lower_price = all_items.order_by('price')[0].price
-    high_price = all_items.order_by('-price')[0].price
-    print('lower_price',lower_price)
-    print('high_price', high_price)
+    print(all_items)
+    if all_items:
+        lower_price = all_items.order_by('price')[0].price
+        high_price = all_items.order_by('-price')[0].price
+
     banners = Banner.objects.all()
     data = request.GET
     print(request.GET)
@@ -133,6 +135,7 @@ def item(request,slug):
 def new_item(request):
     form = CreateItemForm()
     allFonds = Fond.objects.all()
+
     return render(request, 'pages/newitem.html', locals())
 
 

@@ -24,6 +24,7 @@ class Fond(models.Model):
     description_contact = RichTextUploadingField('Контакты', blank=False, null=True)
     description_req = RichTextUploadingField('Контакты', blank=False, null=True)
 
+
     def save(self, *args, **kwargs):
         slug = slugify(self.name)
         if not self.name_slug:

@@ -75,24 +75,23 @@
 
                             </div>
                         </div>
-                       <div class="form-row">
-                        <p>Выберите фонд</p>
-                        <select required class="form-control select" name="{{ form.fond.name }}" id="fond">
+                        <div class="form-row">
+                            <p>Выберите фонд</p>
+                            <select required class="form-control select" name="{{ form.fond.name }}" id="fond_select" >
 
-                            {% for fond in allFonds %}
-                                <option value="{{ fond.id }}">{{fond.name}}</option>
-                            {% endfor %}
-                        </select>
+                                {% for fond in allFonds %}
+                                    <option data-type="fond" value="{{ fond.id }}">{{fond.name}}</option>
+                                {% endfor %}
+                                     <option data-type="other" value="">ИНОЕ</option>
+                            </select>
 
-                    </div>
-                     <div class="form-group">
-
-                                <label>Иное</label>
+                        </div>
+                        <div id="other_fond_option" class="form-group not-visible">
+                            <label>Иное</label>
                             <div>
-                                <input name="{{ form.otherChoice.name }}"  class="form-control input" type="text" placeholder="Описание  поля">
-
+                                <input name="{{ form.otherChoice.name }}" disabled id="other_fond_option_input"  class="form-control input" type="text" placeholder="Описание  поля">
                             </div>
-                            </div>
+                        </div>
 
                         <div class="form-row">
 
@@ -111,7 +110,13 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
+                    <div class="login-wrapper-group">
+                        <input type="checkbox" required>
+                        <label>С условиями договора оферты согласен</label>
+                    </div>
+
                     <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
                     <button style="width: 250px" class="btn" type="submit">Сохранить</button>
                 </form>
@@ -119,9 +124,31 @@
         </div><!--//container-->
         <script>
             let catSelect = document.getElementById('category')
+            let fondSelect = document.getElementById('fond_select')
+            let otherOption = document.getElementById('other_fond_option')
+            let otherOptionInput = document.getElementById('other_fond_option_input')
             let subcatSelect = document.getElementById('subcategory')
+
             let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
             console.log((csrfmiddlewaretoken))
+
+            fondSelect.addEventListener('change',()=>{
+                let type = fondSelect.options[fondSelect.selectedIndex].dataset.type
+                if (type === 'other'){
+                    otherOption.classList.remove('not-visible')
+                    otherOptionInput.removeAttribute('disabled')
+                }
+                else {
+
+                    otherOption.classList.add('not-visible')
+                    otherOptionInput.value = ''
+                    otherOptionInput.setAttribute('disabled','disabled')
+                }
+
+                console.log()
+
+            })
+
             catSelect.addEventListener('change',()=>{
 
                 [].forEach.call(document.querySelectorAll('.subcat-name'),function(e){

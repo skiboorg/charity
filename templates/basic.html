@@ -76,7 +76,7 @@
 <script>
     var doc = document
 
-    var mobile = 'false',
+    var mobile = 'true',
         isTestPage = false,
         isDemoPage = true,
         classIn = 'jello',
@@ -105,9 +105,7 @@
             autoplay: true,
             autoplayTimeout: 4000,
             speed: 1000,
-            gutter: 10,
-
-            edgePadding: 20,
+            gutter: 0,
             responsive: {
                 640: {
                     edgePadding: 20,
@@ -118,7 +116,10 @@
                     items: 2
                 },
                 900: {
-                    items: 3
+                    items: 3,
+                    gutter: 10,
+
+            edgePadding: 0,
                 }
             }
 
