@@ -226,14 +226,12 @@ h3 {
 }
 
 .about-fond-left-cb {
-  position: absolute;
-  bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -242,6 +240,24 @@ h3 {
 
 .about-fond-left-cb label {
   margin-right: 15px;
+}
+
+.about-fond-left h2,
+.about-fond-left h5 {
+  display: none;
+}
+
+.about-fond-left h5 {
+  margin-bottom: 5px;
+  font: 15px 'GB', sans-serif;
+  color: #515151;
+}
+
+.about-fond-left h2 {
+  margin-bottom: 20px;
+  font: 70px 'GR', sans-serif;
+  color: #212020;
+  text-transform: uppercase;
 }
 
 .about-fond-left img {
@@ -617,7 +633,7 @@ h3 {
 }
 
 .logo img {
-  width: 300px;
+  width: 330px;
 }
 
 .header {
@@ -628,7 +644,7 @@ h3 {
 
 .header-top {
   background: #ffffff;
-  padding: 40px 10px;
+  padding: 35px 10px;
   border-bottom: 1px solid #EBEBEB;
 }
 
@@ -655,7 +671,7 @@ h3 {
 }
 
 .header-top-nav ul li a {
-  font: 14px 'GB',sans-serif;
+  font: 17px 'GB',sans-serif;
   color: #212020;
 }
 
@@ -2582,6 +2598,7 @@ button[type='button'] {
 
 .footer-bottom img {
   margin-right: 40px;
+  width: 330px;
 }
 
 .footer-bottom p {
@@ -2659,7 +2676,17 @@ button[type='button'] {
   opacity: 1 !important;
 }
 
+@media (max-width: 1190px) {
+  .nav ul li a {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 1024px) {
+  .nav ul li a {
+    font-size: 12px;
+  }
+
   .header-top-nav li {
     margin-right: 25px !important;
   }
@@ -2908,29 +2935,26 @@ button[type='button'] {
     grid-gap: 10px;
   }
 
-  .about-fond-left {
-    -webkit-box-ordinal-group: 3;
-    -ms-flex-order: 2;
-    order: 2;
+  .about-fond-left h2,
+  .about-fond-left h5 {
+    display: block;
+  }
+
+  .about-fond-left h2 {
+    font-size: 35px;
   }
 
   .about-fond-left img {
+    margin-bottom: 0;
+  }
+
+  .about-fond-right h2,
+  .about-fond-right h5 {
     display: none;
   }
 
-  .about-fond-right {
-    -webkit-box-ordinal-group: 2;
-    -ms-flex-order: 1;
-    order: 1;
-  }
-
   .about-fond-right img {
-    display: block;
     margin-bottom: 20px;
-  }
-
-  .about-fond-right h2 {
-    font-size: 35px;
   }
 }
 
