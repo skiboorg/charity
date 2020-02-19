@@ -234,6 +234,10 @@ h3 {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .about-fond-left-cb label {
@@ -281,14 +285,14 @@ h3 {
 }
 
 .about-fond-right h4 {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font: 18px 'GB', sans-serif;
   color: #212020;
   border-bottom: 2px solid #00AADF;
 }
 
 .about-fond-right h5 {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font: 15px 'GB', sans-serif;
   color: #515151;
 }
@@ -297,14 +301,14 @@ h3 {
   font: 14px 'GR', sans-serif;
   color: #515151;
   line-height: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.about-fond-right a {
+.fond-link {
   display: block;
   color: #00AADF;
   font: 16px 'GR',sans-serif;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .breadcrumbs {
@@ -612,6 +616,10 @@ h3 {
   align-items: center;
 }
 
+.logo img {
+  width: 300px;
+}
+
 .header {
   margin-bottom: 60px;
   -webkit-box-shadow: 0px 5px 80px rgba(210, 210, 210, 0.4);
@@ -620,7 +628,7 @@ h3 {
 
 .header-top {
   background: #ffffff;
-  padding: 15px 10px;
+  padding: 40px 10px;
   border-bottom: 1px solid #EBEBEB;
 }
 
@@ -751,7 +759,7 @@ h3 {
   box-shadow: 0px 5px 80px rgba(210, 210, 210, 0.4);
   left: 0;
   right: 0;
-  top: 167px;
+  top: 163px;
   -webkit-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
   transform: translateX(-100%);
@@ -2423,7 +2431,7 @@ button[type='button'] {
   left: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1050;
-  opacity: 0;
+  display: none;
   -webkit-transition: opacity 400ms ease-in;
   -o-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
@@ -2432,7 +2440,7 @@ button[type='button'] {
 }
 
 .modal-active {
-  opacity: 1;
+  display: block;
   pointer-events: auto;
   overflow-y: auto;
 }
@@ -2506,6 +2514,11 @@ button[type='button'] {
   text-shadow: 0 1px 0 #fff;
   opacity: .5;
   text-decoration: none;
+}
+
+.close.home-close {
+  position: absolute;
+  right: 40px;
 }
 
 .close:focus,
@@ -2914,6 +2927,10 @@ button[type='button'] {
   .about-fond-right img {
     display: block;
     margin-bottom: 20px;
+  }
+
+  .about-fond-right h2 {
+    font-size: 35px;
   }
 }
 

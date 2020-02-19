@@ -1,10 +1,12 @@
 {% load static %}
-<div id="openModal" class="modal">
-    <div class="modal-dialog">
+ <div id="openModal" class="modal">
+    <div class="modal-dialog ">
+
         <div style="width: 1440px" class="modal-content">
+            <a href="javascript: void(0)" title="Закрыть" class="close home-close"  onclick="closeIndexModal()">×</a>
             <div class="about-fond">
                 <div class="about-fond-left">
-                    <img src="{% static 'img/image--000.jpg' %}" alt="">
+                    <img src="{% static 'img/dino.png' %}" alt="">
                      <h4>ИСТОРИЯ</h4>
                     <p>О благотворительности говорят много. Внушительное число коммерческих организаций и частных лиц на регулярной основе переводят деньги в фонды и
                         нуждающимся. Тем не менее реальность такова, что средств фондов хватает на нужды лишь малой части их подопечных. Первоочередной задачей «Из добрых рук»
@@ -21,20 +23,15 @@
                     <h4>Контакты:</h4>
                     <a href="">http://www.from-good-hands.ru/</a>
                     <a href="">http://from-good-hands.com/</a>
-                    <a class="mb-30" href="">http://from-good-hands.com/</a>
+                    <a class="mb-10" href="">http://from-good-hands.com/</a>
 
-                    <div class="about-fond-left-cb">
-                        <a style="margin:0 15px 0 0; text-decoration: underline" href="javascript: void(0)" onclick="closeIndexModal()">Закрыть</a>
-                        <label for="show">Не показывать больше</label>
-                        <input type="checkbox" id="show">
 
-                    </div>
 
                 </div>
                 <div class="about-fond-right">
-                     <img src="{% static 'img/image--000.jpg' %}" alt="">
+                    <img src="{% static 'img/dino.png' %}" alt="">
 
-                    <h2>из добрых<br> рук</h2>
+                    <h2>из добрых рук</h2>
                     <h5>Продал – помог<br>Купил - спасибо</h5>
 
                     <h4>О ЧЕМ ЭТО?</h4>
@@ -59,15 +56,24 @@
                         - после подтверждения сделки покупателем, деньги переводятся в фонд, минимальная комиссия остаётся на торговый платформе для обеспечения жизнедеятельности ресурса</p>
 
                     <h4>Фонды-партнёры:</h4>
-                    <a href="#">https://helpspinabifida.ru/</a>
+                    <a class="fond-link" href="#">https://helpspinabifida.ru/</a>
                     <p>Благотворительный фонд «Сделай Шаг»</p>
-                    <a href="#">https://krokhino.ru/</a>
+                    <a class="fond-link" href="#">https://krokhino.ru/</a>
                     <p>Благотворительный фонд «Центр возрождения культурного наследия «Крохино»</p>
-                    <a href="#">https://bf-kislorod.ru/</a>
+                    <a class="fond-link" href="#">https://bf-kislorod.ru/</a>
                     <p>Благотворительный фонд «Тепло сердец» (программа «Кислород»)</p>
-                    <a href="">https://liferoute.org/</a>
-                    <p>Благотворительный фонд помощи людям с нарушениями развития «Жизненныйпуть» (БФ «Жизненный путь»)</p>
+                    <a class="fond-link" href="">https://liferoute.org/</a>
+                    <p >Благотворительный фонд помощи людям с нарушениями развития «Жизненныйпуть» (БФ «Жизненный путь»)</p>
 
+                    <div class="about-fond-left-cb">
+ <a href="javascript: void(0)" onclick="closeIndexModal()" style=" max-width: 200px;margin-bottom: 5px;min-height: 20px;"class="btn">на главную</a>
+                        <div class="">
+                             <label for="show">Не показывать больше</label>
+                        <input type="checkbox" id="show">
+
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
