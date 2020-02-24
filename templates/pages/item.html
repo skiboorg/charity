@@ -121,21 +121,24 @@
                         <h3 class="modal-title">{{ item.price }} <i class="fa fa-rub"></i></h3>
                         <a href="javascript: void (0)" title="Закрыть" class="close" onclick="toggleModal('modal')">×</a>
                     </div>
-                    <div class="modal-body">
-                        <p class="mb-10">Куда направить средства</p>
-                        <select class="form-control select mb-30" id="fond_select" onchange="getFond()">
-                            {% for fond in allFonds %}
-                            <option value="{{fond.id}}" {% if forloop.first %}selected{% endif %}>{{ fond.name }}</option>
-                            {% endfor %}
-                        </select>
+                     <div class="modal-body">
+                     {% if item.fond %}
+                        <p class="mb-10">Денежные средства будут перечислены в фонд:</p>
                         <div class="fond-info mb-30">
-                            {{ allFonds.first.description_short |safe }}
+
+                            <img width="225" src="{{ item.fond.image.url }}" alt="">
+                            {{ item.fond.description_req | safe }}
+
                         </div>
+                      {% endif %}
                         <p class="mb-10">Выберите способ оплаты</p>
-                        <select class="form-control select" id="pay_select">
+                        <select class="form-control select mb-10" id="pay_select">
                             <option value="1">Сбербанк онлайн</option>
-                             <option value="2">Сбербанк онлайн2</option>
+                            <option value="2">Сбербанк онлайн2</option>
                         </select>
+                        <a href="#" class="btn mb-10">купить</a>
+                          <span style="font: 13px 'GR', sans-serif; color: #9e9e9e; display: block;">Вы покупаете лот № {{ item.id }}</span>
+
                     </div>
                 </div>
             </div>
