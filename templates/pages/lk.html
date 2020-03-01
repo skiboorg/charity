@@ -72,8 +72,28 @@
                         <div id="lk-content-buys" class="lk-content-wrapper lk-content-buys">
                             <h3 class="mb-40">Мои покупки</h3>
                             <div class="items-wrapper">
+                                {% if allBuys %}
+                                    {% for item in allBuys %}
+                                        <div class="item">
 
+                                            <a class="image-center" href="{% url 'item' item.item.name_slug %}">
+                                                <img src="{{ item.item.itemimage_set.first.image_small }}" alt="">
+                                            </a>
 
+                                            <div class="item-info">
+                                                <a href="{% url 'item' item.item.name_slug %}">
+                                                    {#            <p class="item-info-text item-present">В наличии</p>#}
+                                                    <p class="item-info-name">{{ item.item.name }}</p>
+                                                    <p class="item-info-text">Цена</p>
+                                                    <p class="item-info-price">{{item.item.price}} Р</p>
+
+                                                </a>
+                                            </div>
+                                        </div><!-- // item -->
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Вы пока ничего не купили</p>
+                                {% endif %}
                             </div>
 
                         </div><!-- // lk-content-buys -->
@@ -286,8 +306,8 @@
                                         <span>${new Date(Date.now()).toLocaleString()}</span>
                                     </div>`
                 }).then(()=>{
-                         document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
-                        msgTextArea.value = ''
+                    document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTo(0,(document.getElementsByClassName('lk-content-chat-messages-bottom')[0].scrollTop+2000))
+                    msgTextArea.value = ''
                 }
 
             )

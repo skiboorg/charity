@@ -23,6 +23,7 @@ class Fond(models.Model):
     description_full = RichTextUploadingField('Полное описание', blank=False, null=True)
     description_contact = RichTextUploadingField('Контакты', blank=False, null=True)
     description_req = RichTextUploadingField('Контакты', blank=False, null=True)
+    money_earn = models.IntegerField('Перечислено в фонд', default=0)
 
 
     def save(self, *args, **kwargs):

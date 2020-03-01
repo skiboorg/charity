@@ -104,7 +104,8 @@ class Item(models.Model):
     added = models.DateTimeField('Добавлен', auto_now_add=True)
     price = models.IntegerField(default=0)
     otherChoice = models.CharField('Альтернативный выбор', max_length=255, blank=True, null=True)
-    isActive = models.BooleanField('Отображается', default=True)
+    isActive = models.BooleanField('Отображается?', default=True)
+    isSold = models.BooleanField('Продан?', default=False)
 
     def __str__(self):
         return '%s ' % self.name
@@ -177,6 +178,24 @@ class UserFavorites(models.Model):
     user = models.ForeignKey(User, blank=False, null=True, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, blank=False, null=True, on_delete=models.CASCADE)
     createdAt = models.DateField(auto_now_add=True)
+
+
+class Order(models.Model):
+    seller = models.ForeignKey(User, blank=False, null=True, on_delete=models.CASCADE, related_name='seller')
+    buyer = models.ForeignKey(User, blank=False, null=True, on_delete=models.CASCADE, related_name='buyer')
+    item = models.ForeignKey(Item, blank=False, null=True, on_delete=models.CASCADE)
+    pay_by = models.CharField('Оплата через', max_length=100, blank=True, null=True)
+    isPayed = models.BooleanField('Оплачен?', default=False)
+    createdAt = models.DateField(auto_now_add=True)
+    sber_orderID = models.CharField('sber_orderID', max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f'Заказ {self.id}'
+
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
 
 def itemPostSave(sender, instance, created,**kwargs):
     if created and instance.otherChoice:

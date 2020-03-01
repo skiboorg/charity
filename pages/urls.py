@@ -21,7 +21,9 @@ urlpatterns = [
     path('get_fond/', views.get_fond, name='get_fond'),
     path('fonds/', views.fonds, name='fonds'),
     path('fond/<slug>', views.fond, name='fond'),
-    # path('about_bonus_pack/', views.about_bonus_pack, name='about_bonus_pack'),
+    path('payment/', views.payment, name='payment'),
+    path('sber_success/', views.sber_success, name='sber_success'),
+    path('sber_fail/', views.sber_fail, name='sber_fail'),
 
 
 

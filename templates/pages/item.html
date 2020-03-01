@@ -41,6 +41,7 @@
                     <div class="item-informaion-price">
                         <div class="item-informaion-price-inner">
                             <p>{{item.price}} Рублей</p>
+                        {% if not item.isSold %}
                             <div class="item-informaion-price-buttons">
                                 <a href="javascript: void(0)" onclick="openBuyModal({{ item.id }})" class="btn ">Купить</a>
 
@@ -49,6 +50,7 @@
 
 
                             </div>
+                        {% endif %}
                             <div class="new-chat">
                                 <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
                                 <div class="new-chat-form">
@@ -70,8 +72,9 @@
                             </div>
                             <div class="customer-info">
                                 <a href="#"><p>{% if user.name %}{{ user.name }}{% else %}Аноним{% endif %}</p>
-                                    <span>20 покупок</span></a>
-
+                                {% if user.userbuys_set.all.count > 0 %}
+                                    <span>{{ item.user.userbuys_set.all.count }} покупок</span></a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -125,19 +128,22 @@
                      {% if item.fond %}
                         <p class="mb-10">Денежные средства будут перечислены в фонд:</p>
                         <div class="fond-info mb-30">
-
-                            <img width="225" src="{{ item.fond.image.url }}" alt="">
                             {{ item.fond.description_req | safe }}
 
                         </div>
                       {% endif %}
                         <p class="mb-10">Выберите способ оплаты</p>
-                        <select class="form-control select mb-10" id="pay_select">
-                            <option value="1">Сбербанк онлайн</option>
-                            <option value="2">Сбербанк онлайн2</option>
+                         <form action="{% url 'payment' %}" method="post">
+                             {% csrf_token %}
+                              <select class="form-control select mb-10" id="pay_select">
+                            <option selected value="sber">Сбербанк онлайн</option>
+
                         </select>
-                        <a href="#" class="btn mb-10">купить</a>
+                             <input type="hidden" name="id" value="{{ item.id }}">
+                        <button type="submit" class="btn mb-10">купить</button>
                           <span style="font: 13px 'GR', sans-serif; color: #9e9e9e; display: block;">Вы покупаете лот № {{ item.id }}</span>
+                         </form>
+
 
                     </div>
                 </div>

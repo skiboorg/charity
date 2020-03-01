@@ -1,6 +1,7 @@
 import json
 
-from django.http import JsonResponse
+import requests
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from item.models import *
@@ -10,7 +11,7 @@ from item.forms import *
 from chat.models import *
 from customuser.forms import *
 
-
+import settings
 
 
 def index(request):
@@ -27,7 +28,7 @@ def index(request):
 
 def catalog(request, slug):
     category = get_object_or_404(Category,name_slug=slug)
-    all_items = Item.objects.filter(category=category, isActive=True)
+    all_items = Item.objects.filter(category=category, isActive=True, isSold=False)
     print(all_items)
     if all_items:
         lower_price = all_items.order_by('price')[0].price
@@ -152,19 +153,21 @@ def lk(request):
         user = request.user
         updateForm = UpdateForm()
         userItems = Item.objects.filter(user=user)
-        wl = UserFavorites.objects.filter(user=request.user)
+        wl = UserFavorites.objects.filter(user=user)
         wishlist_ids = []
         for i in wl:
             wishlist_ids.append(i.item.id)
         userFavs = Item.objects.filter(id__in=wishlist_ids)
         lkActive = True
 
-        allChats = Chat.objects.filter(users__in=[request.user.id])
+        allChats = Chat.objects.filter(users__in=[user.id])
         print(allChats)
         allUnreadChats = allChats.filter(isNewMessages=True)
         allReadChats = allChats.filter(isNewMessages=False)
+        allBuys = UserBuys.objects.filter(user=user)
         print('allUnreadChats', allUnreadChats)
         print('allReadChats', allReadChats)
+        print('allBuys', allBuys)
         allChatPeoples = []
         for x in allChats:
             for y in x.users.all():
@@ -214,3 +217,58 @@ def fonds(request):
 def fond(request,slug):
     fond = get_object_or_404(Fond, name_slug=slug)
     return render(request, 'pages/fond.html', locals())
+
+def payment(request):
+    item_id = request.POST.get('id')
+    print(item_id)
+    item = get_object_or_404(Item,id=item_id)
+    new_order = Order.objects.create(seller=item.user,
+                                     buyer=request.user,
+                                     item=item,
+                                     pay_by='Сбербанк')
+    response = requests.get(f'https://3dsec.sberbank.ru/payment/rest/register.do?'
+                            'amount={}00&'
+                            'currency=643&'
+                            'language=ru&'
+                            'orderNumber={}&'
+                            'description=Оплата заказа {}&'
+                            'password={}&'
+                            'userName={}&'
+                            'returnUrl={}&'
+                            'failUrl={}&'
+                            'pageView=DESKTOP&sessionTimeoutSecs=1200'.format(item.price,
+                                                                              new_order.id,
+                                                                              new_order.id,
+                                                                              settings.SBER_PASSWORD,
+                                                                              settings.SBER_LOGIN,
+                                                                              settings.SBER_SUCCESS_URL,
+                                                                              settings.SBER_FAIL_URL), )
+    response_data = json.loads(response.content)
+
+    try:
+        orderId = response_data['orderId']
+        new_order.sber_orderID = orderId
+        new_order.save()
+        print('orderId', orderId)
+        print('formUrl', response_data['formUrl'])
+        return HttpResponseRedirect(response_data['formUrl'])
+    except:
+        print('error')
+
+    pass
+
+def sber_success(request):
+    sber_orderId = request.GET.get('orderId')
+    order = get_object_or_404(Order, sber_orderID=sber_orderId)
+    item = order.item
+    order.isPayed = True
+    UserBuys.objects.create(user=order.buyer,item=item)
+    item.isSold = True
+    item.fond.money_earn += item.price
+    item.fond.save()
+    item.save()
+    order.save()
+    return render(request, 'pages/order_complete.html', locals())
+
+def sber_fail(request):
+    return render(request, 'pages/order_fail.html', locals())
