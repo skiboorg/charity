@@ -55,8 +55,10 @@
             <div class="container">
                 <div class="best-of-bests-wrapper">
                     <div class="best-of-bests">
-{#                        <div class="best-customers">#}
-{##}
+                        <div class="best-customers">
+                            <h3>Почему мы</h3>
+        <p style="max-width: 250px">На нашей площадке мы рады всем, кому есть, чем поделиться, ведь речь идет необязательно о товарах в привычном понимании. Это может быть чашечка кофе в Вашей компании или, возможно, Вы готовы кого-то научить играть Roadhouse blues на укулеле? А может, Вы - известный человек и подписанный Вами сувенир будет греть душу Вашему поклоннику? Мы готовы приветствовать всех, кому хотелось бы сделать доброе дело, от крупных корпораций до отдельно взятого того, кто думает: "Да кому нужно то, что я делаю?" Нам нужно!</p>
+
 {#                            <ul>#}
 {#                                {% for user in bestUsers %}#}
 {#                                    <li class="best-customer-item">#}
@@ -74,52 +76,32 @@
 {#                                </li>#}
 {#                                {% endfor %}#}
 {#                            </ul>#}
-{#                        </div>#}
+                        </div>
                         <div class="best-transfers mb-30">
                             <h3>Перечисления в фонды</h3>
                             <ul>
-                                <li class="best-customer-item">
+                                {% for fond in allFond %}
+                                    <li class="best-customer-item">
                                     <div class="customer-img with-globe">
                                         <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
+                                            {% if fond.icon %}
+                                            <img  src="{{ fond.icon.url }}" alt="">
+                                            {% else %}
+                                                <img  src="https://placehold.it/70" alt="">
+                                            {% endif %}
                                         </a>
 
                                     </div>
                                     <div class="customer-info">
-                                        <a href="#"><p>Фонд спасения животных</p>
-                                            <span>1 500 000 ₽</span></a>
-
-                                    </div>
-                                </li>
-                                <li class="best-customer-item">
-                                    <div class="customer-img with-globe">
-                                        <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
+                                        <a href="{% url 'fond' fond.name_slug %}"><p>{{ fond.name }}</p>
+                                            <span>{{ fond.money_earn }} ₽</span>
                                         </a>
 
                                     </div>
-                                    <div class="customer-info">
-                                        <a href="#"><p>Фонд мира</p>
-                                            <span>1 500 000 ₽</span></a>
-
-                                    </div>
                                 </li>
-                                <li class="best-customer-item">
-                                    <div class="customer-img with-globe">
-                                        <a href="#">
-                                            <img src="http://placehold.it/64" alt="">
-                                        </a>
-
-                                    </div>
-                                    <div class="customer-info">
-                                        <a href="#"><p>Фонд кино</p>
-                                            <span>1 500 000 ₽</span></a>
-
-                                    </div>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
-                         <p>На нашей площадке мы рады всем, кому есть, чем поделиться, ведь речь идет необязательно о товарах в привычном понимании. Это может быть чашечка кофе в Вашей компании или, возможно, Вы готовы кого-то научить играть Roadhouse blues на укулеле? А может, Вы - известный человек и подписанный Вами сувенир будет греть душу Вашему поклоннику? Мы готовы приветствовать всех, кому хотелось бы сделать доброе дело, от крупных корпораций до отдельно взятого того, кто думает: "Да кому нужно то, что я делаю?" Нам нужно!</p>
                     </div>
                     <div class="best-of-bests-bg1"></div>
                     <div class="best-of-bests-bg2"></div>

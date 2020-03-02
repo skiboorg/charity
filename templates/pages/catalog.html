@@ -6,7 +6,7 @@
         <div class="breadcrumbs">
             <div class="container bg-white ">
                 <ul>
-                    <li><a href="#">Главная</a></li>
+                    <li><a href="/">Главная</a></li>
                     <li><span>{{ category.name }}</span></li>
                 </ul>
 
@@ -26,7 +26,10 @@
                     <div class="slider-inner" id="slider-inner">
                         {% for b in banners %}
                             <div class="slider-item">
-                                <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+                                <a href="{{ b.url }}">
+                                  <img style="width: 400px; height: 200px" src="{{ b.image.url }}" alt="">
+
+                                </a>
                             </div>
                         {% endfor %}
                     </div>

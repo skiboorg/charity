@@ -18,6 +18,7 @@ class Fond(models.Model):
     name_slug = models.CharField(max_length=255, blank=True, null=True, db_index=True, editable=False)
     deviz = models.CharField('Девиз', max_length=255, blank=False, null=True, db_index=True)
     image = models.ImageField('Лого фонда (225x110)', upload_to='fond/', blank=True)
+    icon = models.ImageField('Иконка для главной', upload_to='fond/', blank=True)
     image_big = models.ImageField('Картинка на страницу фонда (1240х600)', upload_to='fond/', blank=True)
     description_short = RichTextUploadingField('Описание для окна покупки', blank=False, null=True)
     description_full = RichTextUploadingField('Полное описание', blank=False, null=True)
