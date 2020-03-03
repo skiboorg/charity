@@ -1,5 +1,5 @@
 <div class="item">
-    {% if item.user != user or not user.is_authenticated%}
+    {% if item.user != user and user.is_authenticated%}
     <a id="fav_btn_{{ item.id }}" class="item-fav {% if item.id in wishlist_ids %} in-fav{% endif %}"
        href="javascript: void (0)" onclick="add_del_fav({{ item.id }}, this {% if lkActive %}, 'lkactive'{% endif %})"></a>
     {% endif %}

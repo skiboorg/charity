@@ -41,26 +41,23 @@
                     <div class="item-informaion-price">
                         <div class="item-informaion-price-inner">
                             <p>{{item.price}} Рублей</p>
-                        {% if not item.isSold %}
+                        {% if not item.isSold and request.user.is_authenticated  %}
                             <div class="item-informaion-price-buttons">
                                 <a href="javascript: void(0)" onclick="openBuyModal({{ item.id }})" class="btn ">Купить</a>
-
                                     <a  class="btn btn-outline with-green-fav {% if item.id in wishlist_ids %} in-fav{% endif %}"
                                        href="javascript: void (0)" onclick="add_del_fav({{ item.id }}, this)">{% if item.id in wishlist_ids %}В Избранном{% else %}В Избранное{% endif %}</a>
-
-
                             </div>
                         {% endif %}
+                         {% if  user.is_authenticated  %}
                             <div class="new-chat">
                                 <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
                                 <div class="new-chat-form">
-
                                     <textarea id="chat_message" cols="30" rows="10" placeholder="Ваше сообщение"></textarea>
                                     <a href="javascript: void(0)" class="btn" onclick="sendMsg()">отправить</a>
-
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
 
                         <div class="best-customer-item">
                             <p class="best-customer-item-info">Информация о продавце:</p>
