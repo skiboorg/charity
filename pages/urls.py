@@ -28,6 +28,7 @@ urlpatterns = [
 
 
 
+
     # path('statistic/', views.statistic, name='statistic'),
 
 ]

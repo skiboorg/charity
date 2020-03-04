@@ -84,33 +84,33 @@
 
                                 <div class="items-filter-caption">
                                     <p>Всего товаров : {{ category.item_set.count }}  {% if not filtered_items_count == category.item_set.count%}| Отфильтровано товаров : {{ filtered_items_count }}{% endif %} </p>
-                                    <p>Сортировать по:</p>
+{#                                    <p>Сортировать по:</p>#}
                                 </div>
-                                <div class="items-filter-select mobile-hide">
-                                    <select  id="per_order" class="form-control select " onchange="per_order()">
-                                        <option {% if param_order == '-added' %}selected="selected"{% endif %} value="-added">Дате</option>
-                                        <option {% if param_order == 'price' %}selected="selected"{% endif %} value="price">Цена &#8593;</option>
-                                        <option {% if param_order == '-price' %}selected="selected"{% endif %} value="-price">Цена &#8595;</option>
-                                        <option {% if param_order == 'name' %}selected="selected"{% endif %} value="name">А-Я</option>
-                                        <option {% if param_order == '-name' %}selected="selected"{% endif %} value="-name">Я-А</option>
-                                    </select>
-
-                                </div>
-                                <div class="items-filter-select mobile-hide">
-                                    <select id="per_page" class="form-control select " onchange="per_page()">
-                                        <option {% if param_count == '9' %}selected="selected"{% endif %} value="9">Показывать по 9</option>
-                                        <option {% if param_count == '15' %}selected="selected"{% endif %} value="15">Показывать по 15</option>
-                                        <option {% if param_count == '21' %}selected="selected"{% endif %} value="21">Показывать по 21</option>
-                                    </select>
-                                </div>
-                                <div class="items-filter-select mobile-visible">
-                                    <select class="form-control select" name="" id="">
-                                        <option selected disabled>Сортировка</option>
-                                        <option value="">lorem</option>
-                                        <option value="">lorem</option>
-                                        <option value="">lorem</option>
-                                    </select>
-                                </div>
+{#                                <div class="items-filter-select mobile-hide">#}
+{#                                    <select  id="per_order" class="form-control select " onchange="per_order()">#}
+{#                                        <option {% if param_order == '-added' %}selected="selected"{% endif %} value="-added">Дате</option>#}
+{#                                        <option {% if param_order == 'price' %}selected="selected"{% endif %} value="price">Цена &#8593;</option>#}
+{#                                        <option {% if param_order == '-price' %}selected="selected"{% endif %} value="-price">Цена &#8595;</option>#}
+{#                                        <option {% if param_order == 'name' %}selected="selected"{% endif %} value="name">А-Я</option>#}
+{#                                        <option {% if param_order == '-name' %}selected="selected"{% endif %} value="-name">Я-А</option>#}
+{#                                    </select>#}
+{##}
+{#                                </div>#}
+{#                                <div class="items-filter-select mobile-hide">#}
+{#                                    <select id="per_page" class="form-control select " onchange="per_page()">#}
+{#                                        <option {% if param_count == '9' %}selected="selected"{% endif %} value="9">Показывать по 9</option>#}
+{#                                        <option {% if param_count == '15' %}selected="selected"{% endif %} value="15">Показывать по 15</option>#}
+{#                                        <option {% if param_count == '21' %}selected="selected"{% endif %} value="21">Показывать по 21</option>#}
+{#                                    </select>#}
+{#                                </div>#}
+{#                                <div class="items-filter-select mobile-visible">#}
+{#                                    <select class="form-control select" name="" id="">#}
+{#                                        <option selected disabled>Сортировка</option>#}
+{#                                        <option value="">lorem</option>#}
+{#                                        <option value="">lorem</option>#}
+{#                                        <option value="">lorem</option>#}
+{#                                    </select>#}
+{#                                </div>#}
 
                             </div>
                         </div>

@@ -64,14 +64,16 @@
 #slider
   margin-bottom: 10px
 .mobile-filter-wrapper
+  margin-bottom: 10px
   a
     display: none !important
 
 @media (max-width: 960px)
   .mobile-filter-wrapper
     display: grid
-    grid-template-columns: 1fr 4fr
+    grid-template-columns: 2fr 4fr
     grid-gap: 10px
+
     a
       display: inline-flex !important
       height: 48px
@@ -102,4 +104,4 @@
 
 @media (max-width: 600px)
   .mobile-filter-wrapper
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr

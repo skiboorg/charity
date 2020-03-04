@@ -1055,6 +1055,10 @@ button[type='button'] {
   margin-bottom: 10px;
 }
 
+.mobile-filter-wrapper {
+  margin-bottom: 10px;
+}
+
 .mobile-filter-wrapper a {
   display: none !important;
 }
@@ -1087,7 +1091,7 @@ button[type='button'] {
   margin-bottom: 25px;
   height: 50px;
   display: grid;
-  grid-template-columns: 70% 15% 15%;
+  grid-template-columns: 1fr;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -2726,7 +2730,7 @@ button[type='button'] {
 
   .mobile-filter-wrapper {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2fr 4fr;
     grid-gap: 10px;
   }
 
@@ -2797,7 +2801,7 @@ button[type='button'] {
   }
 
   .items-filter {
-    grid-template-columns: 75% 25%;
+    display: none;
   }
 
   .best-of-bests {
@@ -3019,7 +3023,7 @@ button[type='button'] {
   }
 
   .mobile-filter-wrapper {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .items-filter-caption p {
@@ -3031,7 +3035,7 @@ button[type='button'] {
   }
 
   .items-filter {
-    grid-template-columns: 1fr;
+    display: none;
   }
 
   .features-wrapper {
