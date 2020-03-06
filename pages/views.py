@@ -272,3 +272,6 @@ def sber_success(request):
 
 def sber_fail(request):
     return render(request, 'pages/order_fail.html', locals())
+
+def documents (request):
+    return render(request, 'pages/documents.html', locals())

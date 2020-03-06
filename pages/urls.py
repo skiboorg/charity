@@ -24,6 +24,7 @@ urlpatterns = [
     path('payment/', views.payment, name='payment'),
     path('sber_success/', views.sber_success, name='sber_success'),
     path('sber_fail/', views.sber_fail, name='sber_fail'),
+    path('documents /', views.documents , name='documents '),
 
 
 
