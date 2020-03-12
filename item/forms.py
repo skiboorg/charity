@@ -14,4 +14,5 @@ class CreateItemForm(ModelForm):
                   'description',
                   'address',
                   'otherChoice',
-                  'price',)
+                  'price',
+                  'isService',)

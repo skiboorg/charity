@@ -104,8 +104,10 @@ class Item(models.Model):
     added = models.DateTimeField('Добавлен', auto_now_add=True)
     price = models.IntegerField(default=0)
     otherChoice = models.CharField('Альтернативный выбор', max_length=255, blank=True, null=True)
+    isService = models.BooleanField('Услуга?', default=False)
     isActive = models.BooleanField('Отображается?', default=True)
     isSold = models.BooleanField('Продан?', default=False)
+
 
     def __str__(self):
         return '%s ' % self.name
