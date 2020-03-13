@@ -41,44 +41,45 @@
                     <div class="item-informaion-price">
                         <div class="item-informaion-price-inner">
                             <p>{{item.price}} Рублей</p>
-                        {% if not item.isSold and request.user.is_authenticated  %}
-                            <div class="item-informaion-price-buttons">
-                                <a href="javascript: void(0)" onclick="openBuyModal({{ item.id }})" class="btn ">Купить</a>
+                            {% if not item.isSold and request.user.is_authenticated  %}
+                                <div class="item-informaion-price-buttons">
+                                    <a href="javascript: void(0)" onclick="openBuyModal({{ item.id }})" class="btn ">Купить</a>
                                     <a  class="btn btn-outline with-green-fav {% if item.id in wishlist_ids %} in-fav{% endif %}"
-                                       href="javascript: void (0)" onclick="add_del_fav({{ item.id }}, this)">{% if item.id in wishlist_ids %}В Избранном{% else %}В Избранное{% endif %}</a>
-                            </div>
-                        {% endif %}
-                         {% if  user.is_authenticated  %}
-                            <div class="new-chat">
-                                <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
-                                <div class="new-chat-form">
-                                    <textarea id="chat_message" cols="30" rows="10" placeholder="Ваше сообщение"></textarea>
-                                    <a href="javascript: void(0)" class="btn" onclick="sendMsg()">отправить</a>
+                                        href="javascript: void (0)" onclick="add_del_fav({{ item.id }}, this)">{% if item.id in wishlist_ids %}В Избранном{% else %}В Избранное{% endif %}</a>
                                 </div>
-                            </div>
-                        </div>
-                        {% endif %}
+                            {% endif %}
+                            {% if  user.is_authenticated  %}
+                                <div class="new-chat">
+                                    <a href="javascript: void(0)" onclick="openChatBox()" class="btn rounded btn-outline btn-grey" >Написать Продавцу</a>
+                                    <div class="new-chat-form">
+                                        <textarea id="chat_message" cols="30" rows="10" placeholder="Ваше сообщение"></textarea>
+                                        <a href="javascript: void(0)" class="btn" onclick="sendMsg()">отправить</a>
+                                    </div>
+                                </div>
+                                </div>
+                            {% endif %}
 
-                        <div class="best-customer-item">
+                        <div style="padding: 0" class="best-customer-item">
                             <p class="best-customer-item-info">Информация о продавце:</p>
-                            <div class="customer-img with-star">
+                            <div class="customer-img "><!--with-star -->
                                 <a href="#">
-                                    <img src="{{ user.get_avatar }}" alt="">
+                                    {% if item.user.name %}<img src="{{ item.user.get_avatar }}" alt="">{% else %}{% endif %}
+
                                 </a>
 
                             </div>
                             <div class="customer-info">
-                                <a href="#"><p>{% if user.name %}{{ user.name }}{% else %}Аноним{% endif %}</p>
-                                {% if user.userbuys_set.all.count > 0 %}
-                                    <span>{{ item.user.userbuys_set.all.count }} покупок</span></a>
-                                {% endif %}
+                                <a href="#"><p>{% if item.user.name %}{{ item.user.name }}{% else %}Аноним{% endif %}</p>
+                                    {% if item.user.userbuys_set.all.count > 0 %}
+                                        <span>{{ item.user.userbuys_set.all.count }} покупок</span></a>
+                                    {% endif %}
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                <h3 class="mb-50">Описание</h3>
+
+            </div>
+          <h3 class="mb-50">Описание</h3>
                 <div class="item-informaion-description">
 
                     <div class="item-informaion-description-row">
@@ -91,11 +92,7 @@
                     <div class="item-informaion-description-row">
                         <p>{{item.description}}</p>
                     </div>
-
-
-
                 </div>
-            </div>
 
         </section>
         <section class="items">
@@ -114,50 +111,50 @@
     </div>
 
     </div><!--//main-->
-     <div id="openModal" class="modal">
-            <div class="modal-dialog buy-modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">{{ item.price }} <i class="fa fa-rub"></i></h3>
-                        <a href="javascript: void (0)" title="Закрыть" class="close" onclick="toggleModal('modal')">×</a>
-                    </div>
-                     <div class="modal-body">
-                     {% if item.fond %}
+    <div id="openModal" class="modal">
+        <div class="modal-dialog buy-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">{{ item.price }} <i class="fa fa-rub"></i></h3>
+                    <a href="javascript: void (0)" title="Закрыть" class="close" onclick="toggleModal('modal')">×</a>
+                </div>
+                <div class="modal-body">
+                    {% if item.fond %}
                         <p class="mb-10">Денежные средства будут перечислены в фонд:</p>
                         <div class="fond-info mb-30">
                             {{ item.fond.description_req | safe }}
 
                         </div>
-                      {% endif %}
-                        <p class="mb-10">Выберите способ оплаты</p>
-                         <form action="{% url 'payment' %}" method="post">
-                             {% csrf_token %}
-                              <select class="form-control select mb-10" id="pay_select">
+                    {% endif %}
+                    <p class="mb-10">Выберите способ оплаты</p>
+                    <form action="{% url 'payment' %}" method="post">
+                        {% csrf_token %}
+                        <select class="form-control select mb-10" id="pay_select">
                             <option selected value="sber">Сбербанк онлайн</option>
 
                         </select>
-                             <input type="hidden" name="id" value="{{ item.id }}">
+                        <input type="hidden" name="id" value="{{ item.id }}">
                         <button type="submit" class="btn mb-10">купить</button>
-                          <span style="font: 13px 'GR', sans-serif; color: #9e9e9e; display: block;">Вы покупаете лот № {{ item.id }}</span>
-                         </form>
+                        <span style="font: 13px 'GR', sans-serif; color: #9e9e9e; display: block;">Вы покупаете лот № {{ item.id }}</span>
+                    </form>
 
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <script>
-    let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
-    function getFond() {
-        let fondSelect = document.getElementById('fond_select')
-        let fondId =  fondSelect.options[fondSelect.selectedIndex].value;
-        let fondInfo = document.getElementsByClassName('fond-info')[0]
-        console.log(fondId)
-        let body = {
+        let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+        function getFond() {
+            let fondSelect = document.getElementById('fond_select')
+            let fondId =  fondSelect.options[fondSelect.selectedIndex].value;
+            let fondInfo = document.getElementsByClassName('fond-info')[0]
+            console.log(fondId)
+            let body = {
                 fond_id: fondId
             }
-        fetch('/get_fond/', {
+            fetch('/get_fond/', {
                 method: 'post',
                 body: JSON.stringify(body),
                 headers: { "X-CSRFToken": csrfmiddlewaretoken },
@@ -167,12 +164,12 @@
                     console.log(res)
                     fondInfo.innerHTML = res['fond_info']
                 })
-    }
+        }
 
-    function openBuyModal(item_id) {
-        document.getElementsByClassName('modal')[0].classList.toggle('modal-active')
+        function openBuyModal(item_id) {
+            document.getElementsByClassName('modal')[0].classList.toggle('modal-active')
 
-    }
+        }
     </script>
     <script>
         function sendMsg() {
