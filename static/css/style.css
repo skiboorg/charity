@@ -1707,6 +1707,8 @@ button[type='button'] {
 }
 
 .customer-img img {
+  height: 64px;
+  width: 64px;
   max-width: none;
 }
 
