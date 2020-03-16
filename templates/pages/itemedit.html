@@ -9,17 +9,17 @@
                 <ul>
                     <li><a href="/">Главная</a></li>
 
-                    <li><span>Новое обьявление</span></li>
+                    <li><span>Редактирование обьявление</span></li>
                 </ul>
 
             </div><!--//breadcrumbs-->
             <section class="new-item">
-                <form action="{% url 'createItem' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <form action="{% url 'updateItem' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="form-row">
                         <p>Выберите категорию</p>
                         <select required class="form-control select" name="{{ form.category.name }}" id="category">
                             {% for cat in all_cat %}
-                                <option value="{{ cat.id }}">{{cat.name}}</option>
+                                <option {% if item.category.id == cat.id %} selected {% endif %} value="{{ cat.id }}">{{cat.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -27,7 +27,7 @@
                         <p>Выберите подкатегорию</p>
                         <select required class="form-control select" name="{{ form.subCategory.name }}" id="subcategory">
                             {% for subcat in all_cat.first.subcats.all %}
-                                <option class="subcat-name" value="{{ subcat.id }}">{{subcat.name}}</option>
+                                <option {% if item.subCategory.id == subcat.id %} selected {% endif %} class="subcat-name" value="{{ subcat.id }}">{{subcat.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -37,34 +37,33 @@
                         <div class="form-group">
                             <label>Название обьявления</label>
                             <div>
-                                <input name="{{ form.name.name }}" required class="form-control input" type="text" placeholder="Продам стиральную машинку">
+                                <input name="{{ form.name.name }}" required class="form-control input" type="text" placeholder="Продам стиральную машинку" value="{{ item.name }}">
                                 <span>Например, «Диван-кровать Икеа» или «Холодильник Бирюса 110»</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Описание обьявления</label>
-                            <textarea class="form-control textarea" name="{{ form.description.name }}" id="" cols="30" rows="10" placeholder="Продам стиральную машинку"></textarea>
+                            <textarea class="form-control textarea" name="{{ form.description.name }}" id="" cols="30" rows="10" placeholder="Продам стиральную машинку">{{ item.description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Цена: ₽</label>
-                            <input required name="{{ form.price.name }}" class="form-control input" type="number" min="1" placeholder="15 000">
+                            <input required name="{{ form.price.name }}" class="form-control input" type="number" min="1" placeholder="15 000" value="{{ item.price }}">
                         </div>
                      <div class="login-wrapper-group">
-                        <input type="checkbox" name="{{ form.isService.name }}" >
+                        <input type="checkbox" name="{{ form.isService.name }}" {% if item.isService %}checked{% endif %} >
                         <label>Услуга</label>
                     </div>
                         <div class="form-group">
-                            <label>Основная фотография<br><span style="font: 14px 'GR',sans-serif; color: rgba(33,32,32,0.85);">Рекомендуемый размер 500х500</span></label>
-
+                            <label>Основная фотография</label>
                             <div class="upload-wrapper">
                                 <label  class="upload-label">
-                                    <input id="main_upload_img" required  name="{{ form.image.name }}"  accept="image/*"  type="file" >
-
+                                    <input id="main_upload_img"  name="{{ form.image.name }}"  accept="image/*"  type="file" >
                                 </label>
-
                                  <div id="main_preview" class="images-preview">
-
+                                 <img style="width: 140px; height: 140px; object-fit: cover;" src="{{ item.get_image }}">
                                 </div>
+
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,6 +73,9 @@
                                     <input id="upload_img" name="images" multiple accept="image/*"  type="file" >
                                 </label>
                                 <div id="preview" class="images-preview">
+                                    {% for image in item.itemimage_set.all %}
+                                        <img style="width: 140px; height: 140px; object-fit: cover;" src="{{ image.image_small }}">
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -81,7 +83,7 @@
                             <p>Местоположение</p>
                             <select required class="form-control select" name="{{ form.town.name }}" >
                                 {% for town in all_towns %}
-                                    <option value="{{ town.id }}">{{town.name}}</option>
+                                    <option {% if item.town.id == town.id %} selected {% endif %} value="{{ town.id }}">{{town.name}}</option>
                                 {% endfor %}
                             </select>
                             <span>Точный адрес поможет привлечь заинтересованных покупателей</span>
@@ -89,7 +91,7 @@
                         <div class="form-group">
                             <label>Адрес</label>
                             <div>
-                                <input name="{{ form.address.name }}" required class="form-control input" type="text" placeholder="ул. Ленина 1000">
+                                <input name="{{ form.address.name }}" required class="form-control input" type="text" placeholder="ул. Ленина 1000" value="{{ item.address }}">
 
                             </div>
                         </div>
@@ -98,16 +100,16 @@
                             <select required class="form-control select" name="{{ form.fond.name }}" id="fond_select" >
 
                                 {% for fond in allFonds %}
-                                    <option data-type="fond" value="{{ fond.id }}">{{fond.name}}</option>
+                                    <option {% if item.fond.id == fond.id %} selected {% endif %} data-type="fond" value="{{ fond.id }}">{{fond.name}}</option>
                                 {% endfor %}
-                                     <option data-type="other" value="">ИНОЕ</option>
+                                     <option {% if item.otherChoice %} selected {% endif %} data-type="other" value="">ИНОЕ</option>
                             </select>
 
                         </div>
                         <div id="other_fond_option" class="form-group not-visible">
                             <label>Иное</label>
                             <div>
-                                <input name="{{ form.otherChoice.name }}" disabled id="other_fond_option_input"  class="form-control input" type="text" placeholder="Описание  поля">
+                                <input name="{{ form.otherChoice.name }}" disabled id="other_fond_option_input"  class="form-control input" type="text" placeholder="Описание  поля" value="{{ item.otherChoice }}">
                             </div>
                         </div>
 
@@ -130,12 +132,10 @@
                         </div>
 
                     </div>
-                    <div class="login-wrapper-group">
-                        <input type="checkbox" required>
-                        <label>С условиями договора оферты согласен</label>
-                    </div>
 
                     <input type="hidden" name="{{ form.user.name }}" value="{{ user.id }}">
+                    <input type="hidden" name="item_id" value="{{ item.id }}">
+
                     <button style="width: 250px" class="btn" type="submit">Сохранить</button>
                 </form>
             </section><!--//new-item-->
@@ -232,7 +232,7 @@
                     var reader = new FileReader();
                     reader.addEventListener("load", function() {
                         var image = new Image();
-                        image.style.width = '140px';
+                         image.style.width = '140px';
                         image.style.height = '140px';
                         image.style.objectFit = 'cover';
                         image.title  = file.name;

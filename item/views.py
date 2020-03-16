@@ -18,11 +18,11 @@ def get_subcat(request):
 
 def createItem(request):
     return_dict = {}
-    print(request.POST)
+
     new_image=0
     for f in request.FILES.getlist('images'):
         print(f)
-    form = CreateItemForm(request.POST)
+    form = CreateItemForm(request.POST, request.FILES)
     if form.is_valid():
         new_image = form.save()
         print(new_image.id)
@@ -59,3 +59,23 @@ def wishlist_add(request):
     else:
         return_dict['result'] = False
     return JsonResponse(return_dict)
+
+def updateItem(request):
+    new_image = 0
+    item = Item.objects.get(id=request.POST.get('item_id'))
+    for f in request.FILES.getlist('images'):
+        print(f)
+    form = UpdateItemForm(request.POST, request.FILES, instance=item)
+    if form.is_valid():
+        new_image = form.save()
+        print(new_image.id)
+    else:
+        print(form.errors)
+    if request.FILES.getlist('images'):
+        all_images = item.itemimage_set.all()
+        all_images.delete()
+        for f in request.FILES.getlist('images'):
+            ItemImage.objects.create(item=item, image=f).save()
+
+
+    return HttpResponseRedirect('/lk')

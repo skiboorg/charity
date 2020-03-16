@@ -96,6 +96,7 @@ class Item(models.Model):
                                     db_index=True)
     user = models.ForeignKey(User, blank=False, verbose_name='Пользователь', on_delete=models.CASCADE,
                              db_index=True)
+    image = models.ImageField('Основное изображение ', upload_to='item/', blank=True, null=True)
     name = models.CharField('Название товара', max_length=255, blank=False, null=True)
     name_lower = models.CharField(max_length=255, blank=True, null=True, db_index=True, editable=False)
     name_slug = models.CharField(max_length=255, blank=True, null=True, db_index=True, editable=False)
@@ -108,7 +109,11 @@ class Item(models.Model):
     isActive = models.BooleanField('Отображается?', default=True)
     isSold = models.BooleanField('Продан?', default=False)
 
-
+    def get_image(self):
+        if self.image:
+            return self.image.url
+        else:
+            return 'https://placehold.it/270'
     def __str__(self):
         return '%s ' % self.name
 
@@ -137,6 +142,12 @@ class ItemImage(models.Model):
     def __str__(self):
         return '%s Изображение для товара : %s ' % (self.id, self.item.name)
 
+    # def image_tag(self):
+    #     # used in the admin site model as a "thumbnail"
+    #     if self.image_small:
+    #         return mark_safe('<img src="{}" width="150" height="150" />'.format(self.image_small))
+    #     else:
+    #         return mark_safe('<span>НЕТ МИНИАТЮРЫ</span>')
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
         if self.image_small:

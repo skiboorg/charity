@@ -20,16 +20,15 @@
                 <div class="item-informaion-wrapper">
                     <div class="item-informaion-photo">
                         <h1>{{item.name}}</h1>
-                        <img id="item_main_img" src="{{ images.first.image.url }}">
-                        <div class="controls" id="customize-controls">
-                            <div class="arrow left"> </div>
-                            <div class="arrow right"> </div>
-                        </div>
-
-                        <div id="item-informaion-photos" class="item-informaion-photos">
+                        <img id="item_main_img" src="{{ item.get_image }}">
+{#                        <div class="controls" id="customize-controls">#}
+{#                            <div class="arrow left"> </div>#}
+{#                            <div class="arrow right"> </div>#}
+{#                        </div>#}
+                        <div  id="item-informaion-photos" class="item-informaion-photos">
+                            <img style="width: 100px; margin-right: 10px" class="item-image-thumb  selected " onclick="changeImg(this)" data-img="{{ item.get_image }}" src="{{ item.get_image }}" alt="">
                             {% for image in images %}
-
-                                <img class="item-image-thumb {% if forloop.first %} selected{% endif %}" onclick="changeImg(this)" data-img="{{ image.image.url }}" src="{{ image.image_small }}" alt="">
+                                <img style="width: 100px; margin-right: 10px" class="item-image-thumb" onclick="changeImg(this)" data-img="{{ image.image.url }}" src="{{ image.image_small }}" alt="">
                             {% endfor %}
                         </div>
 
@@ -59,7 +58,7 @@
                                 </div>
                             {% endif %}
 
-                        <div style="padding: 0" class="best-customer-item">
+                        <div  class="best-customer-item">
                             <p class="best-customer-item-info">Информация о продавце:</p>
                             <div class="customer-img "><!--with-star -->
                                 <a href="#">
@@ -79,7 +78,9 @@
                 </div>
 
             </div>
-          <h3 class="mb-50">Описание</h3>
+        <div class="container">
+             <h3 class="mb-50">Описание</h3>
+
                 <div class="item-informaion-description">
 
                     <div class="item-informaion-description-row">
@@ -93,6 +94,8 @@
                         <p>{{item.description}}</p>
                     </div>
                 </div>
+        </div>
+
 
         </section>
         <section class="items">

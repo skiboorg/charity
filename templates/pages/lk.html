@@ -58,7 +58,7 @@
                             <h3 class="mb-40">Мои обьявления</h3>
                             <div class="items-wrapper">
                                 <div class="item new-item">
-                                    <a class="image-center" href="{% url 'new_item' %}">
+                                    <a style="margin-top: 30%" class="image-center" href="{% url 'new_item' %}">
                                         <img src="{% static 'img/new-item.png' %}" alt="">
                                         <p>НОВОЕ<br>ОБЬЯВЛЕНИЕ</p>
                                     </a>
@@ -77,7 +77,10 @@
                                         <div class="item">
 
                                             <a class="image-center" href="{% url 'item' item.item.name_slug %}">
-                                                <img src="{{ item.item.itemimage_set.first.image_small }}" alt="">
+                                                 <div class="" style="background: url({{ item.item.get_image }}) center no-repeat; width: 270px; height: 270px; background-size: cover">
+
+        </div>
+{#                                                <img src="{{ item.item.itemimage_set.first.image_small }}" alt="">#}
                                             </a>
 
                                             <div class="item-info">

@@ -7,6 +7,7 @@ urlpatterns = [
     path('catalog/<slug>/', views.catalog, name='catalog'),
     path('item/<slug>/', views.item, name='item'),
     path('new/', views.new_item, name='new_item'),
+    path('edit/<id>', views.edit_item, name='edit_item'),
 
 
 

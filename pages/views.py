@@ -139,7 +139,12 @@ def new_item(request):
 
     return render(request, 'pages/newitem.html', locals())
 
+def edit_item(request,id):
+    item = Item.objects.get(id=id)
+    form = UpdateItemForm()
+    allFonds = Fond.objects.all()
 
+    return render(request, 'pages/itemedit.html', locals())
 def login(request):
 
     return render(request, 'pages/login.html', locals())
@@ -226,7 +231,7 @@ def payment(request):
                                      buyer=request.user,
                                      item=item,
                                      pay_by='Сбербанк')
-    response = requests.get(f'https://3dsec.sberbank.ru/payment/rest/register.do?'
+    response = requests.get(f'https://securepayments.sberbank.ru/payment/rest/register.do?'
                             'amount={}00&'
                             'currency=643&'
                             'language=ru&'

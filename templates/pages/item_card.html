@@ -4,7 +4,10 @@
        href="javascript: void (0)" onclick="add_del_fav({{ item.id }}, this {% if lkActive %}, 'lkactive'{% endif %})"></a>
     {% endif %}
     <a class="image-center" href="{% url 'item' item.name_slug %}">
-        <img src="{{ item.itemimage_set.first.image_small }}" alt="">
+        <div class="" style="background: url({{ item.get_image }}) center no-repeat; width: 270px; height: 270px; background-size: cover">
+
+        </div>
+{#        <img src="{{ item.itemimage_set.first.image_small }}" alt="">#}
     </a>
 
     <div class="item-info">
@@ -15,5 +18,8 @@
             <p class="item-info-price">{{item.price}} Р</p>
 
         </a>
+        {% if lkActive %}
+            <a style="color: #01BF41" href="{% url 'edit_item' item.id %}">Редактировать</a>
+        {% endif %}
     </div>
 </div><!-- // item -->
