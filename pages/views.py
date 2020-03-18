@@ -236,14 +236,14 @@ def payment(request):
                             'currency=643&'
                             'language=ru&'
                             'orderNumber={}&'
-                            'description=Оплата заказа {}&'
+                            'description=Покупка лота №{}&'
                             'password={}&'
                             'userName={}&'
                             'returnUrl={}&'
                             'failUrl={}&'
                             'pageView=DESKTOP&sessionTimeoutSecs=1200'.format(item.price,
                                                                               new_order.id,
-                                                                              new_order.id,
+                                                                              item.id,
                                                                               settings.SBER_PASSWORD,
                                                                               settings.SBER_LOGIN,
                                                                               settings.SBER_SUCCESS_URL,
