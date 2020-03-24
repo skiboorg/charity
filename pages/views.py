@@ -263,7 +263,7 @@ def payment(request):
     orderBundle = {"cartItems":
         {"items":
             [
-                {"positionId": item.id,
+                {"positionId": 1,
                  "name": item.name,
                  "quantity": {
                      "value": 1,
@@ -279,7 +279,7 @@ def payment(request):
                  'itemAttributes':
                      {
                          'attributes' :
-                             {
+
                                  [
                                      {
                                          'name': 'paymentMethod',
@@ -292,7 +292,7 @@ def payment(request):
 
                                  ]
 
-                             }
+
 
                      }
 
