@@ -288,7 +288,11 @@ def payment(request):
                                      {
                                          'name': 'paymentObject',
                                          'value': 1
-                                     }
+                                     },
+                                     {
+                                         'name': 'agent_info.type',
+                                            'value': 3
+                                     },
 
                                  ]
 
@@ -347,8 +351,9 @@ def sber_success(request):
     order.isPayed = True
     UserBuys.objects.create(user=order.buyer,item=item)
     item.isSold = True
-    item.fond.money_earn += item.price
-    item.fond.save()
+    if item.fond:
+        item.fond.money_earn += item.price
+        item.fond.save()
     item.save()
     order.save()
     return render(request, 'pages/order_complete.html', locals())
