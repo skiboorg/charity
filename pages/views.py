@@ -259,7 +259,7 @@ def payment(request):
                                      },
                                      {
                                          'name': 'paymentObject',
-                                         'value': 1
+                                         'value': 4 if item.isService else 1
                                      },
                                      {
                                          'name': 'agent_info.type',
