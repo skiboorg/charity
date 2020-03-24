@@ -231,35 +231,7 @@ def payment(request):
                                      buyer=request.user,
                                      item=item,
                                      pay_by='Сбербанк')
-    # order_bundle = {
-    #     'cartItems':{
-    #             'items':[
-    #                 {
-    #                     'positionID':new_order.id,
-    #                     'name':item.name,
-    #                     'quantity':{
-    #                                 'value':1,
-    #                                 'measure': 'ед.' if item.isService else 'шт'
-    #
-    #                                 },
-    #                     'itemAmount':item.price,
-    #                     'itemCode':item.id,
-    #                     'tax':1,
-    #                     'itemPrice':item.price,
-    #                     'itemAttributes':{
-    #                         'attributes':[
-    #                             {
-    #                                 'paymentMethod': 1,
-    #                                 'paymentObject': 4 if item.isService else 1,
-    #
-    #                             }
-    #
-    #                         ]
-    #                     }
-    #                 }
-    #             ]
-    #     }
-    # }
+
     orderBundle = {"cartItems":
         {"items":
             [
@@ -322,7 +294,7 @@ def payment(request):
                             '{}&'
                             'taxSystem=1'.format(
         item.price,
-        new_order.id,
+        str(new_order.id) + '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2)),
         'услуги' if item.isService else 'товара',
         item.id,
         settings.SBER_PASSWORD,
