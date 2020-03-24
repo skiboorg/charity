@@ -231,32 +231,110 @@ def payment(request):
                                      buyer=request.user,
                                      item=item,
                                      pay_by='Сбербанк')
+    # order_bundle = {
+    #     'cartItems':{
+    #             'items':[
+    #                 {
+    #                     'positionID':new_order.id,
+    #                     'name':item.name,
+    #                     'quantity':{
+    #                                 'value':1,
+    #                                 'measure': 'ед.' if item.isService else 'шт'
+    #
+    #                                 },
+    #                     'itemAmount':item.price,
+    #                     'itemCode':item.id,
+    #                     'tax':1,
+    #                     'itemPrice':item.price,
+    #                     'itemAttributes':{
+    #                         'attributes':[
+    #                             {
+    #                                 'paymentMethod': 1,
+    #                                 'paymentObject': 4 if item.isService else 1,
+    #
+    #                             }
+    #
+    #                         ]
+    #                     }
+    #                 }
+    #             ]
+    #     }
+    # }
+    orderBundle = {"cartItems":
+        {"items":
+            [
+                {"positionId": item.id,
+                 "name": item.name,
+                 "quantity": {
+                     "value": 1,
+                     "measure": 'ед'},
+                 "itemAmount": int(f'{item.price}00'),
+
+                 "itemCode": item.name_slug,
+
+                 "tax": {
+                     "taxType": 0}
+                    ,
+                 "itemPrice": int(f'{item.price}00'),
+                 'itemAttributes':
+                     {
+                         'attributes' :
+                             {
+                                 [
+                                     {
+                                         'name': 'paymentMethod',
+                                         'value': 1
+                                     },
+                                     {
+                                         'name': 'paymentObject',
+                                         'value': 1
+                                     }
+
+                                 ]
+
+                             }
+
+                     }
+
+
+                 }
+            ]
+        }
+    }
+
+    print(orderBundle)
     response = requests.get(f'https://securepayments.sberbank.ru/payment/rest/register.do?'
                             'amount={}00&'
                             'currency=643&'
                             'language=ru&'
                             'orderNumber={}&'
-                            'description=Покупка лота №{}&'
+                            'description=Покупка {} №{}&'
                             'password={}&'
                             'userName={}&'
                             'returnUrl={}&'
                             'failUrl={}&'
-                            'pageView=DESKTOP&sessionTimeoutSecs=1200'.format(item.price,
-                                                                              new_order.id,
-                                                                              item.id,
-                                                                              settings.SBER_PASSWORD,
-                                                                              settings.SBER_LOGIN,
-                                                                              settings.SBER_SUCCESS_URL,
-                                                                              settings.SBER_FAIL_URL), )
+                            'pageView=DESKTOP&'
+                            'sessionTimeoutSecs=1200&'
+                            'orderBundle={}&'
+                            'taxSystem=0'.format(
+        item.price,
+        new_order.id,
+        'услуги' if item.isService else 'товара',
+        item.id,
+        settings.SBER_PASSWORD,
+        settings.SBER_LOGIN,
+        settings.SBER_SUCCESS_URL,
+        settings.SBER_FAIL_URL,
+        orderBundle), )
     response_data = json.loads(response.content)
-
+    print('formUrl', response_data)
     try:
         orderId = response_data['orderId']
         new_order.sber_orderID = orderId
         new_order.save()
         print('orderId', orderId)
         print('formUrl', response_data['formUrl'])
-        return HttpResponseRedirect(response_data['formUrl'])
+        #return HttpResponseRedirect(response_data['formUrl'])
     except:
         print('error')
 
