@@ -315,8 +315,8 @@ def payment(request):
                             'failUrl={}&'
                             'pageView=DESKTOP&'
                             'sessionTimeoutSecs=1200&'
-                            'orderBundle={}&'
-                            'taxSystem=0'.format(
+                            '{}&'
+                            'taxSystem=1'.format(
         item.price,
         new_order.id,
         'услуги' if item.isService else 'товара',
@@ -334,7 +334,7 @@ def payment(request):
         new_order.save()
         print('orderId', orderId)
         print('formUrl', response_data['formUrl'])
-        #return HttpResponseRedirect(response_data['formUrl'])
+        return HttpResponseRedirect(response_data['formUrl'])
     except:
         print('error')
 
