@@ -291,8 +291,8 @@ def payment(request):
                             'failUrl={}&'
                             'pageView=DESKTOP&'
                             'sessionTimeoutSecs=1200&'
-                            '{}&'
-                            'taxSystem=1'.format(
+                            'taxSystem=1&'
+                            'orderBundle={}'.format(
         item.price,
         str(new_order.id) + '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2)),
         'услуги' if item.isService else 'товара',
