@@ -267,7 +267,7 @@ def payment(request):
                             f'returnUrl={settings.SBER_SUCCESS_URL}&'
                             f'failUrl={settings.SBER_FAIL_URL}&'
                             'pageView=DESKTOP&sessionTimeoutSecs=1200&taxSystem=1&'
-                            'additionalOfdParams={"agent_info.type":3}&'
+                            'additionalOfdParams={["agent_info.type":3]}&'
                             'orderBundle={'
                             '"cartItems":{'
                             '"items":['
