@@ -232,76 +232,60 @@ def payment(request):
                                      item=item,
                                      pay_by='Сбербанк')
 
-    orderBundle = {"cartItems":
+    orderBundle = {
+        "customerDetails": {"phone": "79998887766", "email": "mail@mail.ru", "fullName": "", "passport": "123","inn": "1231231231"},
+        "cartItems":
         {"items":
             [
                 {"positionId": 1,
                  "name": item.name,
-                 "quantity": {
-                     "value": 1,
-                     "measure": 'ед'},
+                 "quantity": {"value": 1,"measure":'шт'},
                  "itemAmount": int(f'{item.price}00'),
-
                  "itemCode": item.name_slug,
-
-                 "tax": {
-                     "taxType": 0}
-                    ,
+                 "tax": {"taxType": 0,'taxSum': 0},
                  "itemPrice": int(f'{item.price}00'),
                  'itemAttributes':
-                     {
-                         'attributes' :
-
-                                 [
-                                     {
-                                         'name': 'paymentMethod',
-                                         'value': 1
-                                     },
-                                     {
-                                         'name': 'paymentObject',
-                                         'value': 4 if item.isService else 1
-                                     },
-                                     {
-                                         'name': 'agent_info.type',
-                                            'value': 3
-                                     },
-
-                                 ]
-
-
-
+                     {'attributes':
+                         [
+                             {'name': 'paymentMethod', 'value': 1},
+                             {'name': 'paymentObject', 'value': 4 if item.isService else 1},
+                             {'name': 'agent_info.type', 'value': 3}
+                         ]
                      }
-
-
                  }
             ]
         }
     }
 
-    print(orderBundle)
-    response = requests.get(f'https://securepayments.sberbank.ru/payment/rest/register.do?'
-                            'amount={}00&'
-                            'currency=643&'
-                            'language=ru&'
-                            'orderNumber={}&'
-                            'description=Покупка {} №{}&'
-                            'password={}&'
-                            'userName={}&'
-                            'returnUrl={}&'
-                            'failUrl={}&'
-                            'pageView=DESKTOP&'
-                            'sessionTimeoutSecs=1200&'
-                            'taxSystem=1&'
-                            'orderBundle={}'.format(
-        item.price,
-        str(new_order.id) + '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2)),
-        'услуги' if item.isService else 'товара',
-        item.id,
-        settings.SBER_PASSWORD,
-        settings.SBER_LOGIN,
-        settings.SBER_SUCCESS_URL,
-        settings.SBER_FAIL_URL,
-        orderBundle), )
+    response = requests.get('https://securepayments.sberbank.ru/payment/rest/register.do?'
+                            f'amount={item.price}00&'
+                            f'orderNumber={str(new_order.id) + "-" + "".join(choices(string.ascii_lowercase + string.digits, k=2))}&'
+                            f'description=Покупка {"услуги" if item.isService else "товара"} №{item.id}&'
+                            f'password={settings.SBER_PASSWORD}&'
+                            f'userName={settings.SBER_LOGIN}&'
+                            f'returnUrl={settings.SBER_SUCCESS_URL}&'
+                            f'failUrl={settings.SBER_FAIL_URL}&'
+                            'pageView=DESKTOP&sessionTimeoutSecs=1200&taxSystem=1&'
+                            'orderBundle={'
+                            '"cartItems":{'
+                            '"items":['
+                            '{"positionId":1,'
+                            f'"name":"{item.name}",'
+                            '"quantity":{'
+                            '"value": 1,'
+                            '"measure":"шт"},'
+                            f'"itemCode":"{item.name_slug}",'
+                            f'"itemPrice":{item.price}00,'
+                            f'"itemAmount":{item.price}00,'
+                            '"tax":{"taxType":0,"taxSum":0},'
+                            '"itemAttributes": '
+                            '{"attributes": [{"name": "paymentMethod", "value": 1},'
+                            '{"name": "paymentObject",'
+                            f'"value": {4 if item.isService else 1}'
+                            '}]}'
+                            '}]}}')
+
+
     response_data = json.loads(response.content)
     print('formUrl', response_data)
     try:
