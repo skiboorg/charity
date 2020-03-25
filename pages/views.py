@@ -258,9 +258,6 @@ def payment(request):
     }
     o={"cartItems":{"items":[{"positionId":1,"name":"Дезодорант 1","quantity":{"value":1,"measure":"шт"},"itemCode":"51","itemPrice":55550,"itemAmount":55550, "tax":{"taxType":0, "taxSum":0}}]}}
     print(orderBundle)
-    # print(f'https://securepayments.sberbank.ru/payment/rest/register.do?amount={item.price}00&currency=643&language=ru&orderNumber={str(new_order.id) + "-" + "".join(choices(string.ascii_lowercase + string.digits, k=2))}&description=Покупка {"услуги" if item.isService else "товара"} №{item.id}&password={settings.SBER_PASSWORD}&userName={settings.SBER_LOGIN}&returnUrl={settings.SBER_SUCCESS_URL}&failUrl={settings.SBER_FAIL_URL}&pageView=DESKTOP&sessionTimeoutSecs=1200&taxSystem=1&orderBundle={o}')
-
-    #response = requests.get('https://securepayments.sberbank.ru/payment/rest/register.do?amount=55550&failUrl=https://yandex.ru&orderNumber=t5t2yooе4dfice35668&pageView=MOBILE&userName=from-goods-hands-api&description="Тестовый заказ СБРФ разные Tax"&password=cska_foreveR_756442!&returnUrl=http://yandex.ru&orderBundle={"cartItems":{"items":[{"positionId":1,"name":"Дезодорант 1","quantity":{"value":1,"measure":"шт"},"itemCode":"51","itemPrice":55550,"itemAmount":55550, "tax":{"taxType":0, "taxSum":0}}]}}')
     response = requests.get('https://securepayments.sberbank.ru/payment/rest/register.do?'
                             f'amount={item.price}00&'
                             f'orderNumber={str(new_order.id) + "-" + "".join(choices(string.ascii_lowercase + string.digits, k=2))}&'
@@ -270,6 +267,7 @@ def payment(request):
                             f'returnUrl={settings.SBER_SUCCESS_URL}&'
                             f'failUrl={settings.SBER_FAIL_URL}&'
                             'pageView=DESKTOP&sessionTimeoutSecs=1200&taxSystem=1&'
+                            'additionalOfdParams={"agent_info.type":3}&'
                             'orderBundle={'
                             '"cartItems":{'
                             '"items":['
@@ -286,8 +284,7 @@ def payment(request):
                             '{"attributes": [{"name": "paymentMethod", "value": 1},'
                             '{"name": "paymentObject",'
                             f'"value": {4 if item.isService else 1}'
-                            '},'
-                            ' {"name": "agent_info.type", "value": 3},{"name": "agent_info.MTOperator.inn", "value": "772604821840"}]}'
+                            '}]}'                            
                             '}]}}')
 
     # response = requests.get('https://securepayments.sberbank.ru/payment/rest/register.do?'
