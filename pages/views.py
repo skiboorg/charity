@@ -268,7 +268,7 @@ def payment(request):
                             f'returnUrl={settings.SBER_SUCCESS_URL}&'
                             f'failUrl={settings.SBER_FAIL_URL}&'
                             'pageView=DESKTOP&sessionTimeoutSecs=1200&taxSystem=1&'
-                            'additionalOfdParams":{"additional_user_props.name":"117208 г.Москва, ул. Сумская, дом 8, корп.3, кв.48"},{"additional_user_props.value":"117208 г.Москва, ул. Сумская, дом 8, корп.3, кв.48"}&'
+                            'additionalOfdParams":{"agent_info.type":"3"}&'
                             'orderBundle={'
                             '"cartItems":{'
                             '"items":['
