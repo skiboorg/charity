@@ -257,6 +257,7 @@ def payment(request):
         }
     }
     o={"cartItems":{"items":[{"positionId":1,"name":"Дезодорант 1","quantity":{"value":1,"measure":"шт"},"itemCode":"51","itemPrice":55550,"itemAmount":55550, "tax":{"taxType":0, "taxSum":0}}]}}
+    print('ww')
     print(orderBundle)
     response = requests.get('https://securepayments.sberbank.ru/payment/rest/register.do?'
                             f'amount={item.price}00&'
@@ -267,7 +268,7 @@ def payment(request):
                             f'returnUrl={settings.SBER_SUCCESS_URL}&'
                             f'failUrl={settings.SBER_FAIL_URL}&'
                             'pageView=DESKTOP&sessionTimeoutSecs=1200&taxSystem=1&'
-                            'additionalOfdParams={["agent_info.type":3]}&'
+                            'additionalOfdParams":{"additional_user_props.name":"117208 г.Москва, ул. Сумская, дом 8, корп.3, кв.48"},{"additional_user_props.value":"117208 г.Москва, ул. Сумская, дом 8, корп.3, кв.48"}&'
                             'orderBundle={'
                             '"cartItems":{'
                             '"items":['
@@ -317,8 +318,10 @@ def payment(request):
     #
     #                         '}]}'
     #                         '}]}}')
+    print(json.loads(response.content))
     response_data = json.loads(response.content)
     print('formUrl', response_data)
+
     try:
         orderId = response_data['orderId']
         new_order.sber_orderID = orderId
