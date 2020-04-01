@@ -141,10 +141,22 @@ def new_item(request):
 
 def edit_item(request,id):
     item = Item.objects.get(id=id)
-    form = UpdateItemForm()
-    allFonds = Fond.objects.all()
+    if item.user.id == request.user.id:
+        form = UpdateItemForm()
+        allFonds = Fond.objects.all()
+        return render(request, 'pages/itemedit.html', locals())
+    else:
+        return render(request, 'pages/index.html', locals())
 
-    return render(request, 'pages/itemedit.html', locals())
+def del_item(request,id):
+    item = Item.objects.get(id=id)
+    if item.user.id == request.user.id:
+        item.delete()
+        allFonds = Fond.objects.all()
+        return HttpResponseRedirect('/lk/')
+    else:
+        return render(request, 'pages/index.html', locals())
+
 def login(request):
 
     return render(request, 'pages/login.html', locals())

@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-заказ успешно оплачен
-</body>
-</html>
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="main">
+    <div class="breadcrumbs">
+        <div class="container ">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><span>Успешная оплата заказа</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="features">
+        <div class="container">
+            <h3 class="">Заказ № {{ order.id }} успешно оплачен</h3>
+
+        </div>
+    </section>
+</div><!--//main-->
+{% endblock %}

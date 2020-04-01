@@ -1,3 +1,4 @@
+{% load mytags %}
 <div class="item">
     {% if item.user != user and user.is_authenticated%}
     <a id="fav_btn_{{ item.id }}" class="item-fav {% if item.id in wishlist_ids %} in-fav{% endif %}"
@@ -18,8 +19,13 @@
             <p class="item-info-price">{{item.price}} Р</p>
 
         </a>
-        {% if lkActive %}
-            <a style="color: #01BF41" href="{% url 'edit_item' item.id %}">Редактировать</a>
+        {% if lkActive and item.user.id == request.user.id%}
+            {% if item.isSold %}
+            <p class="item-info-text">{{ item | get_sold_info |safe}}</p>
+            {% endif %}
+            <hr>
+            <a style="color: #01BF41" href="{% url 'edit_item' item.id %}">Редактировать</a><br><br>
+            <a style="color: red" href="{% url 'del_item' item.id %}" onclick="return confirm('Вы уверены?')">Удалить товар</a>
         {% endif %}
     </div>
 </div><!-- // item -->
