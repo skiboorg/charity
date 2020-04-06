@@ -21,10 +21,13 @@
         </a>
         {% if lkActive and item.user.id == request.user.id%}
             {% if item.isSold %}
-            <p class="item-info-text">{{ item | get_sold_info |safe}}</p>
+                <p class="item-info-text">{{ item | get_sold_info |safe}}</p>
+
             {% endif %}
             <hr>
-            <a style="color: #01BF41" href="{% url 'edit_item' item.id %}">Редактировать</a><br><br>
+            {% if not item.isSold %}
+                <a style="color: #01BF41" href="{% url 'edit_item' item.id %}">Редактировать</a><br><br>
+            {% endif %}
             <a style="color: red" href="{% url 'del_item' item.id %}" onclick="return confirm('Вы уверены?')">Удалить товар</a>
         {% endif %}
     </div>

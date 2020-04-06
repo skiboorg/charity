@@ -169,7 +169,8 @@ def lk(request):
     if request.user.is_authenticated:
         user = request.user
         updateForm = UpdateForm()
-        userItems = Item.objects.filter(user=user)
+        userItems = Item.objects.filter(user=user, isSold=False)
+        soldItems = Item.objects.filter(user=user, isSold=True)
         wl = UserFavorites.objects.filter(user=user)
         wishlist_ids = []
         for i in wl:

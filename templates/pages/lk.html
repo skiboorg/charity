@@ -55,7 +55,7 @@
                             </div><!-- // lk-menu-top -->
                         </div>
                         <div id="lk-content-ads" class="lk-content-wrapper lk-content-ads">
-                            <h3 class="mb-40">Мои обьявления</h3>
+                            <h3 class="mb-40">Мои обьявления (Активные)</h3>
                             <div class="items-wrapper">
                                 <div class="item new-item">
                                     <a style="margin-top: 30%" class="image-center" href="{% url 'new_item' %}">
@@ -67,6 +67,15 @@
                                     {% include 'pages/item_card.html' %}
                                 {% endfor %}
                             </div>
+                            {% if  soldItems%}
+                            <h3 class="mb-40">Мои обьявления (Продано)</h3>
+                            <div class="items-wrapper">
+
+                                {% for item in soldItems %}
+                                    {% include 'pages/item_card.html' %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
                         </div><!-- // lk-content-ads -->
                         <div id="lk-content-buys" class="lk-content-wrapper lk-content-buys">
@@ -409,8 +418,31 @@
             evt.currentTarget.className += ` ${type}`;
         }
 
-        // Get the element with id="defaultOpen" and click on it defaultOpenMobile
         document.getElementById("defaultOpen").click();
+
+
+           function startChat(msg_to,msg_from, item) {
+            let msg = document.getElementById('chat_message')
+
+            let body = {
+                msgTo: msg_to,
+                msgFrom: msg_from,
+                msg: `По поводу лота ${item}`
+            }
+            fetch('/chat/new_msg/', {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    console.log(res)
+                    msg.value = ''
+                    openChatBox()
+
+                })
+
+        }
 
     </script>
 {% endblock %}

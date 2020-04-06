@@ -15,7 +15,8 @@ def slice_qs(data):
 def get_sold_info(data):
     print('get_sold_info')
     print(data.id)
-    item = UserBuys.objects.get(item=data)
+    item = UserBuys.objects.get(item_id=data.id)
     print(item)
     return (f'Дата продажи: {item.createdAt}<br>'
-            f'Покупатель: {item.user.name}')
+            f'Покупатель: {item.user.name}<br><br>'
+            f' <span style="cursor: pointer; text-decoration: underline;" onclick="startChat({item.item.user.id},{item.user.id},{item.item.id})">Начать чат</span>')
