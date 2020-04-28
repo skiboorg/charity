@@ -30,6 +30,7 @@
                 <div class="register-form not-visible">
                     <h3>Регистрация</h3>
                     <form action="{% url 'reg_req' %}" method="post">{% csrf_token %}
+                        <input type="text" required name="name" class="form-control input" placeholder='Ваше ФИО'>
                         <input type="text" required name="email" class="form-control input" placeholder='Введите E-Mail'>
                         <input type="password" required name="password1" class="form-control input" placeholder='Введите пароль'>
                         <input type="password" required name="password2" class="form-control input" placeholder='Повторите пароль'>
