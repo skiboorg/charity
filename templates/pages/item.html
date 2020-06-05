@@ -20,15 +20,15 @@
                 <div class="item-informaion-wrapper">
                     <div class="item-informaion-photo">
                         <h1>{{item.name}}</h1>
-                        <img id="item_main_img" src="{{ item.get_image }}">
+                        <img style="max-height: 450px" id="item_main_img" src="{{ item.get_image }}">
 {#                        <div class="controls" id="customize-controls">#}
 {#                            <div class="arrow left"> </div>#}
 {#                            <div class="arrow right"> </div>#}
 {#                        </div>#}
                         <div  id="item-informaion-photos" class="item-informaion-photos">
-                            <img style="width: 100px; margin-right: 10px" class="item-image-thumb  selected " onclick="changeImg(this)" data-img="{{ item.get_image }}" src="{{ item.get_image }}" alt="">
+                            <img style="width: 100px; margin-right: 10px;object-fit: cover" class="item-image-thumb  selected " onclick="changeImg(this)" data-img="{{ item.get_image }}" src="{{ item.get_image }}" alt="">
                             {% for image in images %}
-                                <img style="width: 100px; margin-right: 10px" class="item-image-thumb" onclick="changeImg(this)" data-img="{{ image.image.url }}" src="{{ image.image_small }}" alt="">
+                                <img style="width: 100px; margin-right: 10px; object-fit: cover" class="item-image-thumb" onclick="changeImg(this)" data-img="{{ image.image.url }}" src="{{ image.image_small }}" alt="">
                             {% endfor %}
                         </div>
 
@@ -40,6 +40,13 @@
                     <div class="item-informaion-price">
                         <div class="item-informaion-price-inner">
                             <p>{{item.price}} Рублей</p>
+                            {% if not request.user.is_authenticated%}
+
+                                <p style="font: 14px 'GB',sans-serif !important;
+    color: #161616 !important;" class="best-customer-item-info">Чтобы приобрести товар или связаться с продавцом вам необходимо войти в свой аккаунт или зарегистрироваться</p>
+                                   <a href="{% url 'login' %}"  class="btn ">Вход/Регистрация</a>
+
+                            {% endif %}
                             {% if not item.isSold and request.user.is_authenticated and item.user.id != request.user.id %}
                                 <div class="item-informaion-price-buttons">
                                     <a href="javascript: void(0)" onclick="openBuyModal({{ item.id }})" class="btn ">Купить</a>
@@ -55,9 +62,9 @@
                                         <a href="javascript: void(0)" class="btn" onclick="sendMsg()">отправить</a>
                                     </div>
                                 </div>
-                                </div>
-                            {% endif %}
 
+                            {% endif %}
+                    </div>
                         <div  class="best-customer-item">
                             <p class="best-customer-item-info">Информация о продавце:</p>
                             <div class="customer-img "><!--with-star -->
